@@ -9,12 +9,19 @@ namespace KJobRecruitmentWebApp.Controllers
 {
     public class RegisterController : Controller
     {
+        public class SubmitData
+        {
+            public string email { get; set; }
+            public string password { get; set; }
+        }
+
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult Index(Account acc)
+        public ActionResult Index(SubmitData acc)
         {
             return View();
         }
