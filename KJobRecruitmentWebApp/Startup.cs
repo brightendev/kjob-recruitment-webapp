@@ -23,7 +23,8 @@ namespace KJobRecruitmentWebApp
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMvc(delegate (IRouteBuilder routes) {
-                routes.MapRoute("register_route", "", new { controller = "Register", action = "index" });
+                routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
+                routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
             });
         }
     }
