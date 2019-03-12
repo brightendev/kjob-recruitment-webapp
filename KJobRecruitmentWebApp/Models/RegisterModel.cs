@@ -16,10 +16,5 @@ namespace KJobRecruitmentWebApp.Models
             Core.Register.CreateAccount(email, password);
 
         }
-
-        private static void sendConfirmationEmail() {
-
-        }
-        
     }
 }
