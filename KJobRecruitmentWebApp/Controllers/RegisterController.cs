@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KJobRecruitmentWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KJobRecruitmentWebApp.Controllers
@@ -22,6 +23,9 @@ namespace KJobRecruitmentWebApp.Controllers
         [HttpPost]
         public ActionResult Index(SubmitData acc)
         {
+
+            RegisterModel.CreateAccount(acc.email, acc.password);
+
             return View();
         }
     }
