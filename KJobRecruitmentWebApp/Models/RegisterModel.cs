@@ -13,13 +13,8 @@ namespace KJobRecruitmentWebApp.Models
     {
         public static void CreateAccount(string email, string password) {
 
-            Core.Register.CreateAccount(email, password);
+            System.Core.Register.CreateAccount(email, password);
 
         }
-
-        private static void sendConfirmationEmail() {
-
-        }
-        
     }
 }

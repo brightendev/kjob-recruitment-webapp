@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
-namespace KJobRecruitmentWebApp.Core
+namespace KJobRecruitmentWebApp.System.Core
 {
     static class Register
     {
@@ -21,6 +25,11 @@ namespace KJobRecruitmentWebApp.Core
             Console.WriteLine($"encrypted : {cipher}");
 
             Console.WriteLine($"decrypted : {decryptAccountData(cipher)}");
+
+            using (StreamReader reader = File.OpenText("ssss.html")) // Path to your 
+            {
+                System.Services.Email.SendHtmlEmail("s5903051613102@email.kmutnb.ac.th", "Bright", "TestEmail", reader.ReadToEnd());
+            }
 
         }
 
@@ -57,6 +66,7 @@ namespace KJobRecruitmentWebApp.Core
 
         private static string decryptAccountData(string accData)
         {
+            Console.WriteLine("Send Confirmation email has been called");
 
             string hash = "afdfser@#";
 
