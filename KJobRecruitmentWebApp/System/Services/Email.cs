@@ -14,18 +14,18 @@ namespace KJobRecruitmentWebApp.System.Services
         private static string apiKey = "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";
         private static SendGridClient client = new SendGridClient(apiKey);
 
-        public static async void SendHtmlEmail(string sendToEmail, string sendToName, string subject, string content) {
+        public static async void SendHtmlEmail(string sendToEmail, string sendToName, string subject, string html) {
 
             SendGridMessage msg = new SendGridMessage()
             {
                 From = new EmailAddress("kjobrecruitment@gacdevelopment", "KJob Recruitment"),
                 Subject = subject,
                 //  PlainTextContent = "Hello, Email!",
-                HtmlContent = content
+                HtmlContent = html
             };
 
             msg.AddTo(new EmailAddress(sendToEmail, "Test User"));
-            var response = await client.SendEmailAsync(msg);
+            Response response = await client.SendEmailAsync(msg);
 
         }
     }
