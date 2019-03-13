@@ -28,7 +28,7 @@ namespace KJobRecruitmentWebApp.System.Core
 
             using (StreamReader reader = File.OpenText("ssss.html")) // Path to your 
             {
-                System.Services.Email.SendHtmlEmail("s5903051613102@email.kmutnb.ac.th", "Bright", "TestEmail", reader.ReadToEnd());
+                System.Services.Email.SendHtmlEmail(email, "kuykuykuy", "ยืนยัน Email", reader.ReadToEnd());
             }
 
         }
