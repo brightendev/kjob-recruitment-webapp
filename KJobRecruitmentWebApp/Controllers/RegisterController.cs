@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using KJobRecruitmentWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,22 @@ namespace KJobRecruitmentWebApp.Controllers
             RegisterModel.CreateAccount(acc.email, acc.password);
 
             return View();
+        }
+
+        public async void CallApiCreateAccount(string encryptedAccountData) {
+
+            HttpClient httpClient = new HttpClient();
+
+            string url = "https://jobrecruitmentapi.azurewebsites.net/api/Register?code=D/8y4FRnQDqvFqRIcEoWwzGiKFXk09at7wuT0zg66DFNXlDO4GixdQ==";
+
+            Console.WriteLine($"[argument] = {encryptedAccountData}");
+
+          //  string decrypted = System.C
+            
+            string email = "", password = "";
+        //    HttpResponseMessage response = await httpClient.GetAsync($"{url}&email={email}&password={password}");
+
+        //    Console.WriteLine(response);
         }
     }
 }
