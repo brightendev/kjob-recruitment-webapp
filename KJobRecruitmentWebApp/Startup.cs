@@ -27,6 +27,9 @@ namespace KJobRecruitmentWebApp
             app.UseMvc(delegate (IRouteBuilder routes) {
                 routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
+
+                routes.MapRoute("api_create_account", "apicreateaccount{encryptedAccountData}",
+                    new {controller = "Register", action = "CallApiCreateAccount" });
             });
         }
     }
