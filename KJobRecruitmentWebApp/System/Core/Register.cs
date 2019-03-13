@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Newtonsoft.Json;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -26,7 +27,7 @@ namespace KJobRecruitmentWebApp.System.Core
 
             Console.WriteLine($"decrypted : {decryptAccountData(cipher)}");
 
-            using (StreamReader reader = File.OpenText("ssss.html")) // Path to your 
+            using (StreamReader reader = File.OpenText("./wwwroot/email_template/register_account.html"))  
             {
                 System.Services.Email.SendHtmlEmail(email, "kuykuykuy", "ยืนยัน Email", reader.ReadToEnd());
             }
