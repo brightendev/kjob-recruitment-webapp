@@ -22,6 +22,8 @@ namespace KJobRecruitmentWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles();
+
             app.UseMvc(delegate (IRouteBuilder routes) {
                 routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
