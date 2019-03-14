@@ -11,7 +11,7 @@ namespace KJobRecruitmentWebApp.System.Services
     {
         private static readonly string hash = "a0-9!fdf_?.ser@#";
 
-        public static string encryptAccountData(string accData)
+        public static string EncryptString(string accData)
         {
 
             byte[] data = UTF8Encoding.UTF8.GetBytes(accData);
@@ -40,7 +40,7 @@ namespace KJobRecruitmentWebApp.System.Services
             return result;
         }
 
-        public static string decryptAccountData(string accData)
+        public static string DecryptString(string accData)
         {
 
             byte[] data = Convert.FromBase64String(accData);
