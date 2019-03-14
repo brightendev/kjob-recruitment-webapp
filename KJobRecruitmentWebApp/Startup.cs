@@ -29,8 +29,8 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
                 routes.MapRoute("login_route", "login", new {controller = "Login", action = "index"});
 
-                routes.MapRoute("api_create_account", "{encryptedAccountData}apicreateaccount",
-                    new {controller = "Register", action = "CallApiCreateAccount" });
+                routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
+                    new {controller = "Register", action = "ResponseToConfirmationEmail" });
             });
         }
     }

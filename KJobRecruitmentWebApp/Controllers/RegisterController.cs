@@ -33,29 +33,9 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-        public string CallApiCreateAccount(string encryptedAccountData) {
+        public async Task<string> ResponseToConfirmationEmail(string encryptedConfirmationData) {
 
-            Console.WriteLine($"[argument] = {encryptedAccountData}");
-
-            string decodedUrlEncodingData = WebUtility.UrlDecode(encryptedAccountData.Replace("[P]", "%"));
-            string decryptedAccountData = System.Services.Cryptography.decryptAccountData(decodedUrlEncodingData);
-
-            return decryptedAccountData;
-
-            JObject decryptedJson = JsonConvert.DeserializeObject(decryptedAccountData) as JObject;
-
-            string email = decryptedJson["email"].Value<string>();
-            string password = decryptedJson["password"].Value<string>();
-
-            Console.WriteLine($"[decrypted email] = {email} [decrypted password] = {password}");
-
-            HttpClient httpClient = new HttpClient();
-            string url = "https://jobrecruitmentapi.azurewebsites.net/api/Register?code=D/8y4FRnQDqvFqRIcEoWwzGiKFXk09at7wuT0zg66DFNXlDO4GixdQ==";
-           // HttpResponseMessage response = await httpClient.GetAsync($"{url}&email={email}&password={password}");
-
-        //    Console.WriteLine(response);
-
-            return $"Email= {email} \nPassword= {password}";
+            return await RegisterModel.ResponseToConfirmationEmail(encryptedConfirmationData);
         }
     }
 }
