@@ -348,10 +348,11 @@ $.extend( $.validator, {
 		$.extend( $.validator.defaults, settings );
 	},
 
-	messages: {
-		required: "This field is required.",
+    messages: {
+        password: "กรุณากรอก ตัวอักใหญ่ เล็ก และตัวเลข",
+		required: "กรุณากรอกข้อมูล",
 		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
+		email: "กรุณากรอกอีเมล์ให้ถูกต้อง",
 		url: "Please enter a valid URL.",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
@@ -1120,7 +1121,8 @@ $.extend( $.validator, {
 
 	},
 
-	classRuleSettings: {
+    classRuleSettings: {
+        password: { password: true },
 		required: { required: true },
 		email: { email: true },
 		url: { url: true },
@@ -1346,6 +1348,18 @@ $.extend( $.validator, {
 			}
 			return value.length > 0;
 		},
+
+        // แก้ไขการกรอกรหัสผ่าน
+        password: function (value, element) {
+            var test = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
+            if (value.match(test)) {
+                //onsole.log("okay");
+                // return false;
+                //dont display key if it is a number
+                return true;
+            }
+            return false;
+        },
 
 		// http://jqueryvalidation.org/email-method/
 		email: function( value, element ) {
