@@ -25,5 +25,10 @@ namespace KJobRecruitmentWebApp.Controllers
 
             return View();
         }
+
+        public ActionResult FirstLogin() {
+
+            return View();
+        }
     }
 }

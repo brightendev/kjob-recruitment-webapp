@@ -28,6 +28,8 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
                 routes.MapRoute("login_route", "login", new {controller = "Login", action = "index"});
+                routes.MapRoute("first_login", "firstlogin", new {controller = "Login", action = "FirstLogin"});
+
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });
