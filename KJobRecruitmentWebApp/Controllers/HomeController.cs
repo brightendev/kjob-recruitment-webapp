@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace KJobRecruitmentWebApp.Controllers
 {
@@ -35,7 +37,14 @@ namespace KJobRecruitmentWebApp.Controllers
         [Authorize(Roles = "Candidate")]
         public IActionResult Candidate() {
 
-            ViewData["uid"] = ((ClaimsIdentity)User.Identity).FindFirst("uid");
+            AccountController account = new AccountController();
+
+           // JObject respJsonObject = JsonConvert.DeserializeObject(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Email).ToString()) as JObject;
+           // string email = respJsonObject["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].Value<string>();
+
+            ViewData["Email"] = ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(6);
+            ViewData["Uid"] = ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(4);
+            ViewData["Role"] = ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(5);
 
             return View();
         }

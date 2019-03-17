@@ -31,25 +31,18 @@ namespace KJobRecruitmentWebApp.Controllers
 
             string response = await LoginModel.TryLogin(acc.email, acc.password);
 
+            if(response.Contains("error")) return Redirect("login");
+
             Console.WriteLine(response);
 
-            JObject respJsonObject = JsonConvert.DeserializeObject(response) as JObject;
-            string uid = respJsonObject["uid"].Value<string>();
-            string role = respJsonObject["role"].Value<string>();
+            ClaimsIdentity identity = LoginModel.ClaimIdentity(response);
 
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Email, acc.email),
-                new Claim("uid", uid),
-                new Claim(ClaimTypes.Role, role)
-            };
+            Authorize(identity);
 
-            ClaimsIdentity identity = new ClaimsIdentity(
-                claims,
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                "uid",
-                ClaimTypes.Role
-            );
+            return Redirect("/");
+        }
+
+        private async void Authorize(ClaimsIdentity identity) {
 
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
@@ -62,8 +55,6 @@ namespace KJobRecruitmentWebApp.Controllers
             );
 
             User.AddIdentity(identity);
-
-            return Redirect("/");
         }
 
         public ActionResult FirstLogin() {
