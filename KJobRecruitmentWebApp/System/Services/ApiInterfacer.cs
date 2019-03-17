@@ -19,5 +19,14 @@ namespace KJobRecruitmentWebApp.System.Services
 
             return await response.Content.ReadAsStringAsync();
         }
+
+        public static async Task<string> Login(string email, string password) {
+
+            string endpoint = "api/Login?code=b/QZfneK7bYJAe46OigxQ8zLegWx3aI9Ka8J9W4qE4jpHkBlrwUt3Q==";
+
+            string response = await httpClient.GetStringAsync($"{apiServer}{endpoint}&email={email}&password={password}");
+
+            return response;
+        } 
     }
 }
