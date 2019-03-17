@@ -31,7 +31,7 @@ namespace KJobRecruitmentWebApp.Controllers
 
             string response = await LoginModel.TryLogin(acc.email, acc.password);
 
-            if(response.Contains("error")) Redirect("login");
+            if(response.Contains("error")) return Redirect("login");
 
             Console.WriteLine(response);
 
