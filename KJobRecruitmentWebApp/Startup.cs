@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,12 +19,30 @@ namespace KJobRecruitmentWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(delegate (CookieAuthenticationOptions options) {
+                    options.LoginPath = "/login";
+                    options.AccessDeniedPath = "/home";
+                });
+
+       /*     services.AddAuthorization(delegate(AuthorizationOptions options) {
+                options.AddPolicy("Candidate", policy => policy.RequireRole("Candidate"));
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+
+            app.Use(async delegate (HttpContext context, Func<Task> next) {
+                Console.WriteLine(context.Request.Method + " " + context.Request.Path);
+
+                await next();
+            });
+
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(delegate (IRouteBuilder routes) {
                 routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
@@ -33,7 +53,12 @@ namespace KJobRecruitmentWebApp
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });
+
+                // ============
+                routes.MapRoute("home admin", "admin", new {controller = "Home", action = "admin"});
+                routes.MapRoute("home candidate", "candidate", new { controller = "Home", action = "candidate" });
             });
         }
+
     }
 }
