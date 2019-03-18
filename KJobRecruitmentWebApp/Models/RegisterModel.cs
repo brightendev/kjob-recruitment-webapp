@@ -61,15 +61,15 @@ namespace KJobRecruitmentWebApp.Models
 
             Console.WriteLine($"[decrypted email] = {email} [decrypted password] = {password}");
 
-        //    HttpClient httpClient = new HttpClient();
-       //     string url = "https://jobrecruitmentapi.azurewebsites.net/api/Register?code=D/8y4FRnQDqvFqRIcEoWwzGiKFXk09at7wuT0zg66DFNXlDO4GixdQ==";
-            // HttpResponseMessage response = await httpClient.GetAsync($"{url}&email={email}&password={password}");
+            HttpClient httpClient = new HttpClient();
+            string url = "https://jobrecruitmentapi.azurewebsites.net/api/Register?code=D/8y4FRnQDqvFqRIcEoWwzGiKFXk09at7wuT0zg66DFNXlDO4GixdQ==";
+            string response = await httpClient.GetStringAsync($"{url}&email={email}&password={password}");
 
-            //    Console.WriteLine(response);
+            Console.WriteLine(response);
 
-            return await System.Services.ApiInterfacer.CallCreateAccount(email, password);
+        //    return await System.Services.ApiInterfacer.CallCreateAccount(email, password);
 
-            //   return "";
+            return response;
         }
 
     }
