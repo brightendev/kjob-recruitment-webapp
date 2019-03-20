@@ -57,7 +57,52 @@ namespace KJobRecruitmentWebApp.Controllers
             User.AddIdentity(identity);
         }
 
-        public ActionResult FirstLogin() {
+        public class FirstloginData
+        {
+            public string idCard { get; set; }
+
+            public string username { get; set; }
+
+            public string userlastname { get; set; }
+
+            public string usernameEng { get; set; }
+
+            public string userlastnameEng { get; set; }
+
+            public string Birth { get; set; }
+
+            public string nationality { get; set; }
+
+            public string race { get; set; }
+
+            public string religion { get; set; }
+
+            public string bloodtype { get; set; }
+
+            public string relationship { get; set; }
+
+            public string childrenNum { get; set; }
+
+            public string militaryStatus { get; set; }
+
+            public string address { get; set; }
+
+            public string province { get; set; }
+
+            public string phoneNumber { get; set; }
+
+        }
+
+        
+        public ActionResult FirstLogin()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Firstlogin(FirstloginData acc)
+        {
 
             return View();
         }
