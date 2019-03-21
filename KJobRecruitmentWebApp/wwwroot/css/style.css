@@ -6032,7 +6032,7 @@ fieldset[disabled] .form-control {
         background: #FFF;
         color: #F77100;
         cursor: default;
-        outline: 1.5px solid #F77100
+        /* border: 1px solid #F77100 */
     }
   .wizard > .steps .disabled a:hover, .wizard > .steps .disabled a:active {
     background: #eee;
@@ -6065,7 +6065,6 @@ fieldset[disabled] .form-control {
     color: #fff; }
 
 .wizard > .content {
-  border: 1px solid #ddd;
   display: block;
   margin: 0.5em;
   min-height: 35em;
@@ -6176,7 +6175,7 @@ fieldset[disabled] .form-control {
         display: list-item; }
 
 .wizard .content {
-  min-height: 245px;
+    min-height: 400px;     /* min-height 300 for first login */
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -7755,7 +7754,7 @@ fieldset[disabled] .form-control {
     background-color: #00BCD4;
     padding-left: 0;
     max-width: 800px;
-    margin: 3% auto;
+    margin: 2% auto;
     overflow-x: hidden; }
 .firstlogin-page .firstlogin-box .msg {
     color: #555;

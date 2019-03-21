@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Form Wizard | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!--Libraly for datepick -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <!-- Waves Effect Css -->
+    <link href="~/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="~/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="~/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="~/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="~/plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="~/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="~/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="~/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Sweet Alert Css -->
+    <link href="~/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="~/css/themes/all-themes.css" rel="stylesheet" />
+
+
+    <script>
+        $(function() {
+          $( "#datepicker" ).datepicker();
+        } );
+    </script>
+
+
+</head>
+
+<body class="firstlogin-page">
+    <div class="container" style="display:none">
+        <!-- Left Sidebar -->
+        <div id="leftsidebar" class="sidebar">
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="active">
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+        </div>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+    </div>
+
+    <div class="firstlogin-box">
+        <div class="container-fluid">
+            <!-- Advanced Form Example With Validation -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card outline-kmutnb">
+                        <div class="header">
+                            <h2>กรุณากรอกข้อมูลส่วนตัวให้ครบและถูกต้อง</h2>
+                        </div>
+                        <div class="body">
+                            <form id="wizard_with_validation" method="POST">
+                                <h3>Step 1</h3>
+                                <fieldset>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="idCard" required minlength="13" maxlength="13"> <!-- เปลี่ยน ตัวแปรName เป็น IDCard-->
+                                            <label class="form-label">รหัสบัตรประชาชน</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="username" required> <!-- เปลี่ยน ตัวแปรName เป็น UserName-->
+                                            <label class="form-label">ชื่อ ภาษาไทย</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="userlastname" required> <!-- เปลี่ยน ตัวแปรName เป็น Userlastname-->
+                                            <label class="form-label">นามสกุล ภาษาไทย</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="usernameEng" required> <!-- เปลี่ยน ตัวแปรNameเป็น UserNameEng-->
+                                            <label class="form-label">ชื่อ ภาษาอังกฤษ</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="userlastnameEng" required> <!-- เปลี่ยน ตัวแปรNameเป็น UserlastNameEng-->
+                                            <label class="form-label">นามสกุล ภาษาอังกฤษ</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="Birth" id="datepicker" required> <!-- เปลี่ยน ตัวแปรNameเป็น Birth-->
+                                            <label class="form-label">วันเกิด</label>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                                <h3>Step 2</h3>
+                                <fieldset>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="nationality" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น nationality"-->
+                                            <label class="form-label">สัญชาติ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="race" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น race""-->
+                                            <label class="form-label">เชื้อชาติ</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="religion" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น religion""-->
+                                            <label class="form-label">ศาสนา</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="bloodtype" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น bloodtype"-->
+                                            <label class="form-label">กรุ๊ปเลือด</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="relationship" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น relationship"-->
+                                            <label class="form-label">สถานะภาพ สมรส</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="childrenNum" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น childrenNum"-->
+                                            <label class="form-label">จำนวนบุตร</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <h3>Step 3</h3>
+                                <fieldset>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="militaryStatus" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น militarystatus"-->
+                                            <label class="form-label">สถานะทางทหาร</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <textarea name="address" cols="30" rows="3" class="form-control no-resize" required></textarea>
+                                            <label class="form-label">ที่อยู่</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="province" class="form-control" required> <!-- เปลี่ยน ตัวแปรNameเป็น province"-->
+                                            <label class="form-label">จังหวัด</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="phoneNumber" class="form-control" minlength="9" maxlength="10" required> <!-- เปลี่ยน ตัวแปรNameเป็น phone-number"-->
+                                            <label class="form-label">เบอร์โทร</label>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <h3>Step 4</h3>
+                                <fieldset>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+
+                                                <div class="body">
+                                                    <form action="/" id="FileUpload" class="dropzone" method="post" enctype="multipart/form-data">
+                                                        <div class="dz-message">
+                                                            <div class="drag-icon-cph">
+                                                                <i class="material-icons">touch_app</i>
+                                                            </div>
+                                                            <h3>Drop files here or click to upload.</h3>
+                                                            <em>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</em>
+                                                        </div>
+                                                        <div class="fallback">
+                                                            <input name="file" type="file" multiple />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Advanced Form Example With Validation -->
+        </div>
+    </div>
+
+    <!-- libraly for calender picker-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Jquery Core Js -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="~/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Jquery Validation Plugin Css -->
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- JQuery Steps Plugin Js -->
+    <script src="~/plugins/jquery-steps/jquery.steps.js"></script>
+
+    <!-- Sweet Alert Plugin Js -->
+    <script src="~/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="~/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="~/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/plugins/node-waves/waves.js"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="~/plugins/nouislider/nouislider.js"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="~/plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="~/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="~/plugins/dropzone/dropzone.js"></script>
+
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="~/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+
+
+    <!-- Custom Js -->
+    <script src="~/js/admin.js"></script>
+    <script src="~/js/pages/forms/form-wizard.js"></script>
+    <script src="~/js/pages/forms/advanced-form-elements.js"></script>
+
+
+    <!-- Demo Js -->
+    <script src="~/js/demo.js"></script>
+</body>
+</html>
