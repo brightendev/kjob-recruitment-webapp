@@ -113,7 +113,7 @@ namespace KJobRecruitmentWebApp.Controllers
         [HttpPost]
         public ActionResult Firstlogin(FirstloginData acc)
         {
-
+            Console.WriteLine(acc.username);
             return View();
         }
     }
