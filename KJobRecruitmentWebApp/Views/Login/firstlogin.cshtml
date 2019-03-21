@@ -78,15 +78,19 @@
 
                     <script>
                         $(function () {
-                            $("#form-step").steps({
+                            $("#form_step").steps({
                                 headerTag: "h2",
                                 bodyTag: "section",
-                                transitionEffect: "slideLeft"
+                                transitionEffect: "slideLeft",
+   
+                                onFinished: function (event, currentIndex) {
+                                    document.getElementById("form_step").submit();
+                                }
                             });
                         });
                     </script>
 
-                    <form id="form-step" method="POST">
+                    <form id="form_step" method="POST">
                         <h2>ประวัติส่วนตัว</h2>
                         <section>
                             <!-- sec 1-->
