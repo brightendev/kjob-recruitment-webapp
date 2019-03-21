@@ -33,9 +33,15 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-        public async Task<string> ResponseToConfirmationEmail(string encryptedConfirmationData) {
+        public async Task<ActionResult> ResponseToConfirmationEmail(string encryptedConfirmationData) {
 
-            return await RegisterModel.ResponseToConfirmationEmail(encryptedConfirmationData);
+            string confirmationEmailResult = await RegisterModel.ResponseToConfirmationEmail(encryptedConfirmationData);
+
+            if(confirmationEmailResult.Equals("RegisterSuccess")) {
+                return Redirect("login");
+            }
+
+            return Redirect("/");
         }
     }
 }
