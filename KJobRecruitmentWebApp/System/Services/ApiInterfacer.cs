@@ -17,7 +17,7 @@ namespace KJobRecruitmentWebApp.System.Services
 
             HttpResponseMessage response = await httpClient.GetAsync($"{apiServer}{endpoint}&email={email}&password={password}");
 
-            return await response.Content.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync();//
         }
 
         public static async Task<string> Login(string email, string password) {
