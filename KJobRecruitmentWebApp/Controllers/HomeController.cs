@@ -35,7 +35,7 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
         [Authorize(Roles = "Candidate")]
-        public IActionResult Candidate() {
+        public async Task<IActionResult> Candidate() {
 
             AccountController account = new AccountController();
 
@@ -45,6 +45,12 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Email"] = ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(6);
             ViewData["Uid"] = ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(4);
             ViewData["Role"] = ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(5);
+
+            string newUser = await System.Services.ApiInterfacer.CheckProfleOfUser(ViewData["Uid"].ToString());
+
+            if(newUser.Equals("NONE")) {
+                return Redirect("firstlogin");
+            }
 
             return View();
         }

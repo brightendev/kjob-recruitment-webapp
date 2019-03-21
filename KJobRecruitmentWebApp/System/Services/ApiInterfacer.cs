@@ -27,6 +27,15 @@ namespace KJobRecruitmentWebApp.System.Services
             string response = await httpClient.GetStringAsync($"{apiServer}{endpoint}&email={email}&password={password}");
 
             return response;
-        } 
+        }
+
+        public static async Task<string> CheckProfleOfUser(string uid) {
+
+            string endpoint = "api/CheckProfile?code=55p1Ms9s86VbaDR63oSBIyhqDYfYxv7CZjJSWuvMgqUZrAregJLMbA==";
+
+            string response = await httpClient.GetStringAsync($"{apiServer}{endpoint}&uid={uid}");
+
+            return response;
+        }
     }
 }
