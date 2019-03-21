@@ -31,6 +31,7 @@ namespace KJobRecruitmentWebApp.Controllers
                 return RedirectToAction("Admin", "Home");
             }
             Console.WriteLine("User is not in any role");
+
             return View();
         }
 
@@ -46,7 +47,7 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Uid"] = ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(4);
             ViewData["Role"] = ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(5);
 
-            string newUser = await System.Services.ApiInterfacer.CheckProfleOfUser(ViewData["Uid"].ToString());
+            string newUser = await System.Services.ApiInterfacer.IsAccountHasProfile(ViewData["Uid"].ToString());
 
             if(newUser.Equals("NONE")) {
                 return Redirect("firstlogin");

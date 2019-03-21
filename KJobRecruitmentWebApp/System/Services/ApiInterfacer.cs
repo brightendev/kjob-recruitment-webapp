@@ -29,13 +29,29 @@ namespace KJobRecruitmentWebApp.System.Services
             return response;
         }
 
-        public static async Task<string> CheckProfleOfUser(string uid) {
+        public static async Task<string> IsAccountHasProfile(string uid) {
 
             string endpoint = "api/CheckProfile?code=55p1Ms9s86VbaDR63oSBIyhqDYfYxv7CZjJSWuvMgqUZrAregJLMbA==";
 
             string response = await httpClient.GetStringAsync($"{apiServer}{endpoint}&uid={uid}");
 
             return response;
+        }
+
+        public static async Task<string> GetAllProvince() {
+
+            string endpoint = "api/Province?code=hMTHLO8G9GAzkjqmBi3z5W4rBnAfHO282SE2SSoxWYF3g/TCQcQSAA==";
+
+            string response = await httpClient.GetStringAsync($"{apiServer}{endpoint}");
+
+            return response;
+        }
+
+        public static async Task<string> GettAllBloodType() {
+
+            string endpoint = "api/Blood?code=KvM4oYKc2lrOeWbY9W80I3T/fSwzE8DpW3w1JYadL5QeRLyvah621A==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}");
         }
     }
 }

@@ -7,6 +7,7 @@ using KJobRecruitmentWebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -94,8 +95,17 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
         
-        public ActionResult FirstLogin()
-        {
+        public async Task<ActionResult> FirstLogin() {
+
+            List<Data.ExternalDatabase.BloodTypeData> bloodTypeDataList = await Data.ExternalDatabase.GetAllBloodTypeData();
+            List<SelectListItem> bloodTypeSelectList = bloodTypeDataList.Select(provinceData => new SelectListItem() { Text = provinceData.blood_name, Value = provinceData.blood_id }).ToList();
+            bloodTypeSelectList.Insert(0, new SelectListItem() { Text = "- เลือกกรุ๊ปเลือด -" , Value = "0"});
+            ViewData["BloodTypes"] = bloodTypeSelectList;
+
+            List<Data.ExternalDatabase.ProvinceData> provinceDataList = await Data.ExternalDatabase.GetProvinceData();
+            List<SelectListItem> provinceSelectList = provinceDataList.Select(provinceData => new SelectListItem() { Text = provinceData.province_name, Value = provinceData.province_id }).ToList();
+            provinceSelectList.Insert(0, new SelectListItem() { Text = "- เลือกจังหวัด -", Value = "0" });
+            ViewData["Provinces"] = provinceSelectList;
 
             return View();
         }
