@@ -49,7 +49,12 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
                 routes.MapRoute("login_route", "login", new {controller = "Login", action = "index"});
                 routes.MapRoute("first_login", "firstlogin", new {controller = "Login", action = "FirstLogin"});
-
+                
+                /*ส่วนหน้าจัดการUser*/
+                routes.MapRoute("account_Management", "accountManagement", new { controller = "AccountManagement", action = "index" });
+                routes.MapRoute("User_Management", "UserManagement", new { controller = "AccountManagement", action = "UserManagement" });
+                routes.MapRoute("User_Personal", "UserPersonal", new { controller = "AccountManagement", action = "UserPersonal" });
+                routes.MapRoute("User_Work", "UserWork", new { controller = "AccountManagement", action = "UserWork" });
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });

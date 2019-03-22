@@ -103,6 +103,7 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["BloodTypes"] = bloodTypeSelectList;
 
             List<Data.ExternalDatabase.ProvinceData> provinceDataList = await Data.ExternalDatabase.GetProvinceData();
+
             List<SelectListItem> provinceSelectList = provinceDataList.Select(provinceData => new SelectListItem() { Text = provinceData.province_name, Value = provinceData.province_id }).ToList();
             provinceSelectList.Insert(0, new SelectListItem() { Text = "- เลือกจังหวัด -", Value = "0" });
             ViewData["Provinces"] = provinceSelectList;
