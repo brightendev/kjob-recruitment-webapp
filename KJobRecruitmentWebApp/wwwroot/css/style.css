@@ -1831,7 +1831,30 @@
   text-decoration: overline; }
 
 .block-header {
-  margin-bottom: 15px; }
+    /*  margin-bottom: 15px; */
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+    color: #202124;
+    width: fit-content;
+    position: relative;
+    margin: 30px auto;
+}
+
+.block-header:after {
+    content:""; 
+    background: #F77100; 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 60%; 
+    height: 4px;
+    margin: -10px 0px;
+    transform: translate(40%, 0);
+}
+
+
+/*
   .block-header h2 {
     margin: 0 !important;
     color: #666 !important;
@@ -1845,7 +1868,7 @@
       .block-header h2 small a {
         font-weight: bold;
         color: #777; }
-
+    */
 .bg-red {
   background-color: #F44336 !important;
   color: #fff; }
@@ -2429,7 +2452,7 @@ section.sidenav a {
     text-align: center;
 }
 .ls-closed section.sidenav {
-    /* margin-left: -300px;  */
+     margin-left: -300px;  
 }
 
 /* Dashboard =================================== */
@@ -6696,10 +6719,10 @@ fieldset[disabled] .form-control {
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    -webkit-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.45);
-    -moz-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.45);
-    -ms-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.55);
+    -ms-box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 5px 17px 0px rgba(0, 0, 0, 0.55);
     border: none;
     position: fixed;
     top: 0;
@@ -6707,12 +6730,14 @@ fieldset[disabled] .form-control {
     z-index: 12;
     width: 100%;
 }
-  .navbar .navbar-brand {
-    white-space: nowrap;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    overflow: hidden; }
+    .navbar .navbar-brand {
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 25px;
+    }
   .navbar .navbar-custom-right-menu {
     float: right; }
   .navbar .navbar-toggle {
@@ -6797,6 +6822,25 @@ fieldset[disabled] .form-control {
   padding: 7px 7px 2px 7px;
   margin-top: 17px;
   margin-left: 5px; }
+
+/* ============= new  ========== */
+.navbar-nav.navbar-menu {
+    margin-top: 17px;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.navbar-nav.navbar-menu a {
+    color: white;
+    padding: 7px 7px 2px 7px;
+    margin-top: 17px;
+    margin-left: 5px;
+    font-size: 20px;
+    text-align: center;
+}
+.navbar-nav.navbar-menu a {
+    text-decoration: none;
+}
 
 .navbar-nav .dropdown-menu {
   margin-top: -40px !important; }
@@ -7524,24 +7568,25 @@ fieldset[disabled] .form-control {
   z-index: 99999999; }
 
 .sidebar {
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  font-family: "Roboto", sans-serif;
-  background: #fdfdfd;
-/*  width: 300px;    */
-  overflow: hidden;
-  display: inline-block;
-  height: calc(100vh - 70px);
-  position: fixed;
-  top: 70px;
-  left: 0;
-    -webkit-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.2);
-    -ms-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.2);
-  z-index: 11 !important; }
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    font-family: "Roboto", sans-serif;
+    background: #fdfdfd;
+    /*  width: 300px;    */
+    overflow: hidden;
+    display: inline-block;
+    height: calc(100vh - 70px);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    -webkit-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
+    -ms-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
+    z-index: 11 !important;
+}
   .sidebar .legal {
     position: absolute;
     bottom: 0;
