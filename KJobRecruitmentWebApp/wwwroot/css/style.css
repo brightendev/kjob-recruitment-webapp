@@ -2266,6 +2266,50 @@
       top: 15px;
       right: 5px; }
 
+/* ============== page menu ========== */
+.page-menu {
+    list-style: none;
+    padding-left: 0;
+    overflow-x: hidden;
+}
+.page-menu li {
+    /*    border-bottom: 1px solid #eee;  */
+    padding: 10px 0px 10px 10px;
+    position: relative;
+    cursor: pointer; 
+    text-align: right;
+}
+.page-menu a {
+    text-decoration: none;
+}
+.page-menu li.active {
+    /*   background-color: #eee; */
+}
+
+.page-menu li:hover {
+    background-color: black; 
+}
+.page-menu li div {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px; }
+
+.page-menu li span {
+    position: relative;
+    left: 5px; 
+    padding-right: 35px;
+}
+.page-menu li.active span {
+    padding-right: 20px;
+    border-right: 15px solid #F77100;
+}
+
+/* =========== #end page menu ==============*/
+
 .demo-choose-skin {
   list-style: none;
   padding-left: 0;
@@ -2425,7 +2469,7 @@ a {
   animation: none !important; }
 
 section.content {
-    margin: 100px 15px 0 calc(var(--sidebar-width) + var(--sidenav-width) + 15px);
+    margin: calc(var(--quickbar-height) + 50px) 15px 0 calc(var(--sidebar-width) + var(--sidenav-width) + 15px);
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -2454,6 +2498,49 @@ section.sidenav a {
 .ls-closed section.sidenav {
      margin-left: -300px;  
 }
+/* #end side navigator =========================== */
+/* === quickbar ======== */
+section.quickbar {
+    /*  height: 60px;  */
+    width: calc(100vw - var(--sidebar-width));
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    z-index: 3;
+    
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.70), 
+        rgba(255, 255, 255, 0.70)
+    ), url('../../images/kmutnb_land.jpg');
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+section.quickbar .search-field {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 13px;
+    width: 60%;
+}
+section.quickbar .search-field input::-webkit-input-placeholder {
+    padding-left: 20px;
+    font-size: 24px;
+}
+section.quickbar .search-field input::-moz-placeholder {
+    padding-left: 20px;
+    font-size: 24px;
+}
+section.quickbar .search-field input:-ms-input-placeholder {
+    padding-left: 20px;
+    font-size: 24px;
+}
+section.quickbar .search-field input:-moz-placeholder {
+    padding-left: 20px;
+    font-size: 24px;
+}
+
+.ls-closed section.quickbar {
+    width: 100vw;
+}
+/* ==== #end quickbar ==== */
 
 /* Dashboard =================================== */
 .dashboard-flot-chart {
@@ -6737,16 +6824,20 @@ fieldset[disabled] .form-control {
         text-overflow: ellipsis;
         overflow: hidden;
         font-size: 25px;
+        padding: 5px 15px;
+        height: 30px;
     }
   .navbar .navbar-custom-right-menu {
     float: right; }
-  .navbar .navbar-toggle {
-    text-decoration: none;
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    margin-top: -4px;
-    margin-right: 17px; }
+    .navbar .navbar-toggle {
+        text-decoration: none;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        margin-top: -4px;
+        margin-right: 17px;
+        padding: 0px 15px;
+    }
     .navbar .navbar-toggle:before {
       content: '\E8D5';
       font-family: 'Material Icons';
@@ -6766,7 +6857,7 @@ fieldset[disabled] .form-control {
   font-family: 'Material Icons';
   font-size: 24px;
   position: absolute;
-  top: 18px;
+  top: 8px;
   left: 20px;
   margin-right: 10px;
   -moz-transform: scale(0);
@@ -6819,9 +6910,15 @@ fieldset[disabled] .form-control {
     text-decoration: none; }
 
 .navbar-nav > li > a {
-  padding: 7px 7px 2px 7px;
-  margin-top: 17px;
-  margin-left: 5px; }
+  padding: 10px 7px 2px 7px;
+  margin-top: 4px;
+  margin-left: 5px; 
+}
+@media (max-width: 768px) {
+    .navbar-nav > li > a {
+         margin-top: 15px;
+    }
+}
 
 /* ============= new  ========== */
 .navbar-nav.navbar-menu {
@@ -6830,17 +6927,32 @@ fieldset[disabled] .form-control {
     left: 50%;
     transform: translatex(-50%);
 }
+@media (max-width: 768px) {
+    .navbar-nav.navbar-menu {
+        display: none !important;
+    }
+}
 .navbar-nav.navbar-menu a {
     color: white;
     padding: 7px 7px 2px 7px;
     margin-top: 17px;
     margin-left: 5px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
-}
-.navbar-nav.navbar-menu a {
     text-decoration: none;
 }
+.navbar-nav.navbar-menu a.active {
+    border-bottom: 5px solid #F77100;
+}
+/* ======== #end new ======== */
+/* ======= pull right ==== */
+@media (min-width: 768px) {
+    .pull-right {
+        display: none !important;
+
+    }
+}
+/* =======#end pull right ======= */
 
 .navbar-nav .dropdown-menu {
   margin-top: -40px !important; }
@@ -7577,9 +7689,9 @@ fieldset[disabled] .form-control {
     /*  width: 300px;    */
     overflow: hidden;
     display: inline-block;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 50px);
     position: fixed;
-    top: 70px;
+    top: 50px;
     left: 0;
     -webkit-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.4);
@@ -7613,7 +7725,7 @@ fieldset[disabled] .form-control {
       margin-top: 5px;
       font-size: 13px; }
   .sidebar .user-info {
-    padding: 13px 15px 12px 15px;
+    padding: 25px 15px 12px 15px;
     white-space: nowrap;
     position: relative;
     border-bottom: 1px solid #e9e9e9;
@@ -7637,7 +7749,8 @@ fieldset[disabled] .form-control {
       cursor: default;
       display: block;
       position: relative;
-      top: 25px; }
+        margin-top: 15px;
+    }
         .sidebar .user-info .info-container hr {
             margin: 10px auto;
             width: 25%;
@@ -7783,10 +7896,10 @@ fieldset[disabled] .form-control {
 
 .right-sidebar {
   width: 280px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 50px);
   position: fixed;
   right: -300px;
-  top: 70px;
+  top: 50px;
   background: #fdfdfd;
   z-index: 11 !important;
   -webkit-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
