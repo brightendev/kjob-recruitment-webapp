@@ -2496,7 +2496,7 @@ section.sidenav a {
     padding: 20px 0px;
     text-decoration: none;
     font-size: 16px;
-    color: #818181;
+    color: #555;
     display: block;
     text-align: center;
 }
@@ -2510,7 +2510,7 @@ section.sidenav a:hover{
 /* === quickbar ======== */
 section.quickbar {
     /*  height: 60px;  */
-    width: calc(100vw - var(--sidebar-width));
+    width: calc(100% - var(--sidebar-width));
     position: fixed;
     right: 0px;
     top: 50px;
@@ -2531,11 +2531,37 @@ section.quickbar .container-fluid {
     margin-right: 15px;
     display: flex;
 }
+section.quickbar .breadcrumb {
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 20 1 10px;
+}
+section.quickbar .breadcrumb li {
+    color: #555;
+}
+section.quickbar .breadcrumb li a {
+    color: #555;
+}
+section.quickbar .breadcrumb > li + li:before {
+    color: #555;
+}
+section.quickbar .breadcrumb li a:hover {
+    color: #F77100;
+}
+
 section.quickbar .button-group {
     padding-right: 5px;
     padding-left: 5px;
     margin-left: auto;
     display: inline-block;
+}
+
+@media (max-width: 768px) {
+    section.quickbar .button-group span {
+        font-size: 0px;
+    }
 }
 
 section.quickbar .search-field {
@@ -7886,6 +7912,11 @@ fieldset[disabled] .form-control {
             border-left: 20px solid transparent;
             margin: 13px 0px;
         }
+.sidebar .menu .list li span{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
         .sidebar .menu .list a:hover, .sidebar .menu .list a:active, .sidebar .menu .list a:focus {
           text-decoration: none !important; }
         .sidebar .menu .list a small {
