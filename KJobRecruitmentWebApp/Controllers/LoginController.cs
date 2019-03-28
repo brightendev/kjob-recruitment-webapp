@@ -29,16 +29,20 @@ namespace KJobRecruitmentWebApp.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Index(LoginData acc) {
-
+            Console.WriteLine("try to login" + acc.email);
             string response = await LoginModel.TryLogin(acc.email, acc.password);
 
-            if(response.Contains("error")) return Redirect("login");
+            if(response.Contains("error")) {
+                Console.WriteLine("Login Error");
+                return Redirect("login");
+            }
 
             Console.WriteLine(response);
 
             ClaimsIdentity identity = LoginModel.ClaimIdentity(response);
 
             Authorize(identity);
+            Console.WriteLine("sign in success with email: "+acc.email);
 
             return Redirect("/");
         }

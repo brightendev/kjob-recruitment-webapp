@@ -1,0 +1,76 @@
+﻿.theme-kmutnb {
+  background-image: linear-gradient(
+      rgba(243, 228, 214, 0.70), 
+      rgba(243, 228, 214, 0.70)
+    ), url('../../images/kmutnb_land.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.theme-kmutnb .right-sidebar {
+  background-color: #222222;
+}
+.theme-kmutnb .right-sidebar .page-menu li span {
+  color: #fff;
+}
+
+.theme-kmutnb .field-kmutnb-small .form-control {
+    border-radius: 0;
+    height: 30px;
+  }
+.theme-kmutnb .field-kmutnb-small .form-control:focus {
+      border-color: #F77100;
+      outline: 0;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 113, 0, .6);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 113, 0, .6);
+  }
+
+.theme-kmutnb .navbar {
+  background-color: #222222; }
+
+.theme-kmutnb .navbar-brand {
+  color: #fff; }
+  .theme-kmutnb .navbar-brand:hover {
+    color: #fff; }
+  .theme-kmutnb .navbar-brand:active {
+    color: #fff; }
+  .theme-kmutnb .navbar-brand:focus {
+    color: #fff; }
+
+.theme-kmutnb .nav > li > a {
+  color: #fff; }
+  .theme-kmutnb .nav > li > a:hover {
+    background-color: transparent; }
+  .theme-kmutnb .nav > li > a:focus {
+    background-color: transparent; }
+
+.theme-kmutnb .nav .open > a {
+  background-color: transparent; }
+  .theme-kmutnb .nav .open > a:hover {
+    background-color: transparent; }
+  .theme-kmutnb .nav .open > a:focus {
+    background-color: transparent; }
+
+.theme-kmutnb .bars {
+  color: #fff; }
+
+.theme-kmutnb .sidebar .menu .list li.active {
+  background-color: transparent; }
+  .theme-kmutnb .sidebar .menu .list li.active > :first-child i, .theme-kmutnb .sidebar .menu .list li.active > :first-child span {
+    color: #F77100; }
+
+  .theme-kmutnb .sidebar .menu .list li.active a{
+    border-left: 20px solid #F77100;
+  }
+
+.theme-kmutnb .sidebar .menu .list .toggled {
+  background-color: transparent; }
+
+.theme-kmutnb .sidebar .menu .list .ml-menu {
+  background-color: transparent; }
+
+.theme-kmutnb .sidebar .legal {
+  background-color: #fff; }
+  .theme-kmutnb .sidebar .legal .copyright a {
+    color: #F44336 !important; }
+
