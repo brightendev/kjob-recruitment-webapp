@@ -26,9 +26,14 @@ namespace KJobRecruitmentWebApp
                     options.AccessDeniedPath = "/home";
                 });
 
-       /*     services.AddAuthorization(delegate(AuthorizationOptions options) {
-                options.AddPolicy("Candidate", policy => policy.RequireRole("Candidate"));
-            });*/
+            /*     services.AddAuthorization(delegate(AuthorizationOptions options) {
+                     options.AddPolicy("Candidate", policy => policy.RequireRole("Candidate"));
+                 });*/
+
+
+            // for session ==========
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +45,10 @@ namespace KJobRecruitmentWebApp
                 await next();
             });
 
+            // IMPORTANT: This session call MUST go before UseMvc()
+            app.UseSession();
+
+            // use file in wwwroot
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -55,6 +64,12 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("User_Management", "UserManagement", new { controller = "AccountManagement", action = "UserManagement" });
                 routes.MapRoute("User_Personal", "UserPersonal", new { controller = "AccountManagement", action = "UserPersonal" });
                 routes.MapRoute("User_Work", "UserWork", new { controller = "AccountManagement", action = "UserWork" });
+
+                // for user controller
+                routes.MapRoute("user_account_route", "account", new { controller = "User", action = "Account" });
+
+                // admin
+                routes.MapRoute("dashboard", "dashboard", new { controller = "Dashboard", action = "index" });
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });

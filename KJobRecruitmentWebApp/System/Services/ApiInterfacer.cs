@@ -38,6 +38,7 @@ namespace KJobRecruitmentWebApp.System.Services
             return response;
         }
 
+        // for firstlogin
         public static async Task<string> GetAllProvince() {
 
             string endpoint = "api/Province?code=hMTHLO8G9GAzkjqmBi3z5W4rBnAfHO282SE2SSoxWYF3g/TCQcQSAA==";
@@ -47,11 +48,19 @@ namespace KJobRecruitmentWebApp.System.Services
             return response;
         }
 
+        // for first login
         public static async Task<string> GettAllBloodType() {
 
             string endpoint = "api/Blood?code=KvM4oYKc2lrOeWbY9W80I3T/fSwzE8DpW3w1JYadL5QeRLyvah621A==";
 
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}");
+        }
+
+        public static async Task<string> GetAllAccounts(string requester) {
+
+            string endpoint = "api/GetAccount?code=VbIN697ivYftiNFoIfkYwqrCJWuonDFpbmpS5rMd1GvOrpRBlgPBaQ==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&email={requester}");
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,6 +16,7 @@ namespace KJobRecruitmentWebApp.Controllers
     {
         public IActionResult Index()
         {
+            
             if (User.IsInRole("Candidate"))
             {
                 Console.WriteLine("in role candidate");
@@ -27,8 +29,11 @@ namespace KJobRecruitmentWebApp.Controllers
             }
             if (User.IsInRole("Admin"))
             {
+                HttpContext.Session.SetString(System.SessionVariable.email, ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(7));
+                HttpContext.Session.SetString(System.SessionVariable.uid, ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(5));
+                HttpContext.Session.SetString(System.SessionVariable.role, ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(6));
                 Console.WriteLine("in role Admin");
-                return RedirectToAction("Admin", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
             Console.WriteLine("User is not in any role");
 

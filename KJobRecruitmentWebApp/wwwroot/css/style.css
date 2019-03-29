@@ -2487,7 +2487,7 @@ section.sidenav {
     background-image: linear-gradient(
         rgba(255, 255, 255, 0.70), 
         rgba(255, 255, 255, 0.70)
-    ), url('../../images/kmutnb_land.jpg');
+    ), url('../images/kmutnb_land.jpg');
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
     overflow-x: hidden;
     padding-top: 15px;
@@ -2519,7 +2519,7 @@ section.quickbar {
     background-image: linear-gradient(
         rgba(255, 255, 255, 0.70), 
         rgba(255, 255, 255, 0.70)
-    ), url('../../images/kmutnb_land.jpg');
+    ), url('../images/kmutnb_land.jpg');
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 section.quickbar .container-fluid {
