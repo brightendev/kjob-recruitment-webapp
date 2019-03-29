@@ -65,6 +65,8 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("User_Personal", "UserPersonal", new { controller = "AccountManagement", action = "UserPersonal" });
                 routes.MapRoute("User_Work", "UserWork", new { controller = "AccountManagement", action = "UserWork" });
 
+                // for user controller
+                routes.MapRoute("user_account_route", "account", new { controller = "User", action = "Account" });
 
                 // admin
                 routes.MapRoute("dashboard", "dashboard", new { controller = "Dashboard", action = "index" });
