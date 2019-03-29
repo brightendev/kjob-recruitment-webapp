@@ -14,7 +14,13 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
         public IActionResult Account() {
+           
+            var data = System.User.User.GetUserDetail("email");
+            ViewData["email"] = data.account.email;
+            ViewData["create_date"] = data.account.create_date;
+            ViewData["last_login"] = data.account.last_login;
 
+            ViewData["personal_id"] = data.profile.personal_id;
             return View();
         }
     }
