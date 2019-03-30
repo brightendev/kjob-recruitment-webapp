@@ -56,11 +56,24 @@ namespace KJobRecruitmentWebApp.System.Services
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}");
         }
 
+        public static async Task<string> GetPublicData() {
+
+            string endpoint = "api/GetPublicData?code=Ry8wyMHcMEplaWYfO2tAh3n42BQ4Nx/hr8oItCAlCBt6518/1Ma8Cg==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}");
+        }
+
         public static async Task<string> GetAllAccounts(string requester) {
 
             string endpoint = "api/GetAccount?code=VbIN697ivYftiNFoIfkYwqrCJWuonDFpbmpS5rMd1GvOrpRBlgPBaQ==";
 
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&email={requester}");
+        }
+
+        public static async Task<string> GetRole(string uid) {
+            string endpoint = "api/CheckRole?code=AgRLo6QagYEItNSm1yAboxOdrxmo5fgqiOBwOITPEblXF3GgOQ6TlA==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&uid={uid}");
         }
     }
 }

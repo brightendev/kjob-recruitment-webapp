@@ -212,11 +212,13 @@
                                         <div class="form-line">
                                             <select class="form-control" id="Religion" name="Religion-type">
                                                 <option value="">- กรุณาเลือก ศาสนา -</option>
-                                                <option value="พุทธ">พุทธ</option>
-                                                <option value="คริสต์">คริสต์</option>
-                                                <option value="อิศลาม">อิศลาม</option>
-                                                <option value="ฮินดู">ฮินดู</option>
-                                                <option value="ไม่มีศาสนา">ไม่มีศาสนา</option>
+                                                
+                                                @{
+                                                    foreach(var religion in ViewData["ReligionList"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.ReligionData>) {
+                                                        <option value=@religion.religion_id>@religion.religion_name</option>
+                                                    }
+                                                }
+                                          
                                             </select>
                                             <label class="help-info">ศาสนา</label>
                                         </div>
@@ -229,13 +231,11 @@
                                     <!-- ==== สถานะภาพ สมรส ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control" id="Religion" name="Religion-type">
-                                                <option value="">- กรุณาเลือก สถานะภาพ สมรส -</option>
-                                                <option value="โสด">โสด</option>
-                                                <option value="สมรส">สมรส</option>
-                                                <option value="หม้าย">หม้าย</option>
-                                                <option value="หย่า">หย่า</option>
-                                                <option value="แยกกันอยู่">แยกกันอยู่</option>
+                                            <select class="form-control" id="Relationship" name="Religion-type">
+                                                <option disabled selected>- กรุณาเลือก สถานะภาพ สมรส -</option>
+                                                @foreach(var relationship in ViewData["Relationship"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.RelationshipData>) {
+                                                    <option value=@relationship.relationship_id>@relationship.relationship_name</option>
+                                                }
                                             </select>
                                         </div>
                                         <div class="help-info"></div>
