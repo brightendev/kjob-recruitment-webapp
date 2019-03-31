@@ -52,6 +52,12 @@ namespace KJobRecruitmentWebApp.Data
             public string military_criterion_name { get; set; }
         }
 
+        public class GenderData
+        {
+            public string gender_id { get; set; }
+            public string gender_name { get; set; }
+        }
+
         public class PublicData
         {
             public List<BloodTypeData> Blood { get; set; }
@@ -59,6 +65,7 @@ namespace KJobRecruitmentWebApp.Data
             public List<ReligionData> Religion { get; set; }
             public List<RelationshipData> Relationship { get; set; }
             public List<MilitaryCriterionData> MilitaryCriterion { get; set; }
+            public List<GenderData> Gender { get; set; }
         }
         public static async Task<PublicData> GetPublicData() {
 

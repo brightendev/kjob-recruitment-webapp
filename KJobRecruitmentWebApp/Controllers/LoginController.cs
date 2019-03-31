@@ -106,7 +106,7 @@ namespace KJobRecruitmentWebApp.Controllers
         [Authorize(Roles = "Candidate")]
         public async Task<ActionResult> FirstLogin() {
 
-            List<Data.ExternalDatabase.BloodTypeData> bloodTypeDataList = await Data.ExternalDatabase.GetAllBloodTypeData();
+        /*    List<Data.ExternalDatabase.BloodTypeData> bloodTypeDataList = await Data.ExternalDatabase.GetAllBloodTypeData();
             List<SelectListItem> bloodTypeSelectList = bloodTypeDataList.Select(provinceData => new SelectListItem() { Text = provinceData.blood_name, Value = provinceData.blood_id }).ToList();
             bloodTypeSelectList.Insert(0, new SelectListItem() { Text = "- เลือกกรุ๊ปเลือด -" , Value = "0"});
             ViewData["BloodTypes"] = bloodTypeSelectList;
@@ -116,6 +116,17 @@ namespace KJobRecruitmentWebApp.Controllers
             List<SelectListItem> provinceSelectList = provinceDataList.Select(provinceData => new SelectListItem() { Text = provinceData.province_name, Value = provinceData.province_id }).ToList();
             provinceSelectList.Insert(0, new SelectListItem() { Text = "- เลือกจังหวัด -", Value = "0" });
             ViewData["Provinces"] = provinceSelectList;
+            */
+
+            
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string newUser = await System.Services.ApiInterfacer.IsAccountHasProfile(uid);
+
+            Console.WriteLine($"is account have profile = {newUser}");
+
+            if(newUser.Equals("HAVE")) {
+                return Redirect("/");
+            }
 
             Data.ExternalDatabase.PublicData data = await Data.ExternalDatabase.GetPublicData();
             ViewData["BloodList"] = data.Blood;
@@ -123,10 +134,12 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Relationship"] = data.Relationship;
             ViewData["MilitaryCriterionList"] = data.MilitaryCriterion;
             ViewData["ProvinceList"] = data.Province;
+            ViewData["GenderList"] = data.Gender;
 
             return View();
         }
 
+        [Authorize(Roles = "Candidate")]
         [HttpPost]
         public async Task<string> Firstlogin(FirstloginData profile)
         {
