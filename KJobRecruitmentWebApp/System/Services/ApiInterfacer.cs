@@ -98,7 +98,7 @@ namespace KJobRecruitmentWebApp.System.Services
                 { "telephone", phone },
                 { "email", email },
                 { "owner_uid", uid },
-                { "gender", "1" },
+                { "gender", gender },
             });
 
          /*   HttpResponseMessage response = await httpClient.GetAsync(endpoint, requestContent);
@@ -110,6 +110,11 @@ namespace KJobRecruitmentWebApp.System.Services
             string url = $"{apiServer}{endpoint}?{queryString}";
             Console.WriteLine(url);
             return await httpClient.GetStringAsync(url);
+        }
+
+        // ========= for user editting =========
+        public static void EditNotitificationAll() {
+
         }
 
 

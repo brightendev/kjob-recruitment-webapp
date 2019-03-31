@@ -52,7 +52,10 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Uid"] = ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(4);
             ViewData["Role"] = ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(5);
 
-            string newUser = await System.Services.ApiInterfacer.IsAccountHasProfile(ViewData["Uid"].ToString());
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string newUser = await System.Services.ApiInterfacer.IsAccountHasProfile(uid);
+
+            Console.WriteLine($"is account have profile = {newUser}");
 
             if(newUser.Equals("NONE")) {
                 return Redirect("firstlogin");
