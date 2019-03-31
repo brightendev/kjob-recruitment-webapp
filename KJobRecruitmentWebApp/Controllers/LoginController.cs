@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using KJobRecruitmentWebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -64,41 +66,44 @@ namespace KJobRecruitmentWebApp.Controllers
 
         public class FirstloginData
         {
-            public string idCard { get; set; }
+            public string personalId { get; set; }
 
-            public string username { get; set; }
+            public string gender { get; set; }
 
-            public string userlastname { get; set; }
+            public string thaiName { get; set; }
 
-            public string usernameEng { get; set; }
+            public string thaiLasrName { get; set; }
 
-            public string userlastnameEng { get; set; }
+            public string engName { get; set; }
 
-            public string Birth { get; set; }
+            public string engLastName { get; set; }
 
-            public string nationality { get; set; }
+            public string birthDate { get; set; }
 
-            public string race { get; set; }
+            public string blood { get; set; }
+
+            public string militaryCriterion { get; set; }
 
             public string religion { get; set; }
 
-            public string bloodtype { get; set; }
-
             public string relationship { get; set; }
 
-            public string childrenNum { get; set; }
+            public string child { get; set; }
 
-            public string militaryStatus { get; set; }
+
+            public string race { get; set; }
+
+            public string nationality { get; set; }
 
             public string address { get; set; }
 
             public string province { get; set; }
 
-            public string phoneNumber { get; set; }
+            public string phone { get; set; }
 
         }
 
-        
+        [Authorize(Roles = "Candidate")]
         public async Task<ActionResult> FirstLogin() {
 
             List<Data.ExternalDatabase.BloodTypeData> bloodTypeDataList = await Data.ExternalDatabase.GetAllBloodTypeData();
@@ -113,20 +118,43 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Provinces"] = provinceSelectList;
 
             Data.ExternalDatabase.PublicData data = await Data.ExternalDatabase.GetPublicData();
+            ViewData["BloodList"] = data.Blood;
             ViewData["ReligionList"] = data.Religion;
             ViewData["Relationship"] = data.Relationship;
+            ViewData["MilitaryCriterionList"] = data.MilitaryCriterion;
+            ViewData["ProvinceList"] = data.Province;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Firstlogin(FirstloginData acc)
+        public async Task<string> Firstlogin(FirstloginData profile)
         {
-            Console.WriteLine(acc.idCard);
-            Console.WriteLine(acc.idCard);
-            Console.WriteLine(acc.idCard);
-            Console.WriteLine(acc.idCard);
-            return Redirect("/");
+            Console.WriteLine(profile.personalId);
+            Console.WriteLine(profile.thaiName);
+            Console.WriteLine(profile.thaiLasrName);
+            Console.WriteLine(profile.engName);
+            Console.WriteLine(profile.engLastName);
+            Console.WriteLine(profile.birthDate);
+            Console.WriteLine(profile.nationality);
+            Console.WriteLine(profile.race);
+            Console.WriteLine(profile.religion);
+            Console.WriteLine(profile.blood);
+            Console.WriteLine(profile.relationship);
+            Console.WriteLine(profile.child);
+            Console.WriteLine(profile.militaryCriterion);
+            Console.WriteLine(profile.address);
+            Console.WriteLine(profile.province);
+            Console.WriteLine(profile.phone);
+            Console.WriteLine(profile.gender);
+
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string email = HttpContext.Session.GetString(System.SessionVariable.email);
+            string creatingProfileResult = await System.Services.ApiInterfacer.CreateProfile(uid, profile.personalId, $"{profile.thaiName} {profile.thaiLasrName}", 
+                $"{profile.engName} {profile.engLastName}", profile.birthDate, profile.nationality, profile.race, profile.religion, profile.blood,
+                profile.relationship, profile.child, profile.militaryCriterion, profile.address, profile.province, profile.phone, email, profile.gender);
+
+            return creatingProfileResult;
         }
     }
 }

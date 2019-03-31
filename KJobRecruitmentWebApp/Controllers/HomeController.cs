@@ -19,19 +19,19 @@ namespace KJobRecruitmentWebApp.Controllers
             
             if (User.IsInRole("Candidate"))
             {
+                StoreUserInformation();
                 Console.WriteLine("in role candidate");
                 return RedirectToAction("Candidate", "Home");
             }
             if (User.IsInRole("Staff"))
             {
+                StoreUserInformation();
                 Console.WriteLine("in role Staff");
                 return RedirectToAction("Staff", "Home");
             }
-            if (User.IsInRole("Admin"))
-            {
-                HttpContext.Session.SetString(System.SessionVariable.email, ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(7));
-                HttpContext.Session.SetString(System.SessionVariable.uid, ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(5));
-                HttpContext.Session.SetString(System.SessionVariable.role, ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(6));
+            if (User.IsInRole("Admin")) {
+
+                StoreUserInformation();
                 Console.WriteLine("in role Admin");
                 return RedirectToAction("Accounts", "Dashboard");
             }
@@ -71,6 +71,12 @@ namespace KJobRecruitmentWebApp.Controllers
         public IActionResult Admin() {
 
             return View();
+        }
+
+        private void StoreUserInformation() {
+            HttpContext.Session.SetString(System.SessionVariable.email, ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(7));
+            HttpContext.Session.SetString(System.SessionVariable.uid, ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(5));
+            HttpContext.Session.SetString(System.SessionVariable.role, ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(6));
         }
     }
 }

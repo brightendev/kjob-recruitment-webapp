@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace KJobRecruitmentWebApp.System.Services
 {
@@ -63,6 +66,54 @@ namespace KJobRecruitmentWebApp.System.Services
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}");
         }
 
+        public static async Task<string> CreateProfile(string uid, string personalId, string thaiName, string engName, string birthDate, string nationality,
+        string race, string religion, string blood, string relationship, string child, string militaryCriterion, string address, string province,
+        string phone, string email, string gender) {
+
+            string endpoint = "api/CreateProfile";
+
+            /*    string queryString =
+                    $"&owner_uid={uid}&personal_id={personalId}&thai_name={thaiName}&eng_name={engName}&date_of_birth={birthDate}&nationality={nationality}" +
+                    $"&race={race}&religion={religion}&blood={blood}&relationship={relationship}&child={child}&military_criterion={militaryCriterion}" +
+                    $"&address={address}&province={province}&telephone={phone}&email={email}&gender={gender}";
+
+                return await httpClient.GetStringAsync($"{apiServer}{endpoint}{queryString}");*/
+
+            HttpContent requestContent = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "code", "clBi3gTWPt/kIxmZRDmVYE0gQGXp7XrV6aeJbVx5U8isqZuOkvHAcg==" },
+                { "personal_id", personalId },
+                { "thai_name", thaiName },
+                { "eng_name", engName },
+                { "date_of_birth", birthDate },
+                { "nationality", nationality },
+                { "race", race },
+                { "religion", religion },
+                { "blood", blood },
+                { "relationship", relationship },
+                { "child", child },
+                { "military_criterion", militaryCriterion },
+                { "address", address },
+                { "province", province },
+                { "telephone", phone },
+                { "email", email },
+                { "owner_uid", uid },
+                { "gender", "1" },
+            });
+
+         /*   HttpResponseMessage response = await httpClient.GetAsync(endpoint, requestContent);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }*/
+            string queryString = await requestContent.ReadAsStringAsync();
+            string url = $"{apiServer}{endpoint}?{queryString}";
+            Console.WriteLine(url);
+            return await httpClient.GetStringAsync(url);
+        }
+
+
+        // ============ for dashboard =========
         public static async Task<string> GetAllAccounts(string requester) {
 
             string endpoint = "api/GetAccount?code=VbIN697ivYftiNFoIfkYwqrCJWuonDFpbmpS5rMd1GvOrpRBlgPBaQ==";

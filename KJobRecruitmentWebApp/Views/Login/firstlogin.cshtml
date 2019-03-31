@@ -99,7 +99,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
 
-                                            <input type="text-number" class="form-control" OnKeyPress="return chkNumber(this)" name="idCard" maxlength="13" minlength="13" required="" aria-required="true">
+                                            <input type="text-number" class="form-control" OnKeyPress="return chkNumber(this)" name="personalId" maxlength="13" minlength="13" required="" aria-required="true">
                                             <label class="form-label">รหัสประจำตัวประชาชน</label>
                                         </div>
                                         <div class="help-info">กรอกรหัสบัตรประชาชน 13 หลัก</div>
@@ -109,12 +109,11 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control" id="blood-groups" name="blood-type">
+                                            <select class="form-control" name="gender">
                                                 <option value="">- กรุณาเลือก เพศ -</option>
                                                 <option value="man">ชาย</option>
                                                 <option value="woman">หญิง</option>
                                             </select>
-                                            <label class="help-info">เพศ</label>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +123,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" OnKeyPress="return chkThai(this)" name="username" maxlength="20" minlength="3" required="" aria-required="true">
+                                            <input type="text" class="form-control" OnKeyPress="return chkThai(this)" name="thaiName" maxlength="20" minlength="3" required="" aria-required="true">
                                             <label class="form-label">ชื่อ</label>
                                         </div>
                                         <div class="help-info">กรอกชื่อภาษาไทย</div>
@@ -133,7 +132,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" OnKeyPress="return chkThai(this)" name="userlastname" maxlength="20" minlength="3" required="" aria-required="true">
+                                            <input type="text" class="form-control" OnKeyPress="return chkThai(this)" name="thaiLasrName" maxlength="20" minlength="3" required="" aria-required="true">
                                             <label class="form-label">นามสกุล</label>
                                         </div>
                                         <div class="help-info">กรอกนามสกุลภาษาไทย</div>
@@ -145,7 +144,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" OnKeyPress="return chkEng(this)" name="usernameEng" maxlength="20" minlength="3" required="" aria-required="true">
+                                            <input type="text" class="form-control" OnKeyPress="return chkEng(this)" name="engName" maxlength="20" minlength="3" required="" aria-required="true">
                                             <label class="form-label">Name</label>
                                         </div>
                                         <div class="help-info">กรอกชื่อภาษาอังกฤษ</div>
@@ -154,20 +153,20 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" OnKeyPress="return chkEng(this)" name="userlastnameEng" maxlength="20" minlength="3" required="" aria-required="true">
+                                            <input type="text" class="form-control" OnKeyPress="return chkEng(this)" name="engLastName" maxlength="20" minlength="3" required="" aria-required="true">
                                             <label class="form-label">Lastname</label>
                                         </div>
                                         <div class="help-info">กรอกนามสกุลภาษาอังกฤษ</div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- ==== Birth date and gender ==== -->
+                            <!-- ==== Birth date and blood ==== -->
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <!-- ==== Birth ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="date" class="form-control" name="Birth" required aria-required="true">
+                                            <input type="date" class="form-control" name="birthDate" required aria-required="true">
                                             <label class="form-label">วันเกิด</label>
                                         </div>
                                         <div class="help-info">วันเกิดในรูปแบบ เดือน/วัน/ปี ตัวอย่าง: 3/20/1993</div>
@@ -177,11 +176,18 @@
                                     <!-- ==== Blood ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            @Html.DropDownList("BloodTypes",
-                                                (IEnumerable<SelectListItem>) ViewData["BloodTypes"],
-                                                new { @class = "form-control", @id = "blood", @name = "blood" })
+                                            <select class="form-control" id="Blood" name="blood">
+                                                <option value="">- กรุณาเลือก กรุ๊ปเลือด -</option>
+
+                                                @{
+                                                    foreach (var blood in ViewData["BloodList"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.BloodTypeData>)
+                                                    {
+                                                        <option value=@blood.blood_id>@blood.blood_name</option>
+                                                    }
+                                                }
+
+                                            </select>
                                         </div>
-                                        <div class="help-info">เลือกกรุ๊ปเลือด</div>
                                     </div>
                                 </div>
                             </div>
@@ -192,14 +198,14 @@
                         <section>
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <!-- ==== สัญชาติ ===-->
+                                    <!-- ==== MilitaryCriterion ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control" name="สถานะภาพทางทหาร">
+                                            <select class="form-control" name="militaryCriterion">
                                                 <option value="">- กรุณาเลือก สถานะภาพทางทหาร -</option>
-                                                <option value="ผ่านการเกณฑ์ทหาร">ผ่านการเกณฑ์ทหาร</option>
-                                                <option value="ยังไม่ผ่านการเกณฑ์ทหาร">ยังไม่ผ่านการเกณฑ์ทหาร</option>
-                                                <option value="ผ่านการเรียน รด.">ผ่านการเรียน รด.</option>
+                                                @foreach(var militaryCriterion in ViewData["MilitaryCriterionList"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.MilitaryCriterionData>) {
+                                                    <option value="@militaryCriterion.military_criterion_id">@militaryCriterion.military_criterion_name</option>
+                                                }
                                             </select>
 
                                         </div>
@@ -210,7 +216,7 @@
                                     <!-- ==== ศาสนา ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control" id="Religion" name="Religion-type">
+                                            <select class="form-control" id="Religion" name="religion">
                                                 <option value="">- กรุณาเลือก ศาสนา -</option>
                                                 
                                                 @{
@@ -220,7 +226,6 @@
                                                 }
                                           
                                             </select>
-                                            <label class="help-info">ศาสนา</label>
                                         </div>
                                     </div>
                                 </div>
@@ -231,8 +236,8 @@
                                     <!-- ==== สถานะภาพ สมรส ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control" id="Relationship" name="Religion-type">
-                                                <option disabled selected>- กรุณาเลือก สถานะภาพ สมรส -</option>
+                                            <select class="form-control" id="Relationship" name="relationship">
+                                                <option value="">- กรุณาเลือก สถานะภาพสมรส -</option>
                                                 @foreach(var relationship in ViewData["Relationship"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.RelationshipData>) {
                                                     <option value=@relationship.relationship_id>@relationship.relationship_name</option>
                                                 }
@@ -245,7 +250,7 @@
                                     <!-- จำนวนบุตร-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" min="0" pattern="\d*" class="form-control" name="chlid" aria-required="true">
+                                            <input type="number" min="0" pattern="\d*" class="form-control" name="child" aria-required="true">
                                             <label class="form-label">จำนวนบุตร</label>
                                         </div>
                                         <div class="help-info">กรอกจำนวนบุตร</div>
@@ -255,21 +260,21 @@
                             <!-- ====   ==== -->
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="nationality" required="" aria-required="true">
-                                            <label class="form-label">สัญชาติ</label>
-
-                                        </div>
-                                        <div class="help-info"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <!-- ==== เชื้อชาติ ===-->
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="race" required="" aria-required="true">
                                             <label class="form-label">เชื้อชาติ</label>
+                                        </div>
+                                        <div class="help-info"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="nationality" required="" aria-required="true">
+                                            <label class="form-label">สัญชาติ</label>
+
                                         </div>
                                         <div class="help-info"></div>
                                     </div>
@@ -297,10 +302,15 @@
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            @Html.DropDownList("Provinces",
-                                                               (IEnumerable<SelectListItem>) ViewData["Provinces"],
-                                                  new { @class = "form-control", @id = "city", @name = "city" })
-
+                                            <select class="form-control" id="Province" name="province">
+                                                <option value="">- กรุณาเลือก จังหวัด -</option>
+                                                @{
+                                                    foreach (var province in ViewData["ProvinceList"] as List<KJobRecruitmentWebApp.Data.ExternalDatabase.ProvinceData>)
+                                                    {
+                                                        <option value=@province.province_id>@province.province_name</option>
+                                                    }
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
