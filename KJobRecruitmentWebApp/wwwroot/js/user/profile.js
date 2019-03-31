@@ -5,7 +5,7 @@ $(function () {
     $('#profile-name').on('click', function () {
         Swal.fire({
             title: 'แก้ไขชื่อ',
-            html: '<div ><input type ="text" id = "name"></div>',
+            html: '<div ><input type ="text" class="form-control" id = "name"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -59,7 +59,7 @@ $(function () {
     $('#profile-Name').on('click', function () {
         Swal.fire({
             title: 'แก้ไขName',
-            html: '<div ><input type ="text" id = "engname"></div>',
+            html: '<div ><input type ="text" class="form-control" id = "engname"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -111,8 +111,8 @@ $(function () {
     });
     $('#profile-birth').on('click', function () {
         Swal.fire({
-            title: 'แก้ไขName',
-            html: '<div ><input type ="text" id = "birth"></div>',
+            title: 'แก้ไขวันเกิด',
+            html: '<div ><input type ="text" class="form-control" id = "birth"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -165,7 +165,7 @@ $(function () {
     $('#profile-race').on('click', function () {
         Swal.fire({
             title: 'แก้ไขเชื้อชาติ',
-            html: '<div ><input type ="text" id="race"></div>',
+            html: '<div ><input type ="text" class="form-control" id="race"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -217,8 +217,8 @@ $(function () {
     });
     $('#profile-nation').on('click', function () {
         Swal.fire({
-            title: 'แก้ไขสัญญาณชาติ',
-            html: '<div ><input type ="text" id="nation"></div>',
+            title: 'แก้ไขสัญชาติ',
+            html: '<div ><input type ="text" class="form-control" id="nation"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -271,7 +271,7 @@ $(function () {
     $('#profile-religion').on('click', function () {
         Swal.fire({
             title: 'แก้ไขศาสนา',
-            html: '<div ><input type ="text" id="religion"></div>',
+            html: '<div ><input type ="text" class="form-control" id="religion"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -324,7 +324,7 @@ $(function () {
     $('#profile-blood').on('click', function () {
         Swal.fire({
             title: 'แก้ไขกรุ๊ปเลือด',
-            html: '<div ><input type ="text" id="blood"></div>',
+            html: '<div ><input type ="text" class="form-control" id="blood"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -377,7 +377,7 @@ $(function () {
     $('#status-s').on('click', function () {
         Swal.fire({
             title: 'แก้ไขสถานภาพ',
-            html: '<div ><input type ="text" id="status"></div>',
+            html: '<div ><input type ="text" class="form-control" id="status"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -430,7 +430,7 @@ $(function () {
     $('#status-military').on('click', function () {
         Swal.fire({
             title: 'แก้ไขสถานภาพทางทหาร',
-            html: '<div ><input type ="text" id="military"></div>',
+            html: '<div ><input type ="text" class="form-control" id="military"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -483,7 +483,7 @@ $(function () {
     $('#contact-address').on('click', function () {
         Swal.fire({
             title: 'แก้ไขที่อยู่',
-            html: '<div ><input type ="text" id="address"></div>',
+            html: '<div ><input type ="text" class="form-control" id="address"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -536,7 +536,7 @@ $(function () {
     $('#contact-provice').on('click', function () {
         Swal.fire({
             title: 'แก้ไขจังหวัด',
-            html: '<div ><input type ="text" id="provice"></div>',
+            html: '<div ><input type ="text" class="form-control" id="provice"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -589,7 +589,7 @@ $(function () {
     $('#contact-id').on('click', function () {
         Swal.fire({
             title: 'แก้ไขรหัสไปรษณีย์',
-            html: '<div ><input type ="text" id="idaddress"></div>',
+            html: '<div ><input type ="text" class="form-control" id="idaddress"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -642,7 +642,7 @@ $(function () {
     $('#contact-tel').on('click', function () {
         Swal.fire({
             title: 'แก้ไขโทรศัพท์',
-            html: '<div ><input type ="text" id="tel"></div>',
+            html: '<div ><input type ="text" class="form-control" id="tel"></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -695,7 +695,7 @@ $(function () {
     $('#contact-email').on('click', function () {
         Swal.fire({
             title: 'แก้ไขอีเมล',
-            html: '<div ><input type ="text" id=""email></div>',
+            html: '<div ><input type ="text" class="form-control" id=""email></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
