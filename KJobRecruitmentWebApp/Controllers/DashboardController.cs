@@ -13,15 +13,35 @@ namespace KJobRecruitmentWebApp.Controllers
     [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
+      /*      string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
             Console.WriteLine($"user email = {userEmail}");
 
             List<Data.Admin.Account> accountList = (await Data.Admin.GetAllAccounts(userEmail));
 
             foreach(Admin.Account account in accountList) {
                 
+                Console.WriteLine(account.email);
+            }
+
+            ViewData["AccountList"] = accountList;
+
+            return View();  */
+
+            return Redirect("dashboard/accounts");
+        }
+
+        public async Task<ActionResult> Accounts() {
+
+            string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
+            Console.WriteLine($"user email = {userEmail}");
+
+            List<Data.Admin.Account> accountList = (await Data.Admin.GetAllAccounts(userEmail));
+
+            foreach (Admin.Account account in accountList)
+            {
+
                 Console.WriteLine(account.email);
             }
 

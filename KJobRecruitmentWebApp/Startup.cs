@@ -67,9 +67,11 @@ namespace KJobRecruitmentWebApp
 
                 // for user controller
                 routes.MapRoute("user_account_route", "account", new { controller = "User", action = "Account" });
+                routes.MapRoute("user_profile_route", "profile", new { controller = "User", action = "Profile" });
 
                 // admin
-                routes.MapRoute("dashboard", "dashboard", new { controller = "Dashboard", action = "index" });
+                routes.MapRoute("dashboard_accounts1", "dashboard", new { controller = "Dashboard", action = "Accounts" });
+                routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
 
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",

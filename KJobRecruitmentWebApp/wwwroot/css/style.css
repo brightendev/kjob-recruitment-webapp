@@ -8038,7 +8038,7 @@ fieldset[disabled] .form-control {
 
 /* First login Page ================================== */
 .firstlogin-page {
-    background-image:url('~/images/kmutnb_landUse.jpg');
+    background-image:url('../images/kmutnb_landUse.jpg');
     background-size: cover;
     /* ======================*/
     background-color: #00BCD4;
@@ -8083,7 +8083,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-image:url('~/images/kmutnb_landUse.jpg');
+  background-image:url('../images/kmutnb_landUse.jpg');
   background-size: cover;
   /* ======================*/
   background-color: #00BCD4;
@@ -8124,7 +8124,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-image:url('~/images/kmutnb_landUse.jpg');
+  background-image:url('../images/kmutnb_landUse.jpg');
   background-size: cover;
   /* ======================*/
   background-color: #00BCD4;
