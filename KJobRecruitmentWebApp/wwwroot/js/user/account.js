@@ -208,7 +208,7 @@ $(function () {
     /*----------------------------------------edit notification-interested-job----------------------------------------*/
     $('#notification-interested-job').on('click', function () {
         Swal.fire({
-            title: 'ตั้งค่าการแจ้งเตือนข่าวสาร',
+            title: 'ตั้งค่าการแจ้งเตือนงานที่สนใจ',
             html: '<div class="switch"><label>OFF<input type="checkbox" id="status" checked><span class="lever"></span>ON</label></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
@@ -278,7 +278,7 @@ $(function () {
     /*edit account*/
     $('#account-email').on('click', function () {
         Swal.fire({
-            title: 'ตั้งค่าการแจ้งเตือน',
+            title: 'แก้ไขอีเมล์',
             html: '<div ><input type="text" class="form-control" id="dataEmail" </div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
@@ -335,7 +335,7 @@ $(function () {
     /*edit password*/
     $('#account-pass').on('click', function () {
         Swal.fire({
-            title: 'ตั้งค่าการแจ้งเตือน',
+            title: 'แก้ไขรหัสผ่าน',
             html: '<div ><input type="text" class="form-control" id="dataPass" </div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
