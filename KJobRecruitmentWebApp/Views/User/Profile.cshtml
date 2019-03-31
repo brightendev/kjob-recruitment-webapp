@@ -22,9 +22,6 @@
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Sweetalert Css -->
-    <link href="plugins/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
-
     <!-- Custom Css -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -68,7 +65,7 @@
 
 
                 <ul class="nav navbar-nav navbar-menu">
-                    <a href="#">หน้าแรก</a>
+                    <a class="active" href="#">หน้าแรก</a>
                     <a href="#">งาน/ข่าวสาร</a>
                     <a href="#">เกี่ยวกับ</a>
                     <a href="#">เว็บไซต์ มจพ.</a>
@@ -165,13 +162,13 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="active">
+                    <li>
                         <a href="/account">
                             <i class="material-icons">account_circle</i>
                             <span>บัญชีผู้ใช้</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/profile">
                             <i class="material-icons">face</i>
                             <span>ข้อมูลส่วนบุคคล</span>
@@ -195,7 +192,7 @@
             <div>
                 <ul class="page-menu">
                     <a href="">
-                        <li><span>หน้าแรก</span></li>
+                        <li class="active"><span>หน้าแรก</span></li>
                     </a>
                     <a href="#">
                         <li><span>งาน/ข่าวสาร</span></li>
@@ -218,151 +215,140 @@
          ไม่เอาาาา
      -->
 
-    <section class="sidenav" style="width: 150px; --sidebar-width: 250px; --quickbar-height: 0px;">
+    <section class="sidenav" class="sidenav" style="width: 150px; --sidebar-width: 250px; --quickbar-height: 60px; padding-left: 25px">
         <div class="tool">
-            <a href="#">บัญชีผู้ใช้</a>
-            <a href="#history">ประวัติการใช้งาน</a>
-            <a href="#notification">การแจ้งเตือน</a>
+            <a href="#profile" style="text-align: left;">ประวัติส่วนตัว</a>
+            <a href="#status" style="text-align: left;">สถานะต่างๆ</a>
+            <a href="#contacts" style="text-align: left;">การติดต่อ</a>
         </div>
     </section>
 
-    <section class="content" style="--sidebar-width: 250px; --sidenav-width: 150px; --quickbar-height: 0px">
+    <section class="content" style="--sidebar-width: 250px; --sidenav-width: 150px; --quickbar-height: 60px">
 
         <div class="container-fluid">
 
-            <div class="block-header">บัญชีผู้ใช้</div>
-            <div class="row clearfix" id="account">
+            <div class="block-header" id="profile">ประวัติส่วนตัว</div>
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card outline-kmutnb">
                         <div class="body">
-                            <div class="list-group">
-
-                                <button type="button" class="list-group-item waves-effect">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        รูปถาพบัญชี
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        <div class="image">
-                                            <img src="images/user.png" alt="User" />
-                                        </div>
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        อีเมล์
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        aaaa@emai.com
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        รหัสผ่าน
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        ********
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">ภาพถ่าย</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ชื่อ</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ชื่อ</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Name</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">วันเกิด</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">เชื้อชาติ</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">สัญชาติ</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ศาสนา</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">กรุ๊ปเลือด</th>
+                                        <td colspan="2">wait...</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="block-header">ประวัติการใช้งาน</div>
-            <div class="row clearfix" id="history">
+            <div class="block-header" id="status">สถานะต่างๆ</div>
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card outline-kmutnb">
-                        <div class="body">
-                            <div class="list-group">
-                                <button type="button" class="list-group-item waves-effect">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        สร้างบัญชีเมื่อ
-                                    </div>
-                                    <div class="detail col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        .........
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        ลงชื่อเข้าใช้ล่าสุดเมื่อ
-                                    </div>
-                                    <div class="detail col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        ..........
-                                    </div>
-                                </button>
-                            </div>
+                        <div class="body" id="status">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">สถานภาพการสมรส</th>
+                                        <td colspan="2">โสด</td>
+                                        <td><a href="#"><i class="material-icons">create</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ลงชื่อเข้าใช้ล่าสุดเมื่อ</th>
+                                        <td colspan="2">-</td>
+                                        <td><a href="#"><i class="material-icons">create</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">สถานะภาพทางทหาร</th>
+                                        <td colspan="2">หนี</td>
+                                        <td><a href="#"><i class="material-icons">create</i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="block-header">การแจ้งเตือน</div>
-            <div class="row clearfix" id="notification">
+            <div class="block-header">การติดต่อ</div>
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card outline-kmutnb">
-                        <div class="body">
-                            <div class="list-group">
-                                <button type="button" class="list-group-item waves-effect" id="notification-all">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        การแจ้งเตือน
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        เปิดใช้งานอยู่
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect" id="notification-email">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        การแจ้งเตือนทางอีเมล์
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        เปิดใช้งานอยู่
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect" id="notification-news">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        การแจ้งเตือนข่าวสาร
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        เปิดใช้งานอยู่
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="list-group-item waves-effect" id="notification-interested-job">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        การแจ้งเตือนงานที่สนใจ
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        เปิดใช้งานอยู่
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
-                            </div>
+                        <div class="body" id="contacts">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">ที่อยู่</th>
+                                        <td colspan="2">256/255 ถนนวงศ์สว่าง เขตบางซื่อ</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">จังหวัด</th>
+                                        <td colspan="2">กรุงเทพ</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">รหัสไปรษณีย์</th>
+                                        <td colspan="2">10000</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">โทรศัพท์</th>
+                                        <td colspan="2">085213265</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">อีเมล์</th>
+                                        <td colspan="2">GAC@lovemail.co</td>
+                                        <td><a href="#"><i class="material-icons">create</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -372,13 +358,8 @@
         </div>
     </section>
 
-
-
     <!-- Jquery Core Js -->
     <script src="plugins/jquery/jquery.min.js"></script>
-
-    <!-- for alert and ajax request --->
-    <script src="js/user/account.js"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="plugins/bootstrap/js/bootstrap.js"></script>
@@ -391,9 +372,6 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>
-
-    <!-- SweetAlert Plugin Js -->
-    <script src="plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>

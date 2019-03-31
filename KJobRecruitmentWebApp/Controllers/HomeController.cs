@@ -33,7 +33,7 @@ namespace KJobRecruitmentWebApp.Controllers
                 HttpContext.Session.SetString(System.SessionVariable.uid, ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(5));
                 HttpContext.Session.SetString(System.SessionVariable.role, ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(6));
                 Console.WriteLine("in role Admin");
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Accounts", "Dashboard");
             }
             Console.WriteLine("User is not in any role");
 

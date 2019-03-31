@@ -67,12 +67,25 @@ namespace KJobRecruitmentWebApp
 
                 // for user controller
                 routes.MapRoute("user_account_route", "account", new { controller = "User", action = "Account" });
+                routes.MapRoute("user_profile_route", "profile", new { controller = "User", action = "Profile" });
 
                 // admin
-                routes.MapRoute("dashboard", "dashboard", new { controller = "Dashboard", action = "index" });
+                routes.MapRoute("dashboard_accounts1", "dashboard", new { controller = "Dashboard", action = "Accounts" });
+                routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
+
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });
+
+                // ========= AJAX ====
+                routes.MapRoute("ajax_set_notif_all", "ajax/set_notification_all", new { controller = "AjaxHandler", action = "SetNotificationAll" });
+                routes.MapRoute("ajax_set_notif_email", "ajax/set_notification_email", new { controller = "AjaxHandler", action = "SetNotificationEmail" });
+                routes.MapRoute("ajax_set_notif_news", "ajax/set_notification_news", new { controller = "AjaxHandler", action = "SetNotificationNews" });
+                routes.MapRoute("ajax_set_notif_interestedjob", "ajax/set_notification_interested_job", new { controller = "AjaxHandler", action = "SetNotificationInterestedJob" });
+
+                // test
+                routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });
+                routes.MapRoute("ajax_test_role", "ajax/getrole", new { controller = "AjaxHandler", action = "GetRole" });
 
                 // ============
                 routes.MapRoute("home admin", "admin", new {controller = "Home", action = "admin"});

@@ -13,7 +13,7 @@ namespace KJobRecruitmentWebApp.Controllers
             return Redirect("/account");
         }
 
-        public IActionResult Account() {
+        public ActionResult Account() {
            
             var data = System.User.User.GetUserDetail("email");
             ViewData["email"] = data.account.email;
@@ -21,6 +21,11 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["last_login"] = data.account.last_login;
 
             ViewData["personal_id"] = data.profile.personal_id;
+            return View();
+        }
+
+        public ActionResult Profile() {
+
             return View();
         }
     }

@@ -34,7 +34,7 @@ namespace KJobRecruitmentWebApp.Controllers
 
             if(response.Contains("error")) {
                 Console.WriteLine("Login Error");
-                return Redirect("login");
+                return Redirect("/login");
             }
 
             Console.WriteLine(response);
@@ -55,7 +55,7 @@ namespace KJobRecruitmentWebApp.Controllers
                 new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddSeconds(30)
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
                 }
             );
 
@@ -111,6 +111,10 @@ namespace KJobRecruitmentWebApp.Controllers
             List<SelectListItem> provinceSelectList = provinceDataList.Select(provinceData => new SelectListItem() { Text = provinceData.province_name, Value = provinceData.province_id }).ToList();
             provinceSelectList.Insert(0, new SelectListItem() { Text = "- เลือกจังหวัด -", Value = "0" });
             ViewData["Provinces"] = provinceSelectList;
+
+            Data.ExternalDatabase.PublicData data = await Data.ExternalDatabase.GetPublicData();
+            ViewData["ReligionList"] = data.Religion;
+            ViewData["Relationship"] = data.Relationship;
 
             return View();
         }
