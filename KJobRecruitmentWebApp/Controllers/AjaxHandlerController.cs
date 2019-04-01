@@ -14,26 +14,53 @@ namespace KJobRecruitmentWebApp.Controllers
             return Redirect("/");
         }
 
-        public string SetNotificationAll() {
+        public async Task<string> SetNotificationAll(string value) {
 
-            return "success";
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+
+            Console.WriteLine($"[[ try to set notification all for uid={uid} to '{value}' ]]");
+
+            string response = await System.Services.ApiInterfacer.SetAccountNotitification("setting_notif_all", uid, value);
+            Console.WriteLine($"[[ setting notification all : {response} ]] ");
+
+            if(response.Contains("success")) return "success";
+            if(response.Contains("error")) return "error";
+
+            return response;
+
         }
 
-        public string SetNotificationEmail()
-        {
-            return "success";
+        public async Task<string> SetNotificationEmail(string value) {
+
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string response = await System.Services.ApiInterfacer.SetAccountNotitification("setting_notif_email", uid, value);
+
+            if (response.Contains("success")) return "success";
+            if (response.Contains("error")) return "error";
+
+            return response;
         }
 
-        public string SetNotificationNews()
+        public async Task<string> SetNotificationNews(string value)
         {
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string response = await System.Services.ApiInterfacer.SetAccountNotitification("setting_notif_news", uid, value);
 
-            return "success";
+            if (response.Contains("success")) return "success";
+            if (response.Contains("error")) return "error";
+
+            return response;
         }
 
-        public string SetNotificationInterestedJob()
+        public async Task<string> SetNotificationInterested(string value)
         {
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            string response = await System.Services.ApiInterfacer.SetAccountNotitification("setting_notif_interested", uid, value);
 
-            return "success";
+            if (response.Contains("success")) return "success";
+            if (response.Contains("error")) return "error";
+
+            return response;
         }
 
         public async Task<string> GetAllBlood()

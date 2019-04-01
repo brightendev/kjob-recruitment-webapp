@@ -112,8 +112,29 @@ namespace KJobRecruitmentWebApp.System.Services
             return await httpClient.GetStringAsync(url);
         }
 
+
         // ========= for user editting =========
-        public static void EditNotitificationAll() {
+        public static async Task<string> SetAccountNotitification(string setting, string uid, string value) {
+
+            string endpoint = "api/EditUser?code=Qd1JLijvQJaRHNqfuh8wP2LV8R2sKstHzm8TGh63EH0X5evwr1ODRA==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&edit={setting}&value={value}&uid={uid}");
+
+        }
+
+    /*    public static async Task<string> SetNotificationEmail(string uid, string value) {
+
+            string endpoint = "api/EditUser?code=Qd1JLijvQJaRHNqfuh8wP2LV8R2sKstHzm8TGh63EH0X5evwr1ODRA==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&edit=setting_notif_email&value={value}&uid={uid}");
+            
+        }*/
+
+        public static void EditNotificationNews() {
+
+        }
+
+        public static void EditNotificationInterested() {
 
         }
 
