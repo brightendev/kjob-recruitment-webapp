@@ -61,19 +61,19 @@ $(function () {
         .then((result) => {
             console.log(result.value);
 
-            if (result.value == 'success') {
+            if (result.value === 'success') {
                 Swal.fire({
                     type: 'success',
                     title: `แก้ไขแล้ว`
                     });
             }
-            else if (result.value == 'error') {
+            else if (result.value === 'error') {
                 Swal.fire({
                     type: 'error',
                     title: 'เกิดข้อผิดพลาด'
                 });
             }
-            else {
+            else if (result.value){
                 Swal.fire({
                     type: 'warning',
                     title: 'unkwnown error'
@@ -147,7 +147,7 @@ $(function () {
                     title: 'เกิดข้อผิดพลาด'
                 });
             }
-            else {
+            else if (result.value) {
                 Swal.fire({
                     type: 'warning',
                     title: 'unkwnown error'
@@ -213,10 +213,10 @@ $(function () {
                     title: `แก้ไขแล้ว`
                 });
             }
-            if (result.value == 'error') {
+            else if (result.value) {
                 Swal.fire({
-                    type: 'error',
-                    title: 'เกิดข้อผิดพลาด'
+                    type: 'warning',
+                    title: 'unkwnown error'
                 });
             }
         });
@@ -288,7 +288,7 @@ $(function () {
                     title: 'เกิดข้อผิดพลาด'
                 });
             }
-            else {
+            else if (result.value) {
                 Swal.fire({
                     type: 'warning',
                     title: 'unkwnown error'
