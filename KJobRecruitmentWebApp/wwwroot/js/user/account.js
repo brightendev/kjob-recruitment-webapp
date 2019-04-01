@@ -24,17 +24,18 @@ $(function () {
             // Ajax request
             preConfirm: () => {
                 var status = $('#status').is(':checked');
-
+                var value;
                 /* check status*/
                 if (status) {
                     document.getElementById("notification-status").innerHTML = "เปิดใช้งานอยู่";
-
+                    value  = 'on';
                 }
                 else {
                     document.getElementById("notification-status").innerHTML = "ปิดใช้งานอยู่";
+                    value = 'off';
                 }
-                console.log(status);
-                return fetch(`/ajax/set_notification_all`,
+                console.log(`setting notification_all to ${value}`);
+                return fetch(`/ajax/set_notification_all/${value}`,
                     {
                         method: "GET",
                         mode: "cors",
@@ -43,35 +44,42 @@ $(function () {
                         headers: { "Content-Type": "application/json" },
                     }
                 )
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        return response.text();
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(
-                            `Request failed: ${error}`
-                        );
-                    });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.text();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        `Request failed: ${error}`
+                    );
+                });
             }
         })
-            // result
-            .then((result) => {
-                if (result.value == 'success') {
-                    console.log(result.value);
-                    Swal.fire({
-                        type: 'success',
-                        title: `แก้ไขแล้ว`
+        // result
+        .then((result) => {
+            console.log(result.value);
+
+            if (result.value == 'success') {
+                Swal.fire({
+                    type: 'success',
+                    title: `แก้ไขแล้ว`
                     });
-                }
-                if (result.value == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'เกิดข้อผิดพลาด'
-                    });
-                }
-            });
+            }
+            else if (result.value == 'error') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'เกิดข้อผิดพลาด'
+                });
+            }
+            else {
+                Swal.fire({
+                    type: 'warning',
+                    title: 'unkwnown error'
+                });
+            }
+        });
     });
     /*----------------------------------------end of edit notification-all----------------------------------------*/
 
@@ -90,16 +98,18 @@ $(function () {
             // Ajax request
             preConfirm: () => {
                 var status = $('#status').is(':checked');
-
+                var value;
                 /* check status*/
                 if (status) {
                     document.getElementById("notification-statusEmail").innerHTML = "เปิดใช้งานอยู่";
+                    value = 'on';
                 }
                 else {
                     document.getElementById("notification-statusEmail").innerHTML = "ปิดใช้งานอยู่";
+                    value = 'off';
                 }
-                console.log(status);
-                return fetch(`/ajax/set_notification_email`,
+                console.log(`setting notification_email to ${value}`);
+                return fetch(`/ajax/set_notification_email/${value}`,
                     {
                         method: "GET",
                         mode: "cors",
@@ -108,35 +118,42 @@ $(function () {
                         headers: { "Content-Type": "application/json" },
                     }
                 )
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        return response.text();
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(
-                            `Request failed: ${error}`
-                        );
-                    });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.text();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        `Request failed: ${error}`
+                    );
+                });
             }
         })
-            // result
-            .then((result) => {
-                if (result.value == 'success') {
-                    console.log(result.value);
-                    Swal.fire({
-                        type: 'success',
-                        title: `แก้ไขแล้ว`
-                    });
-                }
-                if (result.value == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'เกิดข้อผิดพลาด'
-                    });
-                }
-            });
+        // result
+        .then((result) => {
+            console.log(result.value);
+
+            if (result.value == 'success') {
+                Swal.fire({
+                    type: 'success',
+                    title: `แก้ไขแล้ว`
+                });
+            }
+            else if (result.value == 'error') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'เกิดข้อผิดพลาด'
+                });
+            }
+            else {
+                Swal.fire({
+                    type: 'warning',
+                    title: 'unkwnown error'
+                });
+            }
+        });
     });
     /*----------------------------------------end of edit email notification----------------------------------------*/
 
@@ -154,16 +171,18 @@ $(function () {
             // Ajax request
             preConfirm: () => {
                 var status = $('#status').is(':checked');
-
+                var value;
                 /* check status*/
                 if (status) {
-                    document.getElementById("notification-newsStatus").innerHTML = "เปิดใช้งานอยู่";
+                    document.getElementById("notification-statusEmail").innerHTML = "เปิดใช้งานอยู่";
+                    value = 'on';
                 }
                 else {
-                    document.getElementById("notification-newsStatus").innerHTML = "ปิดใช้งานอยู่";
+                    document.getElementById("notification-statusEmail").innerHTML = "ปิดใช้งานอยู่";
+                    value = 'off';
                 }
-                console.log(status);
-                return fetch(`/ajax/set_notification_news`,
+                console.log(`setting notification_news to ${value}`);
+                return fetch(`/ajax/set_notification_news/${value}`,
                     {
                         method: "GET",
                         mode: "cors",
@@ -172,35 +191,35 @@ $(function () {
                         headers: { "Content-Type": "application/json" },
                     }
                 )
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        return response.text();
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(
-                            `Request failed: ${error}`
-                        );
-                    });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.text();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        `Request failed: ${error}`
+                    );
+                });
             }
         })
             // result
-            .then((result) => {
-                if (result.value == 'success') {
-                    console.log(result.value);
-                    Swal.fire({
-                        type: 'success',
-                        title: `แก้ไขแล้ว`
-                    });
-                }
-                if (result.value == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'เกิดข้อผิดพลาด'
-                    });
-                }
-            });
+        .then((result) => {
+            if (result.value == 'success') {
+                console.log(result.value);
+                Swal.fire({
+                    type: 'success',
+                    title: `แก้ไขแล้ว`
+                });
+            }
+            if (result.value == 'error') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'เกิดข้อผิดพลาด'
+                });
+            }
+        });
     });
     /*----------------------------------------end of edit  notification-news ----------------------------------------*/
 
@@ -217,18 +236,21 @@ $(function () {
             showLoaderOnConfirm: true,
 
             // Ajax request
+            // Ajax request
             preConfirm: () => {
                 var status = $('#status').is(':checked');
-
+                var value;
                 /* check status*/
                 if (status) {
-                    document.getElementById("notification-interested-jobStatus").innerHTML = "เปิดใช้งานอยู่";
+                    document.getElementById("notification-statusEmail").innerHTML = "เปิดใช้งานอยู่";
+                    value = 'on';
                 }
                 else {
-                    document.getElementById("notification-interested-jobStatus").innerHTML = "ปิดใช้งานอยู่";
+                    document.getElementById("notification-statusEmail").innerHTML = "ปิดใช้งานอยู่";
+                    value = 'off';
                 }
-                console.log(status);
-                return fetch(`/ajax/set_notification_jobstatus`,
+                console.log(`setting notification_interested to ${value}`);
+                return fetch(`/ajax/set_notification_interested/${value}`,
                     {
                         method: "GET",
                         mode: "cors",
@@ -237,35 +259,42 @@ $(function () {
                         headers: { "Content-Type": "application/json" },
                     }
                 )
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        return response.text();
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(
-                            `Request failed: ${error}`
-                        );
-                    });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.text();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                        `Request failed: ${error}`
+                    );
+                });
             }
         })
-            // result
-            .then((result) => {
-                if (result.value == 'success') {
-                    console.log(result.value);
-                    Swal.fire({
-                        type: 'success',
-                        title: `แก้ไขแล้ว`
-                    });
-                }
-                if (result.value == 'error') {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'เกิดข้อผิดพลาด'
-                    });
-                }
-            });
+        // result
+        .then((result) => {
+            console.log(result.value);
+
+            if (result.value == 'success') {
+                Swal.fire({
+                    type: 'success',
+                    title: `แก้ไขแล้ว`
+                });
+            }
+            else if (result.value == 'error') {
+                Swal.fire({
+                    type: 'error',
+                    title: 'เกิดข้อผิดพลาด'
+                });
+            }
+            else {
+                Swal.fire({
+                    type: 'warning',
+                    title: 'unkwnown error'
+                });
+            }
+        });
     });
     /*----------------------------------------end of edit notification-interested-job----------------------------------------*/
 

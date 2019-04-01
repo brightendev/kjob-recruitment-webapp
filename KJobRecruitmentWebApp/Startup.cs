@@ -78,10 +78,10 @@ namespace KJobRecruitmentWebApp
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });
 
                 // ========= AJAX ====
-                routes.MapRoute("ajax_set_notif_all", "ajax/set_notification_all", new { controller = "AjaxHandler", action = "SetNotificationAll" });
-                routes.MapRoute("ajax_set_notif_email", "ajax/set_notification_email", new { controller = "AjaxHandler", action = "SetNotificationEmail" });
-                routes.MapRoute("ajax_set_notif_news", "ajax/set_notification_news", new { controller = "AjaxHandler", action = "SetNotificationNews" });
-                routes.MapRoute("ajax_set_notif_interestedjob", "ajax/set_notification_interested_job", new { controller = "AjaxHandler", action = "SetNotificationInterestedJob" });
+                routes.MapRoute("ajax_set_notif_all", "ajax/set_notification_all/{value}", new { controller = "AjaxHandler", action = "SetNotificationAll" });
+                routes.MapRoute("ajax_set_notif_email", "ajax/set_notification_email/{value}", new { controller = "AjaxHandler", action = "SetNotificationEmail" });
+                routes.MapRoute("ajax_set_notif_news", "ajax/set_notification_news/{value}", new { controller = "AjaxHandler", action = "SetNotificationNews" });
+                routes.MapRoute("ajax_set_notif_interestedjob", "ajax/set_notification_interested/{value}", new { controller = "AjaxHandler", action = "SetNotificationInterested" });
 
                 // test
                 routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });
