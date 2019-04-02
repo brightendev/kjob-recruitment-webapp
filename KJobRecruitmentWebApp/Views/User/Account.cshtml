@@ -118,7 +118,7 @@
                             -->
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">email@email.com</li>
+                            <li class="header">@ViewData["email"]</li>
                             <li class="body">
                                 <ul class="menu tasks">
 
@@ -157,7 +157,7 @@
                 <div class="info-container" style="height: 35%">
                     <!--    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
                     -->
-                    <div class="email">john.doe@example.com</div>
+                    <div class="email">@ViewData["email"]</div>
                     <hr>
                 </div>
             </div>
@@ -256,7 +256,7 @@
                                         อีเมล์
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        aaaa@emai.com
+                                        @ViewData["email"]
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -291,7 +291,7 @@
                                         สร้างบัญชีเมื่อ
                                     </div>
                                     <div class="detail col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        .........
+                                        @ViewData["created_date"]
                                     </div>
                                 </button>
 
@@ -300,7 +300,7 @@
                                         ลงชื่อเข้าใช้ล่าสุดเมื่อ
                                     </div>
                                     <div class="detail col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        ..........
+                                        @ViewData["last_login"]
                                     </div>
                                 </button>
                             </div>
@@ -319,8 +319,9 @@
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         การแจ้งเตือน
                                     </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" id="notification-status">
-                                        เปิดใช้งานอยู่
+                                    <div name="value" style="display: none">@ViewData["notif_all"]</div>
+                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" name="status-text">
+                                        @ViewData["notif_all"]
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -331,8 +332,9 @@
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         การแจ้งเตือนทางอีเมล์
                                     </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7"id="notification-statusEmail">
-                                        เปิดใช้งานอยู่
+                                    <div name="value" style="display: none">@ViewData["notif_email"]</div>
+                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" name="status-text">
+                                        @ViewData["notif_email"]
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -343,20 +345,22 @@
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         การแจ้งเตือนข่าวสาร
                                     </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" id="notification-newsStatus">
-                                        เปิดใช้งานอยู่
+                                    <div name="value" style="display: none">@ViewData["notif_news"]</div>
+                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" name="status-text">
+                                        @ViewData["notif_news"]
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
                                     </div>
                                 </button>
 
-                                <button type="button" class="list-group-item waves-effect" id="notification-interested-job">
+                                <button type="button" class="list-group-item waves-effect" id="notification-interested">
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         การแจ้งเตือนงานที่สนใจ
                                     </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" id="notification-interested-jobStatus">
-                                        เปิดใช้งานอยู่
+                                    <div name="value" style="display: none">@ViewData["notif_interested"]</div>
+                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7" name="status-text">
+                                        @ViewData["notif_interested"]
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
