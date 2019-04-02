@@ -3,18 +3,59 @@
 //// ===== notification settings ==========
 
 
+// ================= html notification text replace ============= 
+function notificationStatusTextReplacer() {
+
+    console.log($("#notification-all > [name$='value']").text());
+    if ($("#notification-all > [name$='value']").text() === 'True') {
+        $("#notification-all > [name$='status-text']").text('เปิดการใช้งานอยู่');
+    }
+    else if ($("#notification-all > [name$='value']").text() === 'False') {
+        $("#notification-all > [name$='status-text']").text('ปิดการใช้งานอยู่');
+    }
+
+    if ($("#notification-email > [name$='value']").text() === 'True') {
+        $("#notification-email > [name$='status-text']").text('เปิดการใช้งานอยู่');
+    }
+    else if ($("#notification-email > [name$='value']").text() === 'False') {
+        $("#notification-email > [name$='status-text']").text('ปิดการใช้งานอยู่');
+    }
+
+    if ($("#notification-news > [name$='value']").text() === 'True') {
+        $("#notification-news > [name$='status-text']").text('เปิดการใช้งานอยู่');
+    }
+    else if ($("#notification-news > [name$='value']").text() === 'False') {
+        $("#notification-news > [name$='status-text']").text('ปิดการใช้งานอยู่');
+    }
+
+    if ($("#notification-interested > [name$='value']").text() === 'True') {
+        $("#notification-interested > [name$='status-text']").text('เปิดการใช้งานอยู่');
+    }
+    else if ($("#notification-interested > [name$='value']").text() === 'False') {
+        $("#notification-interested > [name$='status-text']").text('ปิดการใช้งานอยู่');
+    }
+}
+// =========== # end html notification text replace
+
 $(function () {
-    //============ edit notification section ===========
 
+    
+    notificationStatusTextReplacer();
 
-
-
-
-     /*---------------------------------------- edit notification-all----------------------------------------*/
+    /*---------------------------------------- edit notification-all----------------------------------------*/
     $('#notification-all').on('click', function () {
+
+        var isCheck = '';
+        if ($("#notification-all > [name$='value']").text() === 'True') {
+            isCheck = 'checked';
+        }
+        else if ($("#notification-all > [name$='value']").text() === 'False') {
+            isCheck = '';
+        }
+
         Swal.fire({
             title: 'ตั้งค่าการแจ้งเตือนทั้งหมด',
-            html: '<div class="switch"><label>OFF<input type="checkbox" id="status" checked><span class="lever"></span>ON</label></div>',
+            html: '<div class="switch"><label>ปิด<input type="checkbox" id="status"' + isCheck +'><span class="lever"></span>เปิด</label></div>',
             focusConfirm: false,
             confirmButtonText: 'บันทึก',
             showCancelButton: true,
@@ -27,12 +68,12 @@ $(function () {
                 var value;
                 /* check status*/
                 if (status) {
-                    document.getElementById("notification-status").innerHTML = "เปิดใช้งานอยู่";
-                    value  = 'on';
+                    value = 'on';
+                    $("#notification-all > [name$='value']").text('True');
                 }
                 else {
-                    document.getElementById("notification-status").innerHTML = "ปิดใช้งานอยู่";
                     value = 'off';
+                    $("#notification-all > [name$='value']").text('False');
                 }
                 console.log(`setting notification_all to ${value}`);
                 return fetch(`/ajax/set_notification_all/${value}`,
@@ -62,10 +103,11 @@ $(function () {
             console.log(result.value);
 
             if (result.value === 'success') {
+                notificationStatusTextReplacer(); // reload status
                 Swal.fire({
                     type: 'success',
                     title: `แก้ไขแล้ว`
-                    });
+                });
             }
             else if (result.value === 'error') {
                 Swal.fire({
@@ -225,7 +267,7 @@ $(function () {
 
 
     /*----------------------------------------edit notification-interested-job----------------------------------------*/
-    $('#notification-interested-job').on('click', function () {
+    $('#notification-interested').on('click', function () {
         Swal.fire({
             title: 'ตั้งค่าการแจ้งเตือนงานที่สนใจ',
             html: '<div class="switch"><label>OFF<input type="checkbox" id="status" checked><span class="lever"></span>ON</label></div>',

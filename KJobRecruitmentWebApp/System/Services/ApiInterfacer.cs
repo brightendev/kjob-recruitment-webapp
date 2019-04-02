@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -122,20 +123,12 @@ namespace KJobRecruitmentWebApp.System.Services
 
         }
 
-    /*    public static async Task<string> SetNotificationEmail(string uid, string value) {
+        // =============== for user getting data ===============
+        public static async Task<string> GetUser(string get, string uid) {
 
-            string endpoint = "api/EditUser?code=Qd1JLijvQJaRHNqfuh8wP2LV8R2sKstHzm8TGh63EH0X5evwr1ODRA==";
+            string endpoint = "api/GetUser?code=7WXYhlgle9QfWd25hfjnDfmMufg9nSZPmlMl/KI5UWDSXFLdCquv7A==";
 
-            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&edit=setting_notif_email&value={value}&uid={uid}");
-            
-        }*/
-
-        public static void EditNotificationNews() {
-
-        }
-
-        public static void EditNotificationInterested() {
-
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&get={get}&uid={uid}");
         }
 
 
