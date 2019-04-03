@@ -70,6 +70,13 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("user_account_route", "account", new { controller = "User", action = "Account" });
                 routes.MapRoute("user_profile_route", "profile", new { controller = "User", action = "Profile" });
 
+                // ====== JobBoard ====
+                routes.MapRoute("jobboard_anonymous_route", "jobboard", new { controller = "JobBoard", action = "index" });
+                routes.MapRoute("jobboard_candidate_route", "candidate/jobboard", new { controller = "JobBoard", action = "Candidate" });
+                routes.MapRoute("jobboard_staff_route", "staff/jobboard", new { controller = "JobBoard", action = "Staff" });
+                routes.MapRoute("jobboard_admin_route", "admin/jobboard", new { controller = "JobBoard", action = "Admin" });
+
+
                 // admin
                 routes.MapRoute("dashboard_accounts1", "dashboard", new { controller = "Dashboard", action = "Accounts" });
                 routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
