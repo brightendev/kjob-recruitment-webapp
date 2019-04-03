@@ -23,8 +23,6 @@
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
-
-
     <!-- Custom Css -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -34,6 +32,11 @@
     <style>
         #mytable tr th:hover {
             background-color: rgb(255, 187, 0);
+        }
+        
+        .selected {
+            background-color: #808080;
+            color: black;
         }
     </style>
 </head>
@@ -236,11 +239,11 @@
 
 
 
-                <button type="button" class="btn btn-default waves-effect">
+                <button type="button" class="btn btn-default waves-effect onclick="addSampleRow('tblSample')">
                     <i class="material-icons">add</i>
                     <span>เพิ่มบัญชี</span>
                 </button>
-                <button type="button" class="btn btn-default waves-effect">
+                <button type="button" class="btn btn-default waves-effect del" id="button" onclick="deletetable()">
                     <i class="material-icons">delete</i>
                     <span>ลบบัญชี</span>
                 </button>
@@ -298,11 +301,11 @@
                                         <th class="role" onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(2)')">Role <i class="material-icons">sort</i></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="hoverTable" id="tablelist">
                                     @{
                                         foreach (var account in ViewData["accountList"] as List<KJobRecruitmentWebApp.Data.Admin.Account>)
                                         {
-                                            <tr class="item">
+                                            <tr class="item" onclick="HighLightTR(this,'#f0f0f0','cc3333')" >
                                                 <td>@account.email</td>
                                                 <td>@account.role_name</td>
                                             </tr>
@@ -345,46 +348,82 @@
 
     <!-- เพิ่มเข้ามา w3school sort link  -->
     <script src="https://www.w3schools.com/lib/w3.js"></script>
+   
+
 
     <script>
 
-         /*กรอง email*/
-         function emailFilter() {
-             var input, filter, table, tr, td, i, txtValue;
-             input = document.getElementById("myInput");
-             filter = input.value.toUpperCase();
-             table = document.getElementById("mytable");
-             tr = table.getElementsByTagName("tr");
+        /*กรอง email*/
+        function emailFilter() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
 
-             for (i = 0; i < tr.length; i++) {
-                 td = tr[i].getElementsByTagName("td")[0];
-                 if (td) {
-                 txtValue = td.textContent || td.innerText;
-                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                     tr[i].style.display = "";
-                 } else {
-                     tr[i].style.display = "none";
-                 }
-                 }
-             }
-         }
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
-         /*กรอง role*/
-         function filterText()
-         {
-             var rex = new RegExp($('#filterText').val());
-             if(rex =="/all/"){clearFilter()}else{
-                 $('.item').hide();
-                 $('.item').filter(function() {
-                 return rex.test($(this).text());
-                 }).show();
-             }
-         }
-         function clearFilter()
-         {
-             $('.filterText').val('');
-             $('.item').show();
-         }
+        /*กรอง role*/
+        function filterText() {
+            var rex = new RegExp($('#filterText').val());
+            if (rex == "/all/") { clearFilter() } else {
+                $('.item').hide();
+                $('.item').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+            }
+        }
+        function clearFilter() {
+            $('.filterText').val('');
+            $('.item').show();
+        }
+
+        $("#tablelist tr").click(function () {
+            $(this).addClass('selected').siblings().removeClass('selected');
+            var value = $(this).find('td:first').html();
+            
+        });
+
+        $('.del').on('click', function (e) {
+            
+            alert($("#tablelist tr.selected td:first").html());
+        });
+   
+       
+        function addSampleRow(id) {
+
+            /*** We get the table object based on given id ***/
+            var objTable = document.getElementById(id);
+
+            /*** We insert the row by specifying the current rows length ***/
+            var objRow = objTable.insertRow(objTable.rows.length);
+
+            /*** We insert the first row cell ***/
+            var objCell1 = objRow.insertCell(0);
+
+            /*** We  insert a checkbox object ***/
+            var objInputCheckBox = document.createElement("input");
+            objInputCheckBox.type = "checkbox";
+            objCell1.appendChild(objInputCheckBox);
+
+            /*** We  insert the second row cell ***/
+            var objCell2 = objRow.insertCell(1);
+            var currentDate = new Date()
+
+            /*** We  add some text inside the celll ***/
+            objCell2.innerHTML = "You add me on " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+        }
 
     </script>
 </body>
