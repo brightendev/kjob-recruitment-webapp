@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
 
 namespace KJobRecruitmentWebApp
 {
@@ -90,6 +91,11 @@ namespace KJobRecruitmentWebApp
                 // ============
                 routes.MapRoute("home admin", "admin", new {controller = "Home", action = "admin"});
                 routes.MapRoute("home candidate", "candidate", new { controller = "Home", action = "candidate" });
+
+                //=====PDF=======
+                routes.MapRoute("pdfView", "PDF", new { controller = "Pdf", action = "Index" });
+                routes.MapRoute("pdfDownload", "PDFDownload", new { controller = "Pdf", action = "DownloadActionAsPDF" });
+                RotativaConfiguration.Setup(env);
             });
         }
 
