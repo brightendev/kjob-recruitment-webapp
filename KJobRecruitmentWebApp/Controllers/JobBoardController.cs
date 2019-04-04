@@ -2,12 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KJobRecruitmentWebApp.Controllers
 {
     public class JobBoardController : Controller
     {
+
+        public class JobSubmitData
+        {
+            public string title { get; set; }
+            public string min_salary { get; set; }
+            public string max_salary { get; set; }
+            public string category { get; set; }
+            public string detail_1 { get; set; }
+            public string detail_2 { get; set; }
+            public string detail_3 { get; set; }
+            public string deatIL_4 { get; set; }
+            public string deatail_5 { get; set; }
+        }
+
         public IActionResult Index()
         {
             if (User.IsInRole("Candidate"))
@@ -35,11 +50,27 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
+     //   [Authorize(Roles = "Staff")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Admin() {
 
-            await Data.Job.GetJobList();
+            List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
+            List<Data.Job.Category> ca0CategoryList = Data.Job.GetCategoryList();
+
+            ViewData["JobList"] = jobList;
+            ViewData["CategoryList"] = ca0CategoryList;
 
             return View();
+        }
+
+        public ActionResult AddJob() {
+
+            return View();
+        }
+
+        public ActionResult AddJobPost(JobSubmitData job) {
+
+            return RedirectToAction("Admin", "JobBoard");
         }
     }
 }

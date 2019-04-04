@@ -239,8 +239,10 @@
             <div class="button-group">
 
                 <button type="button" class="btn btn-default waves-effect">
-                    <i class="material-icons">add</i>
-                    <span>เพิ่มงาน</span>
+                    <a href="/jobboard/addjob" style="text-decoration: none; color: black">
+                        <i class="material-icons">add</i>
+                        <span>เพิ่มงาน</span>
+                    </a>
                 </button>
 
             </div>
@@ -258,163 +260,47 @@
             </div>
 
             <div class="row clearfix">
-                <!-- Visitors -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card outline-kmutnb">
-                        <div class="body bg-white">
-                            <div align="center">
-                                <img style="border-radius:50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+
+                <!-- Job Card -->
+
+                @{
+                    var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+
+                    foreach(var job in ViewData["JobList"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>) {
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id=@job.id>
+                            <div class="card outline-kmutnb">
+                                <div class="body bg-white">
+                                    <div align="center">
+                                        <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+                                    </div>
+
+
+
+                                    <ul class="dashboard-stat-list">
+
+                                        <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">@job.title</div>
+
+                                        <li>
+                                            <hr>
+                                            เงินเดือน <span>@job.min_salary - @job.max_salary</span>
+                                        </li>
+                                        <li>
+                                            หมวดหมู่ <span>@categoryList[1].name</span>
+                                        </li>
+                                        <li>
+                                            รายละเอียด <span>@job.detail_1</span>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
+                                </div>
                             </div>
-
-
-
-                            <ul class="dashboard-stat-list">
-
-                                <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">นักพัฒนาเว็บไซด์</div>
-
-                                <li>
-                                    <hr>
-                                    #socialtrends
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>
-                                    #materialdesign
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>#adminbsb</li>
-                                <li>#freeadmintemplate</li>
-                                <li>#bootstraptemplate</li>
-                                <li>
-                                    #freehtmltemplate
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
                         </div>
-                    </div>
-                </div>
-
-
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card outline-kmutnb">
-                        <div class="body bg-white">
-                            <div align="center">
-                                <img style="border-radius:50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
-                            </div>
+                    }
+                }
 
 
 
-                            <ul class="dashboard-stat-list">
 
-                                <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">นักพัฒนาเว็บไซด์</div>
-
-                                <li>
-                                    <hr>
-                                    #socialtrends
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>
-                                    #materialdesign
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>#adminbsb</li>
-                                <li>#freeadmintemplate</li>
-                                <li>#bootstraptemplate</li>
-                                <li>
-                                    #freehtmltemplate
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card outline-kmutnb">
-                        <div class="body bg-white">
-                            <div align="center">
-                                <img style="border-radius:50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
-                            </div>
-
-
-
-                            <ul class="dashboard-stat-list">
-
-                                <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">นักพัฒนาเว็บไซด์</div>
-
-                                <li>
-                                    <hr>
-                                    #socialtrends
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>
-                                    #materialdesign
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>#adminbsb</li>
-                                <li>#freeadmintemplate</li>
-                                <li>#bootstraptemplate</li>
-                                <li>
-                                    #freehtmltemplate
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card outline-kmutnb">
-                        <div class="body bg-white">
-                            <div align="center">
-                                <img style="border-radius:50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="100" height="100" alt="AdminBSB - Profile Image">
-                            </div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    TODAY
-                                    <span class="pull-right"><b>1 200</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    YESTERDAY
-                                    <span class="pull-right"><b>3 872</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
