@@ -13,7 +13,6 @@ namespace KJobRecruitmentWebApp.Controllers
 
         public IActionResult DownloadActionAsPDF()
         {
-
             return new Rotativa.AspNetCore.ViewAsPdf() { FileName = "PDF.pdf" };
         }
     }
