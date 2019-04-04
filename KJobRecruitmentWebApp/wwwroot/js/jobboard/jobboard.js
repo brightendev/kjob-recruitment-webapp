@@ -173,9 +173,31 @@ $(function(){
     HideEmptyAndGetNotEmptyLineNumber('#detail_5');
     HideEmptyAndGetNotEmptyLineNumber('#detail_6');
 
-
+    
     //============ ajax post adding job ==========
+    $('#add_job_save_button').on('click', function () {
 
+        console.log('add job save button clicked');
+
+        var title = $("#basic_information #title").text();
+
+        console.log(title);
+        var jsonText = JSON.stringify({ title: title });
+
+        console.log(jsonText);
+
+        $.ajax({
+            type: "POST",
+            url: "addjob/post",
+            contentType: "application/json; charset=utf-8",
+            data: jsonText,
+            dataType: "json",
+            success: function (response) {
+
+                alert('success');
+            }
+        });
+    });
 
 });
 

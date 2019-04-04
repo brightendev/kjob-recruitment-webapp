@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,14 +14,14 @@ namespace KJobRecruitmentWebApp.Controllers
         public class JobSubmitData
         {
             public string title { get; set; }
-            public string min_salary { get; set; }
+        /*    public string min_salary { get; set; }
             public string max_salary { get; set; }
             public string category { get; set; }
             public string detail_1 { get; set; }
             public string detail_2 { get; set; }
             public string detail_3 { get; set; }
             public string deatIL_4 { get; set; }
-            public string deatail_5 { get; set; }
+            public string deatail_5 { get; set; }*/
         }
 
         public IActionResult Index()
@@ -68,9 +69,14 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-        public ActionResult AddJobPost(JobSubmitData job) {
+        [HttpPost]
+        public string AddJobPost([FromBody]JobSubmitData job) {
 
-            return RedirectToAction("Admin", "JobBoard");
+        //    string request = await Request.Body.;
+
+            Console.Write("Post Job receive data = "+ job.title);
+
+            return "success";
         }
     }
 }
