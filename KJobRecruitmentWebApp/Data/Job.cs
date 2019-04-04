@@ -20,7 +20,7 @@ namespace KJobRecruitmentWebApp.Data
             public string title { get; set; }
             public string min_salary { get; set; }
             public string max_salary { get; set; }
-            public string category { get; set; }
+            public int category { get; set; }
             public string created_date { get; set; }
             public string modified_date { get; set; }
             public string detail_1 { get; set; }
@@ -33,6 +33,16 @@ namespace KJobRecruitmentWebApp.Data
             Console.WriteLine(response);
 
             return JsonConvert.DeserializeObject<List<JobListData>>(response);
+        }
+
+        public static List<Category> GetCategoryList() {
+
+            List<Category> categoryList = new List<Category>() {
+                new Category() { id = "1", name = "งานวิศวกรรม"},
+                new Category() { id = "1", name = "คอมพิวเตอร์"},
+            };
+
+            return categoryList;
         }
     }
 }
