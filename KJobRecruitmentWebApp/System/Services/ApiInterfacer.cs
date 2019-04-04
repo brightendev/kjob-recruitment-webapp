@@ -145,5 +145,14 @@ namespace KJobRecruitmentWebApp.System.Services
 
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&uid={uid}");
         }
+
+
+        //================= for Job board ================
+        public static async Task<string> GetJob(string job)
+        {
+            string endpoint = "api/GetJob?code=9qNWS6sYtq/ejXJQ110PxrnYaAmT6SGuyePq96hVTnbO4Pl2U2wLCw==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&job={job}");
+        }
     }
 }
