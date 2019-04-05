@@ -180,9 +180,75 @@ $(function(){
         console.log('add job save button clicked');
 
         var title = $("#basic_information #title").text();
+        var detail_1_1 = $("#detail_1 [name$='line1'] [name$='text']").text();
+
+        // ========= adding line to detail as json ====
+        var i;
+        var detail1_json = '{"title":"' + $("#detail_1 [name$='detail-title']").text() + '","l1":"';
+        for (var i = 1; i <= 6; i++) {
+            var element = $("#detail_1 [name$='line" + i + "'] [name$='text']");
+
+            detail1_json = detail1_json + element.text() + '"';
+            if (i + 1 < 7) detail1_json += ',"l' + (i + 1) + '":"';
+
+        }
+        detail1_json += '}';
+
+        var detail2_json = '{"title":"' + $("#detail_2 [name$='detail-title']").text() + '","l1":"';
+        for (var i = 1; i <= 6; i++) {
+            var element = $("#detail_2 [name$='line" + i + "'] [name$='text']");
+
+            detail2_json = detail2_json + element.text() + '"';
+            if (i + 1 < 7) detail2_json += ',"l' + (i + 1) + '":"';
+
+        }
+        detail2_json += '}';
+
+        var detail3_json = '{"title":"' + $("#detail_3 [name$='detail-title']").text() + '","l1":"';
+        for (var i = 1; i <= 6; i++) {
+            var element = $("#detail_3 [name$='line" + i + "'] [name$='text']");
+
+            detail3_json = detail3_json + element.text() + '"';
+            if (i + 1 < 7) detail3_json += ',"l' + (i + 1) + '":"';
+
+        }
+        detail3_json += '}';
+
+        var detail4_json = '{"title":"' + $("#detail_4 [name$='detail-title']").text() + '","l1":"';
+        for (var i = 1; i <= 6; i++) {
+            var element = $("#detail_4 [name$='line" + i + "'] [name$='text']");
+
+            detail4_json = detail4_json + element.text() + '"';
+            if (i + 1 < 7) detail4_json += ',"l' + (i + 1) + '":"';
+
+        }
+        detail4_json += '}';
+
+        var detail5_json = '{"title":"' + $("#detail_5 [name$='detail-title']").text() + '","l1":"';
+        for (var i = 1; i <= 6; i++) {
+            var element = $("#detail_5 [name$='line" + i + "'] [name$='text']");
+
+            detail5_json = detail5_json + element.text() + '"';
+            if (i + 1 < 7) detail5_json += ',"l' + (i + 1) + '":"';
+
+        }
+        detail5_json += '}';
+        console.log(detail1_json);
+        // ===== # END adding line to detail as json =========
+
+
 
         console.log(title);
-        var jsonText = JSON.stringify({ title: title });
+        var jsonText = JSON.stringify(
+            {
+                title: title,
+                detail_1: detail1_json,
+                detail_2: detail2_json,
+                detail_3: detail3_json,
+                detail_4: detail4_json,
+                detail_5: detail5_json,
+            });
+
 
         console.log(jsonText);
 
