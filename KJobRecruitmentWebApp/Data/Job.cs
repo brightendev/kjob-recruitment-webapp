@@ -35,15 +35,17 @@ namespace KJobRecruitmentWebApp.Data
             return JsonConvert.DeserializeObject<List<JobListData>>(response);
         }
 
-        public static List<Category> GetCategoryList() {
+        public static async Task<List<Category>> GetCategoryList() {
 
             List<Category> categoryList = new List<Category>() {
                 new Category() { id = "1", name = "งานวิศวกรรม"},
                 new Category() { id = "2", name = "งานคอมพิวเตอร์"},
-                new Category() { id = "3", name = "งานบัญชี"},
+                new Category() { id = "8", name = "งานบัญชี"},
             };
 
-            return categoryList;
+            string response = await System.Services.ApiInterfacer.GetCategory("all");
+
+            return JsonConvert.DeserializeObject<List<Category>>(response);
         }
     }
 }

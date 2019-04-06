@@ -155,6 +155,14 @@ namespace KJobRecruitmentWebApp.System.Services
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&job={job}");
         }
 
+        public static async Task<string> GetCategory(string category) {
+
+            string endpoint = "api/GetCategory?code=aLLDT6iHJyLhgy1iAFRvmEf8aZwh3z9h0oM3nuaCzmmFPSbFqMqKNg==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&category={category}");
+
+        }
+
         public static async Task<string> AddJob(string title, string minSalary, string maxSalary, string category, 
             string detail1, string detail2, string detail3, string detail4, string detail5) {
 
@@ -163,5 +171,6 @@ namespace KJobRecruitmentWebApp.System.Services
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&title={title}&min_salary={minSalary}&max_salary={maxSalary}&category={category}" +
                                                    $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail1}&detail_3={detail4}&detail_5={detail5}");
         }
+
     }
 }

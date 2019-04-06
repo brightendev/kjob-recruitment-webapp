@@ -398,13 +398,18 @@ $(function(){
                 cancelButtonText: 'ยกเลิก',
                 showLoaderOnConfirm: true,
                 onBeforeOpen: () => {
-                    for (var i = 1; i <= categoriesJsonObject.length; i++) {
+               //     for (var i = 1; i <= categoriesJsonObject.length; i++) {
 
-                        var category = categoriesJsonObject.find(category => category.id === i.toString());
+              //          var category = categoriesJsonObject.find(category => category.id === i.toString());
+             //           $('#dialog-category-dropdown select').append('<option value=' + category.id + '>' + category.name + '</option>');
+             //           $('#dialog-category-dropdown select > option:eq('+valBeforeEdit+')').prop('selected', true);  // selected
+              //          console.log(category);
+               //     }
+                    $.each(categoriesJsonObject, function (name, category) {
+                        console.log(category.id + ": " + category.name);
                         $('#dialog-category-dropdown select').append('<option value=' + category.id + '>' + category.name + '</option>');
-                        $('#dialog-category-dropdown select > option:eq('+valBeforeEdit+')').prop('selected', true);  // selected
-                        console.log(category);
-                    }
+                        $('#dialog-category-dropdown select > option:eq(' + valBeforeEdit + ')').prop('selected', true);  // selected
+                    });
                 },
                 preConfirm: () => {
 
