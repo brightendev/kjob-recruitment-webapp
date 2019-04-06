@@ -39,7 +39,8 @@ namespace KJobRecruitmentWebApp.Data
 
             List<Category> categoryList = new List<Category>() {
                 new Category() { id = "1", name = "งานวิศวกรรม"},
-                new Category() { id = "1", name = "คอมพิวเตอร์"},
+                new Category() { id = "2", name = "งานคอมพิวเตอร์"},
+                new Category() { id = "3", name = "งานบัญชี"},
             };
 
             return categoryList;
