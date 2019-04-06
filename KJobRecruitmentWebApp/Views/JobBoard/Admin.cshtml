@@ -238,11 +238,11 @@
             </div>
             <div class="button-group">
 
-                <button type="button" class="btn btn-default waves-effect">
-                    <a href="/jobboard/addjob" style="text-decoration: none; color: black">
-                        <i class="material-icons">add</i>
-                        <span>เพิ่มงาน</span>
-                    </a>
+                <button type="button" class="btn btn-default waves-effect" id="add-job-btn">
+                   
+                    <i class="material-icons">add</i>
+                    <span>เพิ่มงาน</span>
+                   
                 </button>
 
             </div>
@@ -304,10 +304,18 @@
 
 
             </div>
+        </div>
     </section>
 
     <!-- Jquery Core Js -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+        $("#add-job-btn").on('click', function () {
+         //   redirect('/jobboard/addjob');
+            window.location.replace('/jobboard/addjob');
+        });
+    </script>
 
     <!-- Bootstrap Core Js -->
     <script src="~/plugins/bootstrap/js/bootstrap.js"></script>

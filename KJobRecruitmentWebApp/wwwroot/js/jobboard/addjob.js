@@ -264,6 +264,96 @@ $(function(){
             }
         });
     });
+    //========== #END ajax post adding job ==========
+
+    // ============= Job Title Editing dialog ========================
+    $('#basic_information #job-title').on('click', function () {
+
+        var textBeforeEdit = $("#basic_information #job-title [name$='value']").text();
+
+        Swal.fire({
+                title: 'ชื่องาน',
+                html: '<div><input type="text" class="form-control" id="new-value" value="' + textBeforeEdit + '"></div>',
+                focusConfirm: false,
+                confirmButtonText: 'บันทึก',
+                showCancelButton: true,
+                cancelButtonText: 'ยกเลิก',
+                showLoaderOnConfirm: true,
+
+                preConfirm: () => {
+
+                    var textAfterEdit = $("#new-value").val();
+
+                    console.log(textAfterEdit);
+                    return textAfterEdit;
+                }
+            })
+
+            .then(result => {
+                console.log('resuklt = ' + result.value);
+                $("#basic_information #job-title [name$='value']").text(result.value);
+
+            });
+
+    });
+    // =========== # END Job Title Editing dialog ========================
+
+    // ============= Job salary Editing dialog ========================
+    $('#basic_information #job-salary').on('click', function () {
+
+        var textBeforeEdit = $("#basic_information #job-salary [name$='value']").text();
+        var minBeforeEdit = textBeforeEdit.split(" - ")[0];
+        var maxBeforeEdit = textBeforeEdit.split(" - ")[1];
+
+        Swal.fire({
+            title: 'เงินเดือน',
+            html:   '<div>' +
+                        '<div class = "input-group">' +
+                            '<span class="input-group-addon">ขั้นต่ำ : </span>' +
+                            '<div class="form-line">' +
+                                '<input type="number" class="form-control" id="min-value" value="'+minBeforeEdit+'">' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class = "input-group">' +
+                            '<span class="input-group-addon">ขั้นสูง : </span>' +
+                            '<div class="form-line">' +
+                                '<input type="number" class="form-control" id="max-value" value="'+maxBeforeEdit+'">' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>',
+            focusConfirm: false,
+            confirmButtonText: 'บันทึก',
+            showCancelButton: true,
+            cancelButtonText: 'ยกเลิก',
+            showLoaderOnConfirm: true,
+
+            preConfirm: () => {
+
+                var minAfterEdit = $("#min-value").val();
+                var maxAfterEdit = $("#max-value").val();
+                
+                var salary = JSON.stringify(
+                {
+                    min: minAfterEdit,
+                    max: maxAfterEdit
+                });
+
+                return salary;
+            }
+        })
+
+        .then(result => {
+            var obj = jQuery.parseJSON(result.value);
+            console.log('resuklt = ' + obj.min);
+            var text = obj.min;
+          //  if (obj.max === "") text = obj.min;
+          if (obj.max !== "") text += " - " + obj.max;
+            $("#basic_information #job-salary [name$='value']").text(text);
+
+        });
+  
+    });
+    // =========== # END Job salary Editing dialog ========================
 
 });
 

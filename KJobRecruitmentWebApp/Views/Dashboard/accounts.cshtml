@@ -15,19 +15,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="~/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="~/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/theme-kmutnb.css" rel="stylesheet" />
+    <link href="~/css/themes/theme-kmutnb.css" rel="stylesheet" />
 
     <style>
         #mytable tr th:hover {
@@ -323,28 +323,28 @@
     </section>
 
     <!-- Jquery Core Js -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
 
 
     <!-- Slimscroll Plugin Js -->
-    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="plugins/node-waves/waves.js"></script>
+    <script src="~/plugins/node-waves/waves.js"></script>
 
 
     <!-- Editable Table Plugin Js -->
-    <script src="plugins/editable-table/mindmup-editabletable.js"></script>
+    <script src="~/plugins/editable-table/mindmup-editabletable.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js"></script>
-    <script src="js/pages/tables/jquery-datatable.js"></script>
+    <script src="~/js/admin.js"></script>
+    <script src="~/js/pages/tables/jquery-datatable.js"></script>
 
     <!-- Demo Js -->
-    <script src="js/demo.js"></script>
+    <script src="~/js/demo.js"></script>
 
     <!-- เพิ่มเข้ามา w3school sort link  -->
     <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -395,6 +395,8 @@
             
         });
 
+
+        // ============ for row select ==========
         $('.del').on('click', function (e) {
             
             alert($("#tablelist tr.selected td:first").html());
