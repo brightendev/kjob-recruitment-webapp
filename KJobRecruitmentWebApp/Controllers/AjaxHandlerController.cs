@@ -88,10 +88,10 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
 
-        public string GetJobCategoryList()
+        public async Task<string> GetJobCategoryList()
         {
 
-            List<Data.Job.Category> categoryList = Data.Job.GetCategoryList();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
 
             StringBuilder sb = new StringBuilder();
             StringWriter sw = new StringWriter(sb);
