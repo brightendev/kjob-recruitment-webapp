@@ -89,11 +89,14 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
                     new {controller = "Register", action = "ResponseToConfirmationEmail" });
 
-                // ========= AJAX ====
+                // ========= AJAX ===========
                 routes.MapRoute("ajax_set_notif_all", "ajax/set_notification_all/{value}", new { controller = "AjaxHandler", action = "SetNotificationAll" });
                 routes.MapRoute("ajax_set_notif_email", "ajax/set_notification_email/{value}", new { controller = "AjaxHandler", action = "SetNotificationEmail" });
                 routes.MapRoute("ajax_set_notif_news", "ajax/set_notification_news/{value}", new { controller = "AjaxHandler", action = "SetNotificationNews" });
                 routes.MapRoute("ajax_set_notif_interestedjob", "ajax/set_notification_interested/{value}", new { controller = "AjaxHandler", action = "SetNotificationInterested" });
+                // fetch job category
+                routes.MapRoute("ajax_fetch_job_category", "ajax/fetchjobcategories", new { controller = "AjaxHandler", action = "GetJobCategoryList" });
+
 
                 // test
                 routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });

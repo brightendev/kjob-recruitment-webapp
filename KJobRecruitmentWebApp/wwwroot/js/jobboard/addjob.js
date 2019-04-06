@@ -355,6 +355,68 @@ $(function(){
     });
     // =========== # END Job salary Editing dialog ========================
 
+    // ============= Job category Editing dialog ========================
+    $('#basic_information #job-category').on('click', function () {
+
+        var valBeforeEdit = $("#basic_information #job-category [name$='value']").text();
+    
+        var allCategories = $.ajax({
+            type: "GET",
+            url: "../ajax/fetchjobcategories",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) { }
+        }).responseText;
+        var categoriesJsonObject = eval('(' + allCategories + ')');
+
+        
+
+        Swal.fire({
+                title: 'ชื่องาน',
+                html:
+                    '<div class="form-group form-float">' +
+                        '<div class="form-line" id="dialog-category-dropdown">' +
+                            '<select class="form-control" id="Blood" name="blood">' +
+                                '<option></option>' +
+                            '</select>' +
+                        '</div>' +
+                    '</div>',
+
+                focusConfirm: false,
+                confirmButtonText: 'บันทึก',
+                showCancelButton: true,
+                cancelButtonText: 'ยกเลิก',
+                showLoaderOnConfirm: true,
+                onBeforeOpen: () => {
+                    for (var i = 1; i <= categoriesJsonObject.length; i++) {
+
+                        var category = categoriesJsonObject.find(category => category.id === i.toString());
+                        $('#dialog-category-dropdown select').append('<option value=' + category.id + '>' + category.name + '</option>');
+                        $('#dialog-category-dropdown select > option:eq('+valBeforeEdit+')').prop('selected', true);  // selected
+                        console.log(category);
+                    }
+                },
+                preConfirm: () => {
+
+                    var valueAfterEdit = $('#dialog-category-dropdown :selected').val();
+
+                    console.log(valueAfterEdit);
+                    return valueAfterEdit;
+                }
+            })
+
+            .then(result => {
+                console.log('result = ' + result.value);
+                $("#basic_information #job-category [name$='value']").text(result.value);
+                JobCategoryTextReplace();
+            });
+
+    });
+    // =========== # END Job category Editing dialog ========================
+
+    JobCategoryTextReplace();
+
 });
 
 function HideEmptyAndGetNotEmptyLineNumber(detailId) {
@@ -398,4 +460,26 @@ function FindBottomEmptyLine(detailId) {
     }
 
     return emptyLine;
+}
+
+function JobCategoryTextReplace() {
+    var value = $("#basic_information #job-category [name$='value']").text();
+
+    var allCategories = $.ajax({
+        type: "GET",
+        url: "../ajax/fetchjobcategories",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        success: function (data) {}
+    }).responseText;
+
+    var categoriesJsonObject = eval('(' + allCategories + ')');
+    var myArray = [{ 'id': '73', 'foo': 'bar' }, { 'id': '45', 'foo': 'bar' }];
+    var category = categoriesJsonObject.find(category => category.id === value);
+    var categoryName = '';
+    if (typeof category !== 'undefined') categoryName = category.name;
+    console.log(categoryName);
+
+    $("#basic_information #job-category [name$='text']").text(categoryName);
 }

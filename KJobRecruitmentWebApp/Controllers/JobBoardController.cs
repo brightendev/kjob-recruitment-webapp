@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace KJobRecruitmentWebApp.Controllers
 {
@@ -66,6 +69,9 @@ namespace KJobRecruitmentWebApp.Controllers
 
         public ActionResult AddJob() {
 
+          //  string test = GetJobCategoryList();
+          //  Console.WriteLine(test);
+
             return View();
         }
 
@@ -83,5 +89,30 @@ namespace KJobRecruitmentWebApp.Controllers
 
             return "success";
         }
+
+        // ====== 
+     /*   public string GetJobCategoryList() {
+
+            List<Data.Job.Category> categoryList = Data.Job.GetCategoryList();
+
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+            {
+                jsonWriter.WriteStartArray();
+                
+                foreach (Data.Job.Category category in categoryList) {
+              //      jsonWriter.WriteStartObject();
+                    jsonWriter.WritePropertyName("id");
+                    jsonWriter.WriteValue(category.id);
+                    jsonWriter.WritePropertyName("name");
+                    jsonWriter.WriteValue(category.name);
+             //       jsonWriter.WriteEndObject();
+                }
+                jsonWriter.WriteEndArray();
+            }
+
+            return sw.ToString();
+        }*/
     }
 }
