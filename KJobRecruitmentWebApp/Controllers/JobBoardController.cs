@@ -17,9 +17,9 @@ namespace KJobRecruitmentWebApp.Controllers
         public class JobSubmitData
         {
             public string title { get; set; }
-        //    public string min_salary { get; set; }
-     //       public string max_salary { get; set; }
-       //     public string category { get; set; }
+            public string min_salary { get; set; }
+            public string max_salary { get; set; }
+            public string category { get; set; }
             public string detail_1 { get; set; }
             public string detail_2 { get; set; }
             public string detail_3 { get; set; }
@@ -75,17 +75,23 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public string AddJobPost([FromBody]JobSubmitData job) {
+     //   [HttpPost]
+        public async Task<string> AddJobPost([FromBody]JobSubmitData job) {
 
         //    string request = await Request.Body.;
 
             Console.WriteLine("Post Job title = "+ job.title);
+            Console.WriteLine("Post Job nix salary = " + job.min_salary);
+            Console.WriteLine("Post Job max salary = " + job.max_salary);
+            Console.WriteLine("Post Job max category = " + job.category);
             Console.WriteLine("Post Job detail1 = " + job.detail_1);
             Console.WriteLine("Post Job detail2 = " + job.detail_2);
             Console.WriteLine("Post Job detail3 = " + job.detail_3);
             Console.WriteLine("Post Job detail4 = " + job.detail_4);
             Console.WriteLine("Post Job detail5 = " + job.detail_5);
+
+            return await System.Services.ApiInterfacer.AddJob(job.title, job.min_salary, job.max_salary, job.category,
+                job.detail_1, job.detail_2, job.detail_3, job.detail_4, job.detail_5);
 
             return "success";
         }

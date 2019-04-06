@@ -179,8 +179,11 @@ $(function(){
 
         console.log('add job save button clicked');
 
-        var title = $("#basic_information #title").text();
-        var detail_1_1 = $("#detail_1 [name$='line1'] [name$='text']").text();
+        var title = $("#basic_information #job-title [name$='value']").text();
+        var rawSalary = $("#basic_information #job-salary [name$='value']").text();
+        var minSalary = rawSalary.split(" - ")[0];
+        var maxSalary = rawSalary.split(" - ")[1];
+        var category = $("#basic_information #job-category [name$='value']").text();
 
         // ========= adding line to detail as json ====
         var i;
@@ -233,15 +236,15 @@ $(function(){
 
         }
         detail5_json += '}';
-        console.log(detail1_json);
-        // ===== # END adding line to detail as json =========
-
 
 
         console.log(title);
         var jsonText = JSON.stringify(
             {
                 title: title,
+                min_salary: minSalary,
+                max_salary: maxSalary,
+                category: category,
                 detail_1: detail1_json,
                 detail_2: detail2_json,
                 detail_3: detail3_json,
@@ -252,17 +255,23 @@ $(function(){
 
         console.log(jsonText);
 
-        $.ajax({
+        var response = $.ajax({
             type: "POST",
             url: "addjob/post",
             contentType: "application/json; charset=utf-8",
             data: jsonText,
             dataType: "json",
+            async: false,
             success: function (response) {
 
-                alert('success');
-            }
-        });
+         //       console.log("response: " + response.value);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+         //       console.log("Status: " + textStatus);
+         //       console.log("Error: " + errorThrown);
+            }       
+        }).responseText;
+        console.log(response);
     });
     //========== #END ajax post adding job ==========
 

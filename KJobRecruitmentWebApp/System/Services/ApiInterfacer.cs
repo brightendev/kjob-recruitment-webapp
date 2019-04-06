@@ -147,12 +147,21 @@ namespace KJobRecruitmentWebApp.System.Services
         }
 
 
-        //================= for Job board ================
+        //================= for Job board =========================
         public static async Task<string> GetJob(string job)
         {
             string endpoint = "api/GetJob?code=9qNWS6sYtq/ejXJQ110PxrnYaAmT6SGuyePq96hVTnbO4Pl2U2wLCw==";
 
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&job={job}");
+        }
+
+        public static async Task<string> AddJob(string title, string minSalary, string maxSalary, string category, 
+            string detail1, string detail2, string detail3, string detail4, string detail5) {
+
+            string endpoint = "api/AddJob?code=9vt0R5yAgVia0NPfiUPMGn4J7uPfnxjIZ/awCKkfWATCEf03/xcG7w==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&title={title}&min_salary={minSalary}&max_salary={maxSalary}&category={category}" +
+                                                   $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail1}&detail_3={detail4}&detail_5={detail5}");
         }
     }
 }
