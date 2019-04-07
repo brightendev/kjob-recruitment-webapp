@@ -59,10 +59,11 @@ namespace KJobRecruitmentWebApp.Controllers
         public async Task<ActionResult> Admin() {
 
             List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
-            List<Data.Job.Category> ca0CategoryList = await Data.Job.GetCategoryList();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            jobList.Reverse();
 
             ViewData["JobList"] = jobList;
-            ViewData["CategoryList"] = ca0CategoryList;
+            ViewData["CategoryList"] = categoryList;
 
             return View();
         }
