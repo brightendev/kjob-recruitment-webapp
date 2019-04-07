@@ -179,31 +179,17 @@
                             <span>ข่าวสาร</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานวิศวกรรม</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=" ">
-                            <i class="material-icons">card_travel</i>
-                            <span>เทคโนโลยีและคอมพิวเตอร์</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานวิจัยวิทยาศาสตร์</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานบัญชี</span>
-                        </a>
-                    </li>
-
+                    @{
+                        var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+                        foreach (var category in categoryList) {
+                            <li>
+                                <a href="#">
+                                    <i class="material-icons">card_travel</i>
+                                    <span>@category.name</span>
+                                </a>
+                            </li>
+                        }
+                    }
 
                 </ul>
             </div>
@@ -272,7 +258,7 @@
                 <!-- Job Card -->
 
                 @{
-                    var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+                  //  var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
 
                     foreach(var job in ViewData["JobList"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>) {
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id=@job.id>

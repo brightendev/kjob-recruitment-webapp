@@ -27,7 +27,7 @@ namespace KJobRecruitmentWebApp.Controllers
             public string detail_5 { get; set; }
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult> Index([FromQuery] string category)
         {
             if (User.IsInRole("Candidate"))
             {
@@ -41,11 +41,28 @@ namespace KJobRecruitmentWebApp.Controllers
             {
                 return RedirectToAction("Admin", "JobBoard");
             }
+            //  else return RedirectToAction("Public", "JobBoard");
+
+            List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            jobList.Reverse();
+
+            if(category == null) category = "all";
+            ViewData["JobList"] = jobList;
+            ViewData["CategoryList"] = categoryList;
+            ViewData["SelectedCategory"] = category;
 
             return View();
         }
 
-        public ActionResult Candidate() {
+        public async Task<ActionResult> Candidate() {
+
+            List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            jobList.Reverse();
+
+            ViewData["JobList"] = jobList;
+            ViewData["CategoryList"] = categoryList;
 
             return View();
         }
@@ -55,7 +72,7 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
      //   [Authorize(Roles = "Staff")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Staff, Admin")]
         public async Task<ActionResult> Admin() {
 
             List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
@@ -97,29 +114,13 @@ namespace KJobRecruitmentWebApp.Controllers
             return "success";
         }
 
-        // ====== 
-     /*   public string GetJobCategoryList() {
+        [AllowAnonymous]
+        // ============ Job Detail ==============
+        public ActionResult JobDetailPublic(string job) {
 
-            List<Data.Job.Category> categoryList = Data.Job.GetCategoryList();
+            ViewData["JobId"] = job;
+            return View();
+        }
 
-            StringBuilder sb = new StringBuilder();
-            StringWriter sw = new StringWriter(sb);
-            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
-            {
-                jsonWriter.WriteStartArray();
-                
-                foreach (Data.Job.Category category in categoryList) {
-              //      jsonWriter.WriteStartObject();
-                    jsonWriter.WritePropertyName("id");
-                    jsonWriter.WriteValue(category.id);
-                    jsonWriter.WritePropertyName("name");
-                    jsonWriter.WriteValue(category.name);
-             //       jsonWriter.WriteEndObject();
-                }
-                jsonWriter.WriteEndArray();
-            }
-
-            return sw.ToString();
-        }*/
     }
 }
