@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -165,6 +167,12 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
+                    <li class="active">
+                        <a href="#">
+                            <i class="material-icons">card_travel</i>
+                            <span>ทั้งหมด</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
                             <i class="material-icons">card_travel</i>
@@ -177,7 +185,7 @@
                             <span>งานวิศวกรรม</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href=" ">
                             <i class="material-icons">card_travel</i>
                             <span>เทคโนโลยีและคอมพิวเตอร์</span>
@@ -274,7 +282,19 @@
                                         <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
                                     </div>
 
-
+                                    @{
+                                        string detailTitle;
+                                        string detailLine1;
+                                        if(job.detail_1 != null) {
+                                            JObject jobDetailJObject = JsonConvert.DeserializeObject(job.detail_1) as JObject;
+                                            detailTitle = jobDetailJObject["title"].Value<string>();
+                                            detailLine1 = jobDetailJObject["l1"].Value<string>();
+                                        }
+                                        else {
+                                            detailTitle = "";
+                                            detailLine1 = "";
+                                        }
+                                    }
 
                                     <ul class="dashboard-stat-list">
 
@@ -287,8 +307,8 @@
                                         <li>
                                             หมวดหมู่ <span>@categoryList[1].name</span>
                                         </li>
-                                        <li>
-                                            รายละเอียด <span>@job.detail_1</span>
+                                        <li style="white-space: nowrap; overflow: hidden; display: block; text-overflow: ellipsis;">
+                                            @detailTitle <span>@detailLine1</span>
                                         </li>
                                     </ul>
                                     <button class="btn btn-block btn-lg bg-orange waves-effect" type="submit">รายละเอียด</button>
