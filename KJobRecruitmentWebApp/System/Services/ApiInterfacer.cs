@@ -169,7 +169,7 @@ namespace KJobRecruitmentWebApp.System.Services
             string endpoint = "api/AddJob?code=9vt0R5yAgVia0NPfiUPMGn4J7uPfnxjIZ/awCKkfWATCEf03/xcG7w==";
 
             return await httpClient.GetStringAsync($"{apiServer}{endpoint}&title={title}&min_salary={minSalary}&max_salary={maxSalary}&category={category}" +
-                                                   $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail1}&detail_3={detail4}&detail_5={detail5}");
+                                                   $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail3}&detail_4={detail4}&detail_5={detail5}");
         }
 
     }
