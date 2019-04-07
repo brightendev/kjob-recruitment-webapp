@@ -164,7 +164,7 @@
                 </div>
             </div>
             <!-- #User Info -->
-            <!-- Menu -->
+            <!-- Category Menu -->
             <div class="menu">
                 <ul class="list">
                     @{
@@ -204,7 +204,7 @@
 
                 </ul>
             </div>
-            <!-- #Menu -->
+            <!-- #END Category Menu -->
 
         </aside>
         <!-- #END# Left Sidebar -->
@@ -213,11 +213,11 @@
 
             <div>
                 <ul class="page-menu">
-                    <a href="">
-                        <li class="active"><span>หน้าแรก</span></li>
+                    <a href="/">
+                        <li><span>หน้าแรก</span></li>
                     </a>
-                    <a href="#">
-                        <li><span>งาน/ข่าวสาร</span></li>
+                    <a href="jobboard">
+                        <li class="active"><span>งาน/ข่าวสาร</span></li>
                     </a>
                     <a href="#">
                         <li><span>เกี่ยวกับ</span></li>
@@ -270,6 +270,10 @@
                         })
                     )
                     {
+                        var jobCategory = categoryList.Find(c => {
+                            return c.id.Equals(job.category.ToString());
+                        });
+
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id=@job.id>
                             <div class="card outline-kmutnb">
                                 <div class="body bg-white">
@@ -302,7 +306,7 @@
                                             เงินเดือน <span>@job.min_salary - @job.max_salary</span>
                                         </li>
                                         <li>
-                                            หมวดหมู่ <span>@categoryList[1].name</span>
+                                            หมวดหมู่ <span>@jobCategory.name</span>
                                         </li>
                                         <li style="white-space: nowrap; overflow: hidden; display: block; text-overflow: ellipsis;">
                                             @detailTitle <span>@detailLine1</span>
