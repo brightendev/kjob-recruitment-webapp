@@ -112,7 +112,7 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-     //   [HttpPost]
+        [HttpPost]
         public async Task<string> AddJobPost([FromBody]JobSubmitData job) {
 
         //    string request = await Request.Body.;
