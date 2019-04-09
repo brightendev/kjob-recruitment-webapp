@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
-
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>KJob Template</title>
+    <title>Job Board | KJob</title>
 
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -23,25 +24,11 @@
     <!-- Animation Css -->
     <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Sweetalert Css -->
-    <link href="~/plugins/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
-
     <!-- Custom Css -->
     <link href="~/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="~/css/themes/theme-kmutnb.css" rel="stylesheet" />
-
-    <style>
-        #mytable tr th:hover {
-            background-color: rgb(255, 187, 0);
-        }
-
-        .selected {
-            background-color: #F77100;
-            color: black;
-        }
-    </style>
 </head>
 
 <body class="theme-kmutnb">
@@ -73,21 +60,22 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
 
-                <a class="navbar-brand" href="widgets/../index.html"><b style="color: #F77100">K</b>Job</a>
+                <a class="navbar-brand" href="/"><b style="color: #F77100">K</b>Job</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
 
 
                 <ul class="nav navbar-nav navbar-menu">
-                    <a class="active" href="#">แผงควบคุม</a>
-                    <a href="../jobboard">งาน/ข่าวสาร</a>
+                    <a href="/">หน้าแรก</a>
+                    <a class="active" href="#">งาน/ข่าวสาร</a>
                     <a href="#">เกี่ยวกับ</a>
                     <a href="#">เว็บไซต์ มจพ.</a>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
 
+                    <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
@@ -120,7 +108,7 @@
                             </li>
                         </ul>
                     </li>
-
+                    <!-- #END# Notifications -->
                     <!-- Tasks -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -151,8 +139,6 @@
                     </li>
                     <!-- #END# Tasks -->
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
-
-
                 </ul>
             </div>
         </div>
@@ -178,43 +164,47 @@
                 </div>
             </div>
             <!-- #User Info -->
-            <!-- Menu -->
+            <!-- Category Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="active">
-                        <a href="">
-                            <i class="material-icons">contacts</i>
-                            <span>บัญชีผู้ใช้</span>
+                    @{
+                        string ifAllCategoryIsSelected = "";
+                        if(ViewData["SelectedCategory"].Equals("all")) {
+                            ifAllCategoryIsSelected = "active";
+                        }
+                    }
+                    <li class="@ifAllCategoryIsSelected">
+                        <a href="?category=all">
+                            <i class="material-icons">card_travel</i>
+                            <span>ทั้งหมด</span>
                         </a>
                     </li>
-                    <li>
+          <!--          <li>
                         <a href="#">
                             <i class="material-icons">card_travel</i>
-                            <span>งาน</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">import_contacts</i>
                             <span>ข่าวสาร</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">loyalty</i>
-                            <span>หมวดหมู่งาน</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">chrome_reader_mode</i>
-                            <span>ผู้สมัคร</span>
-                        </a>
-                    </li>
+                    </li>  -->
+                    @{
+                        var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+                        foreach(var category in categoryList) {
+
+                            string ifCategoryIsSelected = "";
+                            if(ViewData["SelectedCategory"].Equals(category.id)) {
+                                ifCategoryIsSelected = "active";
+                            }
+                            <li class="@ifCategoryIsSelected">
+                                <a href="?category=@category.id">
+                                    <i class="material-icons">card_travel</i>
+                                    <span>@category.name</span>
+                                </a>
+                            </li>
+                        }
+                    }
 
                 </ul>
             </div>
-            <!-- #Menu -->
+            <!-- #END Category Menu -->
 
         </aside>
         <!-- #END# Left Sidebar -->
@@ -223,11 +213,11 @@
 
             <div>
                 <ul class="page-menu">
-                    <a href="">
-                        <li class="active"><span>แผงควบคุม</span></li>
+                    <a href="/">
+                        <li><span>หน้าแรก</span></li>
                     </a>
-                    <a href="#">
-                        <li><span>งาน/ข่าวสาร</span></li>
+                    <a href="jobboard">
+                        <li class="active"><span>งาน/ข่าวสาร</span></li>
                     </a>
                     <a href="#">
                         <li><span>เกี่ยวกับ</span></li>
@@ -243,37 +233,16 @@
     </section>
 
     <section class="quickbar" style="height: 60px; --sidebar-width: 250px;">
-
         <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li>
-                    <i class="material-icons">contacts</i> บัญชีผู้ใช้ทั้งหมด
-                </li>
-            </ol>
-            <div class="button-group">
-
-
-
-                <button type="button" class="btn btn-default waves-effect" id="add-new-account-btn">
-                    <i class="material-icons">person_add</i>
-                    <span>เพิ่มบัญชี</span>
-                </button>
-                <button type="button" class="btn btn-default waves-effect del" id="button" onclick="deletetable()">
-                    <i class="material-icons">delete</i>
-                    <span>ลบบัญชี</span>
-                </button>
-                <button type="button" class="btn btn-default waves-effect">
-                    <i class="material-icons">vpn_key</i>
-                    <span>ตั้งรหัสผ่านใหม่</span>
-                </button>
-                <button type="button" class="btn btn-default waves-effect" id="change-role-btn">
-                    <i class="material-icons">person_outline</i>
-                    <span>เปลี่ยน Role</span>
-                </button>
-
+            <div class="search-field">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" class="form-control" placeholder="ค้นหา">
+                    </div>
+                </div>
             </div>
-        </div>
 
+        </div>
     </section>
 
 
@@ -281,58 +250,81 @@
     <section class="content" style="--sidebar-width: 250px; --sidenav-width: 0px; --quickbar-height: 60px">
 
         <div class="container-fluid">
-            <div class="block-header"></div>
+
+            <div class="block-header">
+
+            </div>
 
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card  outline-kmutnb">
-                        <div class="header">
-                            <h2>
-                                บัญชีผู้ใช้ทั้งหมด
-                            </h2>
-                        </div>
-                        <div class="body">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input type="text" id="email-filter" placeholder=" อีเมล์" title="Type in a name">
 
+                <!-- Job Card -->
 
-                                    <select id="role-name">
-                                        <option selected value='all'>ทั้งหมด</option>
-                                        <option value='Candidate'>Candidate</option>
-                                        <option value='Staff'>Staff</option>
-                                        <option value='Admin'>Admin</option>
+                @{
+                    //      var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
 
-                                    </select>
-                                </div>
-                            </div>
+                    var jobList = ViewData["JobList"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>;
+                    foreach (var job in jobList
+                        .Where(j => {
+                            if(ViewData["SelectedCategory"].Equals("all")) return true;
+                            return j.category.ToString().Equals(ViewData["SelectedCategory"]);
+                        })
+                    )
+                    {
+                        var jobCategory = categoryList.Find(c => {
+                            return c.id.Equals(job.category.ToString());
+                        });
 
-                            <div class="table-responsive"></div>
-                            <table class="table" id="mytable">
-                                <thead>
-                                    <tr>
-                                        <th onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(1)')">อีเมล์ <i class="material-icons">sort</i></th>
-                                        <th class="role" onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(2)')">Role <i class="material-icons">sort</i></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tablelist">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id=@job.id>
+                            <div class="card outline-kmutnb">
+                                <div class="body bg-white">
+                                    <div align="center">
+                                        <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+                                    </div>
+
                                     @{
-                                        foreach (var account in ViewData["accountList"] as List<KJobRecruitmentWebApp.Data.Admin.Account>)
+                                        string detailTitle;
+                                        string detailLine1;
+                                        if (job.detail_1 != null)
                                         {
-                                            <tr class="item">
-                                                <td>@account.email</td>
-                                                <td>@account.role_name</td>
-                                            </tr>
+                                            JObject jobDetailJObject = JsonConvert.DeserializeObject(job.detail_1) as JObject;
+                                            detailTitle = jobDetailJObject["title"].Value<string>();
+                                            detailLine1 = jobDetailJObject["l1"].Value<string>();
+                                        }
+                                        else
+                                        {
+                                            detailTitle = "";
+                                            detailLine1 = "";
                                         }
                                     }
-                                </tbody>
-                            </table>
+
+                                    <ul class="dashboard-stat-list">
+
+                                        <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">@job.title</div>
+
+                                        <li>
+                                            <hr>
+                                            เงินเดือน <span>@job.min_salary - @job.max_salary</span>
+                                        </li>
+                                        <li>
+                                            หมวดหมู่ <span>@jobCategory.name</span>
+                                        </li>
+                                        <li style="white-space: nowrap; overflow: hidden; display: block; text-overflow: ellipsis;">
+                                            @detailTitle <span>@detailLine1</span>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-block btn-lg bg-orange waves-effect" onclick="location.href='jobboard/job=@job.id'">รายละเอียด</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
+
+
+
+
+
+
             </div>
-        </div>
-        <!-- #END# Exportable Table -->
         </div>
     </section>
 
@@ -342,6 +334,8 @@
     <!-- Bootstrap Core Js -->
     <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
 
+    <!-- Select Plugin Js -->
+    <script src="~/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
     <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -349,23 +343,11 @@
     <!-- Waves Effect Plugin Js -->
     <script src="~/plugins/node-waves/waves.js"></script>
 
-    
-    <!-- Editable Table Plugin Js -->
-    <script src="~/plugins/editable-table/mindmup-editabletable.js"></script>
-
     <!-- Custom Js -->
     <script src="~/js/admin.js"></script>
 
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>
-
-    <!-- เพิ่มเข้ามา w3school sort link  -->
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
-   
-    <!-- SweetAlert Plugin Js -->
-    <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
-    <script src="~/js/dashboard/accounts.js"></script>
 </body>
 
 </html>
