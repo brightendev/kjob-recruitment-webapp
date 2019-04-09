@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json;
@@ -168,8 +169,35 @@ namespace KJobRecruitmentWebApp.System.Services
 
             string endpoint = "api/AddJob?code=9vt0R5yAgVia0NPfiUPMGn4J7uPfnxjIZ/awCKkfWATCEf03/xcG7w==";
 
-            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&title={title}&min_salary={minSalary}&max_salary={maxSalary}&category={category}" +
-                                                   $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail3}&detail_4={detail4}&detail_5={detail5}");
+            var requestPayload = new
+            {
+                title = title,
+                min_salary = minSalary,
+                max_salary = maxSalary,
+                category = category,
+                created_date = "",
+                modified_date = "",
+                detail_1 = detail1,
+                detail_2 = detail2,
+                detail_3 = detail3,
+                detail_4 = detail4,
+                detail_5 = detail5
+            };
+
+            HttpContent requestContent = new StringContent(JsonConvert.SerializeObject(requestPayload), Encoding.UTF8, "application/json");
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"{apiServer}{endpoint}")
+            {
+                Content = requestContent
+            };
+
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+
+            return await response.Content.ReadAsStringAsync();
+
+
+         //   return await httpClient.GetStringAsync($"{apiServer}{endpoint}&title={title}&min_salary={minSalary}&max_salary={maxSalary}&category={category}" +
+         //                                          $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail3}&detail_4={detail4}&detail_5={detail5}");
         }
 
         public static async Task<string> ChangeRole(string email, string role) {
