@@ -81,7 +81,7 @@
 
                 <ul class="nav navbar-nav navbar-menu">
                     <a class="active" href="#">แผงควบคุม</a>
-                    <a href="#">บอร์ดงาน</a>
+                    <a href="#">งาน/ข่าวสาร</a>
                     <a href="#">เกี่ยวกับ</a>
                     <a href="#">เว็บไซต์ มจพ.</a>
                 </ul>
@@ -190,13 +190,25 @@
                     <li>
                         <a href="#">
                             <i class="material-icons">card_travel</i>
-                            <span>งาน/ข่าวสาร</span>
+                            <span>งาน</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">import_contacts</i>
+                            <span>ข่าวสาร</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i class="material-icons">loyalty</i>
                             <span>หมวดหมู่งาน</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">chrome_reader_mode</i>
+                            <span>ผู้สมัคร</span>
                         </a>
                     </li>
 
@@ -215,7 +227,7 @@
                         <li class="active"><span>แผงควบคุม</span></li>
                     </a>
                     <a href="#">
-                        <li><span>บอร์ดงาน</span></li>
+                        <li><span>งาน/ข่าวสาร</span></li>
                     </a>
                     <a href="#">
                         <li><span>เกี่ยวกับ</span></li>
@@ -243,7 +255,7 @@
 
 
                 <button type="button" class="btn btn-default waves-effect" id="add-new-account-btn">
-                    <i class="material-icons">add</i>
+                    <i class="material-icons">person_add</i>
                     <span>เพิ่มบัญชี</span>
                 </button>
                 <button type="button" class="btn btn-default waves-effect del" id="button" onclick="deletetable()">
@@ -282,7 +294,7 @@
                         <div class="body">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" id="email-filter" placeholder="Search for email..." title="Type in a name">
+                                    <input type="text" id="email-filter" placeholder=" อีเมล์" title="Type in a name">
 
 
                                     <select id="role-name">
@@ -299,11 +311,11 @@
                             <table class="table" id="mytable">
                                 <thead>
                                     <tr>
-                                        <th onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(1)')">อีเมล <i class="material-icons">sort</i></th>
+                                        <th onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(1)')">อีเมล์ <i class="material-icons">sort</i></th>
                                         <th class="role" onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(2)')">Role <i class="material-icons">sort</i></th>
                                     </tr>
                                 </thead>
-                                <tbody class="hoverTable" id="tablelist">
+                                <tbody id="tablelist">
                                     @{
                                         foreach (var account in ViewData["accountList"] as List<KJobRecruitmentWebApp.Data.Admin.Account>)
                                         {

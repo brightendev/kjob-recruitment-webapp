@@ -84,8 +84,8 @@ namespace KJobRecruitmentWebApp
 
 
                 // ======== admin dashboard =======
-                routes.MapRoute("dashboard_accounts1", "dashboard", new { controller = "Dashboard", action = "Accounts" });
-                routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
+                routes.MapRoute("admin_dashboard_account", "admin/dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
+             //   routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
 
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
