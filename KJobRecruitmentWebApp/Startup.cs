@@ -56,6 +56,12 @@ namespace KJobRecruitmentWebApp
 
             app.UseMvc(delegate (IRouteBuilder routes) {
                 routes.MapRoute("home_route", "", new {controller = "Home", action = "index"});
+                // ============
+                routes.MapRoute("home admin", "admin", new { controller = "Home", action = "admin" });
+                routes.MapRoute("home candidate", "candidate", new { controller = "Home", action = "candidate" });
+                routes.MapRoute("home staff", "staff", new { controller = "Home", action = "Staff" });
+
+
                 routes.MapRoute("register_route", "register", new { controller = "Register", action = "index" });
                 routes.MapRoute("login_route", "login", new {controller = "Login", action = "index"});
                 routes.MapRoute("first_login", "firstlogin", new {controller = "Login", action = "FirstLogin"});
@@ -71,7 +77,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("user_profile_route", "profile", new { controller = "User", action = "Profile" });
 
                 // ================ JobBoard ===========
-                routes.MapRoute("jobboard_anonymous_route", "jobboard", new { controller = "JobBoard", action = "index" });
+                routes.MapRoute("jobboard_public_route", "jobboard", new { controller = "JobBoard", action = "index" });
                 routes.MapRoute("jobboard_candidate_route", "candidate/jobboard", new { controller = "JobBoard", action = "Candidate" });
                 routes.MapRoute("jobboard_staff_route", "staff/jobboard", new { controller = "JobBoard", action = "Staff" });
                 routes.MapRoute("jobboard_admin_route", "admin/jobboard", new { controller = "JobBoard", action = "Admin" });
@@ -108,9 +114,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });
                 routes.MapRoute("ajax_test_role", "ajax/getrole", new { controller = "AjaxHandler", action = "GetRole" });
 
-                // ============
-                routes.MapRoute("home admin", "admin", new {controller = "Home", action = "admin"});
-                routes.MapRoute("home candidate", "candidate", new { controller = "Home", action = "candidate" });
+                
 
                 //=====PDF=======
                 routes.MapRoute("pdfView", "PDF", new { controller = "Pdf", action = "Index" });
