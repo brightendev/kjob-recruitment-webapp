@@ -180,36 +180,31 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li>
-                        <a href="">
+
+                    <li class="active">
+                        <a href="?category=all">
+                            <i class="material-icons">card_travel</i>
+                            <span>ทั้งหมด</span>
+                        </a>
+                    </li>
+                    <!--          <li>
+                        <a href="#">
                             <i class="material-icons">card_travel</i>
                             <span>ข่าวสาร</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานวิศวะกรรม</span>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>เทคโนโฅยี และคอมพิวเตอร์</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานวิจัยวิทยาศาสตร์</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">card_travel</i>
-                            <span>งานบัญชี</span>
-                        </a>
-                    </li>
+                    </li>  -->
+                    @{
+                        var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+                        foreach(var category in categoryList) {
+
+                            <li>
+                                <a href="?category=@category.id">
+                                    <i class="material-icons">card_travel</i>
+                                    <span>@category.name</span>
+                                </a>
+                            </li>
+                        }
+                    }
 
                 </ul>
             </div>
@@ -244,7 +239,7 @@
     <section class="quickbar" style="height: 60px; --sidebar-width: 250px;">
         <div class="container-fluid">
             <ol class="breadcrumb">
-                <li><a href="javascript:void(0);"><i class="material-icons">card_travel</i> เทคโนโลยี และคอมพิวเตอร์</a></li>
+                <li><a href="javascript:void(0);"><i class="material-icons">card_travel</i> งานทั้งหมด</a></li>
                 <li class="active"><i class="material-icons">library_books</i> ประกาศงานใหม่</li>
             </ol>
             <div class="button-group">

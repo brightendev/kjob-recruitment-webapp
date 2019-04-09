@@ -30,10 +30,10 @@ namespace KJobRecruitmentWebApp.Controllers
 
         public async Task<ActionResult> Index([FromQuery] string category)
         {
-        /*    if (User.IsInRole("Candidate"))
+            if (User.IsInRole("Candidate"))
             {
                 return RedirectToAction("Candidate", "JobBoard");
-            }*/
+            }
             if (User.IsInRole("Staff"))
             {
                 return RedirectToAction("Staff", "JobBoard");
@@ -53,43 +53,61 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["CategoryList"] = categoryList;
             ViewData["SelectedCategory"] = category;
 
-            return View();
+            return View("public_jobboard");
         }
 
-        public async Task<ActionResult> Candidate() {
+        [Authorize(Roles = "Candidate")]
+        public async Task<ActionResult> Candidate([FromQuery] string category) {
 
             List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
-            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
             jobList.Reverse();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
 
+            if (category == null) category = "all";
             ViewData["JobList"] = jobList;
             ViewData["CategoryList"] = categoryList;
+            ViewData["SelectedCategory"] = category;
 
-            return View();
+            return View("candidate_jobboard");
+
         }
 
-        public ActionResult Staff() {
-            return View();
+        [Authorize(Roles = "Staff")]
+        public async Task<ActionResult> Staff([FromQuery] string category) {
+
+            List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
+            jobList.Reverse();
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+
+            if (category == null) category = "all";
+            ViewData["JobList"] = jobList;
+            ViewData["CategoryList"] = categoryList;
+            ViewData["SelectedCategory"] = category;
+
+            return View("staff_jobboard");
         }
 
      //   [Authorize(Roles = "Staff")]
-        [Authorize(Roles = "Staff, Admin")]
-        public async Task<ActionResult> Admin() {
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Admin([FromQuery] string category) {
 
             List<Data.Job.JobListData> jobList = await Data.Job.GetJobList();
-            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
             jobList.Reverse();
-
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            
+            if(category == null) category = "all";
             ViewData["JobList"] = jobList;
             ViewData["CategoryList"] = categoryList;
+            ViewData["SelectedCategory"] = category;
 
-            return View();
+            return View("staff_jobboard");
         }
 
-        public ActionResult AddJob() {
+        [Authorize(Roles = "Staff, Admin")]
+        public async Task<ActionResult> AddJob() {
 
-          //  string test = GetJobCategoryList();
-          //  Console.WriteLine(test);
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            ViewData["CategoryList"] = categoryList;
 
             return View();
         }
