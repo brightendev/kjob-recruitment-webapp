@@ -23,6 +23,9 @@
     <!-- Animation Css -->
     <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Sweetalert Css -->
+    <link href="~/plugins/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="~/css/style.css" rel="stylesheet">
 
@@ -33,9 +36,9 @@
         #mytable tr th:hover {
             background-color: rgb(255, 187, 0);
         }
-        
+
         .selected {
-            background-color: #808080;
+            background-color: #F77100;
             color: black;
         }
     </style>
@@ -239,7 +242,7 @@
 
 
 
-                <button type="button" class="btn btn-default waves-effect onclick="addSampleRow('tblSample')">
+                <button type="button" class="btn btn-default waves-effect" id="add-new-account-btn">
                     <i class="material-icons">add</i>
                     <span>เพิ่มบัญชี</span>
                 </button>
@@ -251,7 +254,7 @@
                     <i class="material-icons">vpn_key</i>
                     <span>ตั้งรหัสผ่านใหม่</span>
                 </button>
-                <button type="button" class="btn btn-default waves-effect">
+                <button type="button" class="btn btn-default waves-effect" id="change-role-btn">
                     <i class="material-icons">person_outline</i>
                     <span>เปลี่ยน Role</span>
                 </button>
@@ -279,15 +282,14 @@
                         <div class="body">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" id="myInput" onkeyup="emailFilter()" placeholder="Search for email..." title="Type in a name">
+                                    <input type="text" id="email-filter" placeholder="Search for email..." title="Type in a name">
 
 
-                                    <select id='filterText' onchange='filterText()'>
-                                        <option disabled selected>Select</option>
-                                        <option value='all'>ทั้งหมด</option>
-                                        <option value='Candidate'>ผู้สมัคร</option>
-                                        <option value='Staff'>เจ้าหน้าที่</option>
-                                        <option value='Admin'>ผู้ดูแลระบบ</option>
+                                    <select id="role-name">
+                                        <option selected value='all'>ทั้งหมด</option>
+                                        <option value='Candidate'>Candidate</option>
+                                        <option value='Staff'>Staff</option>
+                                        <option value='Admin'>Admin</option>
 
                                     </select>
                                 </div>
@@ -305,7 +307,7 @@
                                     @{
                                         foreach (var account in ViewData["accountList"] as List<KJobRecruitmentWebApp.Data.Admin.Account>)
                                         {
-                                            <tr class="item" onclick="HighLightTR(this,'#f0f0f0','cc3333')" >
+                                            <tr class="item">
                                                 <td>@account.email</td>
                                                 <td>@account.role_name</td>
                                             </tr>
@@ -335,13 +337,12 @@
     <!-- Waves Effect Plugin Js -->
     <script src="~/plugins/node-waves/waves.js"></script>
 
-
+    
     <!-- Editable Table Plugin Js -->
     <script src="~/plugins/editable-table/mindmup-editabletable.js"></script>
 
     <!-- Custom Js -->
     <script src="~/js/admin.js"></script>
-    <script src="~/js/pages/tables/jquery-datatable.js"></script>
 
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>
@@ -349,85 +350,10 @@
     <!-- เพิ่มเข้ามา w3school sort link  -->
     <script src="https://www.w3schools.com/lib/w3.js"></script>
    
+    <!-- SweetAlert Plugin Js -->
+    <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
-
-    <script>
-
-        /*กรอง email*/
-        function emailFilter() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("mytable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        /*กรอง role*/
-        function filterText() {
-            var rex = new RegExp($('#filterText').val());
-            if (rex == "/all/") { clearFilter() } else {
-                $('.item').hide();
-                $('.item').filter(function () {
-                    return rex.test($(this).text());
-                }).show();
-            }
-        }
-        function clearFilter() {
-            $('.filterText').val('');
-            $('.item').show();
-        }
-
-        $("#tablelist tr").click(function () {
-            $(this).addClass('selected').siblings().removeClass('selected');
-            var value = $(this).find('td:first').html();
-            
-        });
-
-
-        // ============ for row select ==========
-        $('.del').on('click', function (e) {
-            
-            alert($("#tablelist tr.selected td:first").html());
-        });
-   
-       
-        function addSampleRow(id) {
-
-            /*** We get the table object based on given id ***/
-            var objTable = document.getElementById(id);
-
-            /*** We insert the row by specifying the current rows length ***/
-            var objRow = objTable.insertRow(objTable.rows.length);
-
-            /*** We insert the first row cell ***/
-            var objCell1 = objRow.insertCell(0);
-
-            /*** We  insert a checkbox object ***/
-            var objInputCheckBox = document.createElement("input");
-            objInputCheckBox.type = "checkbox";
-            objCell1.appendChild(objInputCheckBox);
-
-            /*** We  insert the second row cell ***/
-            var objCell2 = objRow.insertCell(1);
-            var currentDate = new Date()
-
-            /*** We  add some text inside the celll ***/
-            objCell2.innerHTML = "You add me on " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
-        }
-
-    </script>
+    <script src="~/js/dashboard/accounts.js"></script>
 </body>
 
 </html>

@@ -172,5 +172,13 @@ namespace KJobRecruitmentWebApp.System.Services
                                                    $"&detail_1={detail1}&detail_2={detail2}&detail_3={detail3}&detail_4={detail4}&detail_5={detail5}");
         }
 
+        public static async Task<string> ChangeRole(string email, string role) {
+
+            string endpoint = "api/ChangeRole?code=df0myg5VX5BRvQVzQZQqB7sYNViTQ7Q5BJLFDckg3jsogxVqsGEc1w==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&email={email}&role={role}");
+
+        }
+
     }
 }
