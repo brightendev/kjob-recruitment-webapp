@@ -99,6 +99,10 @@ namespace KJobRecruitmentWebApp
                 // fetch job category
                 routes.MapRoute("ajax_fetch_job_category", "ajax/fetchjobcategories", new { controller = "AjaxHandler", action = "GetJobCategoryList" });
 
+                routes.MapRoute("ajax_dashboard_add_new_account", "ajax/addnewaccount/{email}/{password}", new { controller = "AjaxHandler", action = "AddNewAccount" });
+                routes.MapRoute("ajax_dashboard_change_role", "ajax/changerole/{email}/{role}", new { controller = "AjaxHandler", action = "ChangeRole" });
+
+
 
                 // test
                 routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });

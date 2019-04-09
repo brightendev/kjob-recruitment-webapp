@@ -113,5 +113,40 @@ namespace KJobRecruitmentWebApp.Controllers
 
             return sw.ToString();
         }
+
+        public async Task<string> AddNewAccount(string email, string password) {
+
+            string response = await System.Services.ApiInterfacer.CallCreateAccount(email, password);
+
+          //  Console.WriteLine($"=== AJax Received === blood {response}");
+            
+            Console.WriteLine("======== ajax handler accepted creating new account email=" + email + " passwrod=" + password);
+
+            return response;
+
+        }
+
+        // change role of an account
+        public async Task<string> ChangeRole(string email, string role) {
+
+            if(!IsRequesterAdmin()) return @"{""error"":""AuthorizationFailed""}";
+
+            Console.WriteLine("======== ajax handler accepted changing role of account email=" + email + " to role=" + role);
+
+            string response = await System.Services.ApiInterfacer.ChangeRole(email, role);
+
+            return response;
+
+        }
+
+        private bool IsRequesterAdmin() {
+
+            string requesterRole = HttpContext.Session.GetString(System.SessionVariable.role);
+            if(requesterRole == null) return false; // not login
+            if(!requesterRole.Equals("Admin")) return false;
+
+            return true;
+
+        }
     }
 }
