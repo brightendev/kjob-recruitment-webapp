@@ -163,8 +163,42 @@ $(function(){
             HideEmptyAndGetNotEmptyLineNumber("#"+detailId);
         }); 
 
-    });
+    })
+     // ============= job detail title editing button event and dialog ========================
+    .on('click', "[id*=detail_] [name$='edit-title-btn']", function() {
+  //  ("#detail_1 [name$='edit-title-btn']").on('click', function () {
 
+        var detailId = $(this).parent().attr("id");
+        var textBeforeEdit = $("#" + detailId + " [name$='detail-title']").text();
+
+        console.log('changing detail ' + detailId + ' title name from the ' + textBeforeEdit);
+
+
+        Swal.fire({
+            title: 'หัวข้อรายละเอียดงาน',
+            html: `<div id="dialog_${detailId}"><input type="text" class="form-control" name="text" value="${textBeforeEdit}"></div>`,
+
+            focusConfirm: false,
+            confirmButtonText: 'ยืนยัน',
+            showCancelButton: true,
+            cancelButtonText: 'ยกเลิก',
+            showLoaderOnConfirm: true,
+
+            preConfirm: () => {
+
+                var textAfterEdit = $(`#dialog_${detailId} [name$='text']`).val();
+
+                console.log(textAfterEdit);
+                return textAfterEdit;
+            }
+        })
+        .then(result => {
+            console.log('new detail title = ' + result.value);
+            $(`#${detailId} [name$='detail-title']`).text(result.value);
+            $(`.sidenav [name$='${detailId}']`).text(result.value);
+        });
+    });
+    // ========== #END job detail title editing button event and dialog ========================
 
     HideEmptyAndGetNotEmptyLineNumber('#detail_1');
     HideEmptyAndGetNotEmptyLineNumber('#detail_2');
@@ -428,6 +462,8 @@ $(function(){
 
     });
     // =========== # END Job category Editing dialog ========================
+
+   
 
     JobCategoryTextReplace();
 
