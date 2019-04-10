@@ -33,15 +33,16 @@
     <link href="~/css/themes/theme-kmutnb.css" rel="stylesheet" />
 
     <style>
-        #mytable tr th:hover {
+        #myTable2 tr th:hover {
             background-color: rgb(255, 187, 0);
         }
-
         .selected {
             background-color: #F77100;
             color: black;
         }
     </style>
+
+
 </head>
 <body class="theme-kmutnb">
 
@@ -163,8 +164,8 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="active">
-                        <a href="">
+                    <li>
+                        <a href="~/admin/dashboard/accounts">
                             <i class="material-icons">contacts</i>
                             <span>บัญชีผู้ใช้</span>
                         </a>
@@ -181,8 +182,8 @@
                             <span>ข่าวสาร</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li class="active">
+                        <a href="~/admin/dashboard/categories">
                             <i class="material-icons">loyalty</i>
                             <span>หมวดหมู่งาน</span>
                         </a>
@@ -228,7 +229,7 @@
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li>
-                    <i class="material-icons">contacts</i> บัญชีผู้ใช้ทั้งหมด
+                    <i class="material-icons">loyalty</i> หมวดหมู่งานทั้งหมด
                 </li>
             </ol>
             <div class="button-group">
@@ -236,21 +237,14 @@
 
 
                 <button type="button" class="btn btn-default waves-effect" id="add-new-account-btn">
-                    <i class="material-icons">person_add</i>
-                    <span>เพิ่มบัญชี</span>
+                    <i class="material-icons">add</i>
+                    <span>เพิ่มหมวดหมู่งาน</span>
                 </button>
                 <button type="button" class="btn btn-default waves-effect del" id="button" onclick="deletetable()">
                     <i class="material-icons">delete</i>
-                    <span>ลบบัญชี</span>
+                    <span>ลบหมวดหมู่งาน</span>
                 </button>
-                <button type="button" class="btn btn-default waves-effect">
-                    <i class="material-icons">vpn_key</i>
-                    <span>ตั้งรหัสผ่านใหม่</span>
-                </button>
-                <button type="button" class="btn btn-default waves-effect" id="change-role-btn">
-                    <i class="material-icons">person_outline</i>
-                    <span>เปลี่ยน Role</span>
-                </button>
+
 
             </div>
         </div>
@@ -259,26 +253,28 @@
 
     <section class="content" style="--sidebar-width: 250px; --sidenav-width: 0px; --quickbar-height: 60px">
         <div class="container-fluid">
+            <div class="block-header"></div>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card  outline-kmutnb">
                         <div class="header">
                             <h2>
-                                งานทั้งหมด
+                                หมวดหมู่งาน
                             </h2>
                         </div>
                         <div class="body">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" id="myInput" onkeyup="myFunction()"placeholder=" กรอกประเภทงาน" title="Type in a name">
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder=" กรอกประเภทงาน" title="Type in a name">
                                 </div>
                             </div>
+
                             <div class="table-responsive"></div>
-                            <table class="table" id="myTable">
+                            <table class="table" id="myTable2">
                                 <thead>
                                     <tr>
-                                        <th >ประเภทของงาน <i class="material-icons">sort</i></th>
-                                        <th class="role">จำนวน <i class="material-icons">sort</i></th>
+                                        <th onclick="w3.sortHTML('#myTable2', '.item', 'td:nth-child(1)')">ประเภทของงาน <i class="material-icons">sort</i></th>
+                                        <th onclick="w3.sortHTML('#myTable2', '.item', 'td:nth-child(2)')">จำนวน <i class="material-icons">sort</i></th>
                                     </tr>
                                 </thead>
                                 <tbody id="tablelist">
@@ -287,7 +283,7 @@
                                         {
                                             <tr class="item">
                                                 <td>@category.name</td>
-                                                <td></td>
+                                                <td>@((ViewData["NumberCategory"] as Dictionary<string, int>)[category.id.ToString()])</td>
                                             </tr>
                                         }
 
@@ -338,13 +334,18 @@
     <!-- SweetAlert Plugin Js -->
     <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
-    <script src="~/js/dashboard/accounts.js"></script>
+
+    
+        <script src="~/js/dashboard/accounts.js"></script>
+    
+
+    <!-- filler ใช้ ร่วมกับ script แยกไม่ได้ เลยมาทำในนี้ -->
     <script>
         function myFunction() {
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
+            table = document.getElementById("myTable2");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[0];
@@ -358,8 +359,8 @@
                 }
             }
         }
-       
+
     </script>
-   
+
 
 </body>
