@@ -49,5 +49,16 @@ namespace KJobRecruitmentWebApp.Controllers
 
             return View();
         }
+
+        public async Task<ActionResult> Catagories()
+        {
+            string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
+            Console.WriteLine($"user email = {userEmail}");
+
+            List<Data.Job.Category> catagories = (await Data.Job.GetCategoryList());
+
+            ViewData["Catagories"] = catagories;
+            return View();
+        }
     }
 }

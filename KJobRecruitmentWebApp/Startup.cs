@@ -94,7 +94,8 @@ namespace KJobRecruitmentWebApp
 
                 // ======== admin dashboard =======
                 routes.MapRoute("admin_dashboard_account", "admin/dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
-             //   routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
+                routes.MapRoute("admin_dashboard_category", "admin/dashboard/categories", new { controller = "Dashboard", action = "Catagories" });
+                //   routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
 
 
                 routes.MapRoute("response_email_confirmation", "{encryptedConfirmationData}callapicreateaccount",
@@ -107,7 +108,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("ajax_set_notif_interestedjob", "ajax/set_notification_interested/{value}", new { controller = "AjaxHandler", action = "SetNotificationInterested" });
                 // fetch job category
                 routes.MapRoute("ajax_fetch_job_category", "ajax/fetchjobcategories", new { controller = "AjaxHandler", action = "GetJobCategoryList" });
-
+                
                 routes.MapRoute("ajax_dashboard_add_new_account", "ajax/addnewaccount/{email}/{password}", new { controller = "AjaxHandler", action = "AddNewAccount" });
                 routes.MapRoute("ajax_dashboard_change_role", "ajax/changerole/{email}/{role}", new { controller = "AjaxHandler", action = "ChangeRole" });
 
@@ -123,6 +124,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("pdfView", "PDF", new { controller = "Pdf", action = "Index" });
                 routes.MapRoute("pdfDownload", "PDFDownload", new { controller = "Pdf", action = "DownloadActionAsPDF" });
                 RotativaConfiguration.Setup(env);
+
             });
         }
 
