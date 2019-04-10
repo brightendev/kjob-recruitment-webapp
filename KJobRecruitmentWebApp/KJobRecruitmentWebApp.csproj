@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\JobBoard\job_apply.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\JobBoard\job_apply.cshtml" />
     <None Include="wwwroot\Rotativa\wkhtmltoimage.exe" />
     <None Include="wwwroot\Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
@@ -17,6 +22,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
     <PackageReference Include="rotativa.AspNetCore" Version="1.0.6" />
     <PackageReference Include="Sendgrid" Version="9.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\JobBoard\job_apply.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\JobBoard\job_apply.cshtml" />
   </ItemGroup>
 
 </Project>
