@@ -55,8 +55,22 @@ namespace KJobRecruitmentWebApp.Controllers
             string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
             Console.WriteLine($"user email = {userEmail}");
 
-            List<Data.Job.Category> catagories = (await Data.Job.GetCategoryList());
-
+            List<Data.Job.Category> catagories = await Data.Job.GetCategoryList();
+            
+            List<Data.Job.JobListData> Job = await Data.Job.GetJobList();
+            Dictionary<string, int> NumberCategory =new Dictionary<string, int>();
+            foreach (Job.Category indexCatagories in catagories)
+            {
+                NumberCategory.Add(indexCatagories.id, 0);
+            }
+            foreach (Job.JobListData indexJob in Job)
+            {
+                if (NumberCategory.ContainsKey(indexJob.category.ToString()))
+                {
+                    NumberCategory[indexJob.category.ToString()] += 1;
+                }              
+            }
+            ViewData["NumberCategory"] = NumberCategory;
             ViewData["Catagories"] = catagories;
             return View();
         }
