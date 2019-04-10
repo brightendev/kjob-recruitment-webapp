@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace KJobRecruitmentWebApp.Data
 {
-    static class User
+    public static class User
     {
         public class AccountData
         {
@@ -21,11 +21,39 @@ namespace KJobRecruitmentWebApp.Data
             public bool notif_interested { get; set; }
         }
 
+        public class ProfileData
+        {
+            public string personal_id { get; set; }
+            public string thai_name { get; set; }
+            public string eng_name { get; set; }
+            public string date_of_birth { get; set; }
+            public string nationality { get; set; }
+            public string race { get; set; }
+            public string religion { get; set; }
+            public string blood { get; set; }
+            public string relationship { get; set; }
+            public string child { get; set; }
+            public string military_criterion { get; set; }
+            public string address { get; set; }
+            public string province { get; set; }
+            public string telephone { get; set; }
+            public string email { get; set; }
+            public string gender { get; set; }
+        }
+
         public static async Task<AccountData> GetAccount(string uid) {
 
             string response = await System.Services.ApiInterfacer.GetUser("Account", uid);
             Console.WriteLine($"get user account response {response}");
-            return JsonConvert.DeserializeObject<AccountData>(await System.Services.ApiInterfacer.GetUser("Account", uid));
+            return JsonConvert.DeserializeObject<AccountData>(response);
+        }
+
+        public static async Task<ProfileData> GetProfile(string uid)
+        {
+
+            string response = await System.Services.ApiInterfacer.GetUser("Profile", uid);
+            Console.WriteLine($"get user account response {response}");
+            return JsonConvert.DeserializeObject<ProfileData>(response);
         }
     }
 }

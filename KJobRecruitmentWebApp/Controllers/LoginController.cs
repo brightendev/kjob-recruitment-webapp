@@ -57,7 +57,7 @@ namespace KJobRecruitmentWebApp.Controllers
                 new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(10)
                 }
             );
 
