@@ -87,6 +87,9 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("jobboard_addjob_post", "jobboard/addjob/post", new { controller = "JobBoard", action = "AddJobPost" });
                 // job detail
                 routes.MapRoute("job_detail_public_route", "jobboard/job={job}", new { controller = "JobBoard", action = "JobDetailPublic" });
+                routes.MapRoute("job_detail_candidate", "candidate/jobboard/job={job}", new { controller = "JobBoard", action = "JobDetailCandidate" });
+
+                routes.MapRoute("job_apply_job", "candidate/jobboard/applyjob={job}", new { controller = "JobBoard", action = "ApplyAJob" });
 
 
                 // ======== admin dashboard =======

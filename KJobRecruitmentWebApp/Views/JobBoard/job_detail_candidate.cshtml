@@ -191,13 +191,16 @@
                     @{
                         var selectedJob = ViewData["SelectedJob"] as KJobRecruitmentWebApp.Data.Job.JobAllData;
                         var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
-                        var jobCategory = categoryList.Find(c => {
+                        var jobCategory = categoryList.Find(c =>
+                        {
                             return c.id.Equals(selectedJob.category.ToString());
                         });
-                        foreach (var category in categoryList) {
+                        foreach (var category in categoryList)
+                        {
 
                             string activeIfSelectedJobIsInThisCategory = "";
-                            if(category.id.Equals(selectedJob.category)) {
+                            if (category.id.Equals(selectedJob.category))
+                            {
                                 activeIfSelectedJobIsInThisCategory = "active";
                             }
                             <li class="@activeIfSelectedJobIsInThisCategory">
@@ -209,11 +212,13 @@
                         }
 
                         string jobSalary = "";
-                        if(selectedJob.min_salary == null && selectedJob.max_salary == null) { jobSalary = "ไม่ได้ระบุ"; }
-                        else if(selectedJob.max_salary == null) {
+                        if (selectedJob.min_salary == null && selectedJob.max_salary == null) { jobSalary = "ไม่ได้ระบุ"; }
+                        else if (selectedJob.max_salary == null)
+                        {
                             jobSalary = selectedJob.min_salary;
                         }
-                        else {
+                        else
+                        {
                             jobSalary = $"{selectedJob.min_salary} - {selectedJob.max_salary}";
                         }
                     }
@@ -255,7 +260,7 @@
                 <li class="active"><i class="material-icons">library_books</i> @selectedJob.title</li>
             </ol>
             <div class="button-group">
-                <button type="button" class="btn btn-default waves-effect" id="apply-button">
+                <button type="button" class="btn btn-default waves-effect" id="apply-button" onclick="location.href='/candidate/jobboard/applyjob=@selectedJob.id'">
                     <i class="material-icons">file_download</i>
                     <span>สมัคร</span>
                 </button>
@@ -332,7 +337,7 @@
             </div>
 
             @{
-                
+
                 foreach (var thisDetail in jobDetailData.detailList)
                 {
 
@@ -389,15 +394,11 @@
     <!-- SweetAlert Plugin Js -->
     <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
-
     <!-- Custom Js -->
     <script src="~/js/admin.js"></script>
 
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>
-
-    <!-- for functional of this page (public job detail) -->
-    <script src="~/js/jobboard/job-detail-public.js"></script>
 
 </body>
 
