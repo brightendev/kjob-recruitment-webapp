@@ -174,7 +174,7 @@
                         }
                     }
                     <li class="@ifAllCategoryIsSelected">
-                        <a href="?category=all">
+                        <a href="/jobboard?category=all">
                             <i class="material-icons">card_travel</i>
                             <span>ทั้งหมด</span>
                         </a>
@@ -194,7 +194,7 @@
                                 ifCategoryIsSelected = "active";
                             }
                             <li class="@ifCategoryIsSelected">
-                                <a href="?category=@category.id">
+                                <a href="/jobboard?category=@category.id">
                                     <i class="material-icons">card_travel</i>
                                     <span>@category.name</span>
                                 </a>
@@ -299,7 +299,8 @@
 
                                     <ul class="dashboard-stat-list">
 
-                                        <div class="m-b--35 font-bold" class="email" style="font-size: 25px" align="center">@job.title</div>
+                                        <div class="m-b--35 font-bold" class="email" style="font-size: 20px; white-space: nowrap; overflow: hidden; display: block; text-overflow: ellipsis;" 
+                                             align="center">@job.title</div>
 
                                         <li>
                                             <hr>
@@ -312,7 +313,8 @@
                                             @detailTitle <span>@detailLine1</span>
                                         </li>
                                     </ul>
-                                    <button class="btn btn-block btn-lg bg-orange waves-effect" onclick="location.href='jobboard/job=@job.id'">รายละเอียด</button>
+                                    <button class="btn btn-block btn-lg bg-orange waves-effect" onclick="location.href='jobboard/job=@job.id'" 
+                                            style="margin-top: 30px">รายละเอียด</button>
                                 </div>
                             </div>
                         </div>

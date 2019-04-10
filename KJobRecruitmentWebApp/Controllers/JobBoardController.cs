@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -275,6 +276,7 @@ namespace KJobRecruitmentWebApp.Controllers
             return detailLineList;
         }
 
+        // ================== class data for job detail ===================
         public class JobDetail
         {
             public string id { get; set; }
@@ -290,11 +292,30 @@ namespace KJobRecruitmentWebApp.Controllers
             public string title { get; set; }
             public List<string> LineList { get; set; }
         }
+        // ============= #END class data for job detail ===================
 
         [Authorize(Roles = "Candidate")]
         public async Task<ActionResult> ApplyAJob(string job) {
 
-            ViewData["ApplyingJob"] = job;
+            Data.Job.JobAllData selectedJob = await Data.Job.GetJobDetail(job);
+            ViewData["SelectedJob"] = selectedJob;
+
+            List<Data.Job.Category> categoryList = await Data.Job.GetCategoryList();
+            ViewData["CategoryList"] = categoryList;
+
+
+
+
+            // =========== Profile data =============
+            string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+
+            Data.User.ProfileData profile = await Data.User.GetProfile(uid);
+            ViewData["Profile"] = profile;
+
+
+            Console.WriteLine(profile.eng_name);
+
             return View("job_apply");
         }
     }
