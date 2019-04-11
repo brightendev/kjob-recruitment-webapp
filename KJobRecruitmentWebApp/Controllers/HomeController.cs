@@ -93,7 +93,6 @@ namespace KJobRecruitmentWebApp.Controllers
             {
                 return Redirect("firstlogin");
             }
-
             return View();
         }
 
