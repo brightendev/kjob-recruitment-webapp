@@ -112,6 +112,8 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("ajax_dashboard_add_new_account", "ajax/addnewaccount/{email}/{password}", new { controller = "AjaxHandler", action = "AddNewAccount" });
                 routes.MapRoute("ajax_dashboard_change_role", "ajax/changerole/{email}/{role}", new { controller = "AjaxHandler", action = "ChangeRole" });
 
+                routes.MapRoute("ajax_apply_job", "ajax/applyjob/{extraInfo}/{appliedJob}", new { controller = "AjaxHandler", action = "ApplyJob" });
+
 
 
                 // test

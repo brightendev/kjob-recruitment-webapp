@@ -148,5 +148,18 @@ namespace KJobRecruitmentWebApp.Controllers
             return true;
 
         }
+
+        public async Task<string> ApplyJob(string extraInfo, string appliedJob) {
+
+            
+
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+
+            Console.WriteLine("===== aplying candidate owner = " + uid);
+
+            string response = await System.Services.ApiInterfacer.ApplyJob(uid, "20-255", "1", "", appliedJob);
+
+            return response;
+        }
     }
 }

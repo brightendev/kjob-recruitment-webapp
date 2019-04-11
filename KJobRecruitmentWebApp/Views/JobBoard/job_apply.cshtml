@@ -29,6 +29,9 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="~/css/themes/theme-kmutnb.css" rel="stylesheet" />
+
+    <!-- Sweetalert Css -->
+    <link href="~/plugins/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
 </head>
 
 <body class="theme-kmutnb">
@@ -170,6 +173,10 @@
                     @{
                         var selectedJob = ViewData["SelectedJob"] as KJobRecruitmentWebApp.Data.Job.JobAllData;
                         var categoryList = ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>;
+                        var jobCategory = categoryList.Find(c =>
+                        {
+                            return c.id.Equals(selectedJob.category.ToString());
+                        });
                         var userProfile = ViewData["Profile"] as KJobRecruitmentWebApp.Data.User.ProfileData;
 
                         string ifAllCategoryIsSelected = "";
@@ -241,14 +248,22 @@
 
     <section class="quickbar" style="height: 60px; --sidebar-width: 250px;">
         <div class="container-fluid">
-            <div class="search-field">
-                <div class="form-group">
-                    <div class="form-line">
-                        <input type="text" class="form-control" placeholder="ค้นหา">
-                    </div>
-                </div>
-            </div>
+            <ol class="breadcrumb">
+                <li><a href="/candidate/jobboard?category=@jobCategory.id"><i class="material-icons">card_travel</i> @jobCategory.name</a></li>
+                <li><a href="/candidate/jobboard/job=@selectedJob.id"><i class="material-icons">library_books</i> @selectedJob.title</a></li>
+                <li class="active"><i class="material-icons">file_download</i>สมัครงาน</li>
+            </ol>
+            <div class="button-group">
+                <button type="button" class="btn btn-default waves-effect" id="apply-button">
+                    <i class="material-icons">done</i>
+                    <span>ยืนยัน</span>
+                </button>
+                <button type="button" class="btn btn-default waves-effect" id="cancel-apply-button">
+                    <i class="material-icons">close</i>
+                    <span>ยกเลิก</span>
+                </button>
 
+            </div>
         </div>
     </section>
 
@@ -268,10 +283,7 @@
 
                 @{
 
-                        var jobCategory = categoryList.Find(c =>
-                        {
-                            return c.id.Equals(selectedJob.category.ToString());
-                        });
+                        
 
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id=@selectedJob.id>
                             <div class="card outline-kmutnb">
@@ -452,39 +464,36 @@
                                     <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
                                         <form class="form-horizontal">
                                             <div class="form-group">
-                                                <label for="NameSurname" class="col-sm-2 control-label">Name Surname</label>
+                                                <label class="col-sm-2 control-label">ประสบการณ์</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line focused">
                                                         <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="Marc K. Hammond" required="">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <div class="form-line focused">
-                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="example@example.com" required="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="InputExperience" class="col-sm-2 control-label">Experience</label>
+                                                <label for="InputExperience" class="col-sm-2 control-label">ประสบการณ์</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Experience"></textarea>
+                                                        <textarea class="form-control " id="InputExperience" name="InputExperience" rows="3" placeholder="ประสบการณ์"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="InputSkills" class="col-sm-2 control-label">Skills</label>
+                                                <label for="InputExperience" class="col-sm-2 control-label">ทักษะ</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="Skills">
+                                                        <textarea class="form-control " id="InputExperience" name="InputExperience" rows="3" placeholder="ทักษะ"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
+
 
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
@@ -563,6 +572,14 @@
 
     <!-- Demo Js -->
     <script src="~/js/demo.js"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+    
+    <!-- Functional for this page -->
+    <script src="~/js/jobboard/job-apply.js"></script>
+
 </body>
 
 </html>
