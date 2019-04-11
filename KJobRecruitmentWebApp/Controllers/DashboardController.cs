@@ -74,5 +74,27 @@ namespace KJobRecruitmentWebApp.Controllers
             ViewData["Catagories"] = catagories;
             return View();
         }
+
+        public async Task<ActionResult> Jobs()
+        {
+            string userEmail = HttpContext.Session.GetString(System.SessionVariable.email);
+            Console.WriteLine($"user email = {userEmail}");
+
+            List<Data.Job.JobListData> JobList = await Data.Job.GetJobList();
+            List<Job.Category> Category = await Data.Job.GetCategoryList();
+            Dictionary<string,string> CategoryName= new Dictionary<string, string>();
+           
+            foreach (var index in Category)
+             {
+                CategoryName.Add(index.id,index.name);
+             }
+
+            ViewData["CategoryList"]= Category;
+            ViewData["JobsList"] = JobList;
+            ViewData["CategoryName"] = CategoryName;
+            
+
+            return View();
+        }
     }
 }
