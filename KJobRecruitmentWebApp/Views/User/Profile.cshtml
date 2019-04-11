@@ -218,7 +218,7 @@
          ไม่เอาาาา
      -->
 
-    <section class="sidenav" class="sidenav" style="width: 150px; --sidebar-width: 250px; --quickbar-height: 60px; padding-left: 25px">
+    <section class="sidenav" class="sidenav" style="width: 150px; --sidebar-width: 250px; --quickbar-height: 0px; padding-left: 25px">
         <div class="tool">
             <a href="#profile" style="text-align: left;">ประวัติส่วนตัว</a>
             <a href="#status" style="text-align: left;">สถานะต่างๆ</a>
@@ -227,6 +227,10 @@
     </section>
 
     <section class="content" style="--sidebar-width: 250px; --sidenav-width: 150px; --quickbar-height: 60px">
+        
+        @{
+            var profile = ViewData["ProfielData"] as KJobRecruitmentWebApp.Data.User.ProfileData;
+        }
 
         <div class="container-fluid">
 
@@ -241,7 +245,7 @@
                                         รหัสประจำตัวประชาชน
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.personal_id
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -263,7 +267,7 @@
                                         ชิ่อ
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.thai_name
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -274,7 +278,7 @@
                                         Name
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.eng_name.ToUpper()
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -285,7 +289,7 @@
                                         วันเกิด
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.date_of_birth.Substring(0, 10)
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -296,7 +300,7 @@
                                         เชื้อชาติ
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.race
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -304,7 +308,7 @@
                                 </button>
                                 <button type="button" class="list-group-item waves-effect" id="profile-nation">
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        สัญชาตื
+                                        @profile.nationality
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                         wait
@@ -318,7 +322,7 @@
                                         ศาสนา
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.religion
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -329,7 +333,7 @@
                                         กรุ๊ปเลือด
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.blood
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -352,7 +356,7 @@
                                         สถานภาพ
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        โสด
+                                        @profile.religion
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -374,7 +378,7 @@
                                         สถานภาพทางการทหาร
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        หนี
+                                        @profile.military_criterion
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -397,7 +401,7 @@
                                         ที่อยู่
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.address
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -408,29 +412,19 @@
                                         จังหวัด
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.province
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
                                     </div>
                                 </button>
-                                <button type="button" class="list-group-item waves-effect" id="contact-id">
-                                    <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        รหัสไปรษณีย์
-                                    </div>
-                                    <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
-                                    </div>
-                                    <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                        <i class="material-icons">create</i>
-                                    </div>
-                                </button>
+              
                                 <button type="button" class="list-group-item waves-effect" id="contact-tel">
                                     <div class="title col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         โทรศัพท์
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.telephone
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
@@ -441,7 +435,7 @@
                                         อีเมล
                                     </div>
                                     <div class="detail col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                                        wait
+                                        @profile.email
                                     </div>
                                     <div class="icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                         <i class="material-icons">create</i>
