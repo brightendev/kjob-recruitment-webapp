@@ -96,6 +96,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("admin_dashboard_account", "admin/dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
                 routes.MapRoute("admin_dashboard_category", "admin/dashboard/categories", new { controller = "Dashboard", action = "Catagories" });
                 routes.MapRoute("admin_dashboard_Jobs", "admin/dashboard/Jobs", new { controller = "Dashboard", action = "Jobs" });
+                routes.MapRoute("admin_dashboard_Candidate", "admin/dashboard/candidates", new { controller = "Dashboard", action = "Candidates" });
                 //   routes.MapRoute("dashboard_accounts2", "dashboard/accounts", new { controller = "Dashboard", action = "Accounts" });
 
 
@@ -121,7 +122,7 @@ namespace KJobRecruitmentWebApp
                 routes.MapRoute("ajax_test_blood", "ajax/getallblood", new { controller = "AjaxHandler", action = "GetAllBlood" });
                 routes.MapRoute("ajax_test_role", "ajax/getrole", new { controller = "AjaxHandler", action = "GetRole" });
 
-                
+                routes.MapRoute("user_signout", "user/signout", new { controller = "Login", action = "SignOut" });
 
                 //=====PDF=======
                 routes.MapRoute("pdfView", "PDF", new { controller = "Pdf", action = "Index" });

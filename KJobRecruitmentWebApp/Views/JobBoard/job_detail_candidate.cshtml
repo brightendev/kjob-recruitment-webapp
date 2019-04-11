@@ -78,8 +78,8 @@
 
 
                 <ul class="nav navbar-nav navbar-menu">
-                    <a href="#">หน้าแรก</a>
-                    <a class="active" href="#">งาน/ข่าวสาร</a>
+                    <a href="/">หน้าแรก</a>
+                    <a class="active" href="/candidate/jobboard">งาน/ข่าวสาร</a>
                     <a href="#">เกี่ยวกับ</a>
                     <a href="#">เว็บไซต์ มจพ.</a>
                 </ul>
@@ -128,19 +128,39 @@
                             -->
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">email@email.com</li>
+                            <li class="header">ผู้สมัคร</li>
                             <li class="body">
                                 <ul class="menu tasks">
 
                                     <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                Answer GitHub questions
-                                                <small>92%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
-                                                </div>
+                                        <a href="/candidate/user/account" class=" waves-effect waves-block">
+
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">account_circle</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>บัญชี</h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="login" class=" waves-effect waves-block">
+
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">account_circle</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>งานที่ลงสมัคร</h4>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/user/signout" class=" waves-effect waves-block">
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">person_add</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>ออกจากระบบ</h4>
                                             </div>
                                         </a>
                                     </li>
@@ -234,11 +254,11 @@
 
             <div>
                 <ul class="page-menu">
-                    <a href="">
-                        <li class="active"><span>หน้าแรก</span></li>
+                    <a href="/">
+                        <li><span>หน้าแรก</span></li>
                     </a>
-                    <a href="#">
-                        <li><span>งาน/ข่าวสาร</span></li>
+                    <a href="/candidate/jobboard">
+                        <li class="active"><span>งาน/ข่าวสาร</span></li>
                     </a>
                     <a href="#">
                         <li><span>เกี่ยวกับ</span></li>
