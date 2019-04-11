@@ -41,7 +41,14 @@ namespace KJobRecruitmentWebApp.Controllers
             return View();
         }
 
-        public ActionResult Profile() {
+        public async Task<ActionResult> Profile() {
+
+            string uid = HttpContext.Session.GetString(System.SessionVariable.uid);
+            Data.User.ProfileData profile = await Data.User.GetProfile(uid);
+
+            ViewData["ProfielData"] = profile;
+
+            Console.WriteLine(profile.eng_name);
 
             return View();
         }
