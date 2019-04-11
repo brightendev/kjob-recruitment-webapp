@@ -208,5 +208,15 @@ namespace KJobRecruitmentWebApp.System.Services
 
         }
 
+
+        public static async Task<string> ApplyJob(string ownerId, string candidateId, string status, string extraInfo, string appliedJob)
+        {
+
+            string endpoint = "api/AddCandidate?code=GLd9xaItIkcaqH35Nq0LHLKO/hSe09eWpVOnVawa1eO/uoMD7CaH5g==";
+
+            return await httpClient.GetStringAsync($"{apiServer}{endpoint}&owner_id={ownerId}&candidate_id={candidateId}&status={status}&extraInfo={extraInfo}&applied_job={appliedJob}");
+
+        }
+
     }
 }
