@@ -111,10 +111,10 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        
+
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <li class="pull-right">
@@ -190,82 +190,155 @@
             <div class="row">
                 <div class="carousel slide media-carousel" id="media">
                     <div class="carousel-inner">
-                        <div class="item  active">
-                            <div class="row">
+                        @{
 
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/exersie.jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>สถานที่ออกกำลังกายและสันทนาการ</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/kmutnb-pa.jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>อาคาร TGGS</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                        <div class="card-footer"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/club.jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>สโมสร ชมรม และกิจกรรม</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                        <div class="card-footer"></div>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/libary.jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>บริการห้องสมุด</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                        <div class="card-footer"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/stay-(2).jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>หอพักนักศึกษา</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                        <div class="card-footer"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card ">
-                                        <div class="card-img"><img src="./images/discuss.jpg" alt=""></div>
-                                        <div class="card-body">
-                                            <h5>บริการให้คำปรึกษา</h5>
-                                            <br>
-                                            <button type="button" class="btn btn-outline-danger">รายละเอียด</button>
-                                        </div>
-                                        <div class="card-footer"></div>
-                                    </div>
-                                </div>
+                            if (Convert.ToInt32(ViewData["NumberJob"]) >= 0)
+                            {
+                                <div class="item  active">
+                                    <div class="row">
+                                        @{
+                                            for (int i = 0; i < 3; i++)
+                                            {
 
-                            </div>
-                        </div>
+                                                if (Convert.ToInt32(ViewData["NumberJob"]) > i)
+                                                {
+                                                    <div class="col-sm-4">
+                                                        <div class="card ">
+
+                                                            <div class="card-body">
+                                                                <div align="center">
+                                                                    <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+                                                                    <p>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].title)</p>
+                                                                </div>
+                                                                <hr />
+                                                                <p>
+                                                                    เงินเดือน <span>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].min_salary) - @((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].max_salary)</span>
+                                                                </p>
+                                                                <p>
+                                                                    หมวดหมู่ <span>@((ViewData["JobCategory"] as Dictionary<int, string>)[((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].category)])</span>
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailTitle"] as string[])[i])
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailLine1"] as string[])[i])
+                                                                </p>
+
+
+
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            if (Convert.ToInt32(ViewData["NumberJob"]) > 2)
+                            {
+                                <div class="item  ">
+                                    <div class="row">
+                                        @{
+                                            for (int i = 3; i < 6; i++)
+                                            {
+                                                if (Convert.ToInt32(ViewData["NumberJob"]) > i)
+                                                {
+                                                    <div class="col-sm-4">
+                                                        <div class="card ">
+
+                                                            <div class="card-body">
+                                                                <div align="center">
+                                                                    <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+                                                                    <p>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].title)</p>
+                                                                </div>
+                                                                <hr />
+
+                                                                <p>
+                                                                    เงินเดือน <span>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].min_salary) - @((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].max_salary)</span>
+                                                                </p>
+                                                                <p>
+                                                                    หมวดหมู่ <span>@((ViewData["JobCategory"] as Dictionary<int, string>)[((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].category)])</span>
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailTitle"] as string[])[i])
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailLine1"] as string[])[i])
+                                                                </p>
+
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            if (Convert.ToInt32(ViewData["NumberJob"]) > 5)
+                            {
+                                <div class="item ">
+                                    <div class="row">
+                                        @{
+                                            for (int i = 6; i < 9; i++)
+                                            {
+                                                if (Convert.ToInt32(ViewData["NumberJob"]) > i)
+                                                {
+                                                    <div class="col-sm-4">
+                                                        <div class="card ">
+
+                                                            <div class="card-body">
+                                                                <div align="center">
+                                                                    <img style="border-radius: 50%" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" width="120" height="120" alt="AdminBSB - Profile Image">
+                                                                    <p>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].title)</p>
+                                                                </div>
+                                                                <hr />
+                                                                <p>
+                                                                    เงินเดือน <span>@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].min_salary) - @((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].max_salary)</span>
+                                                                </p>
+                                                                <p>
+                                                                    หมวดหมู่ <span>@((ViewData["JobCategory"] as Dictionary<int, string>)[((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].category)])</span>
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailTitle"] as string[])[i])
+                                                                </p>
+                                                                <p>
+                                                                    @((ViewData["detailLine1"] as string[])[i])
+                                                                </p>
+
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                        }
 
                     </div>
                     <div id="slide">
@@ -273,6 +346,7 @@
                         <a data-slide="next" href="#media" class="right carousel-control">›</a>
                     </div>
                 </div>
+            </div>
     </section>
 
     <div style="width: 100%;height: 4vh; background-color: white;"></div>
