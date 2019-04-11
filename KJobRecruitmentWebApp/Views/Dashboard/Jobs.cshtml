@@ -181,13 +181,13 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="active">
+                    <li >
                         <a href="~/admin/dashboard/accounts">
                             <i class="material-icons">contacts</i>
                             <span>บัญชีผู้ใช้</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="~/admin/dashboard/Jobs">
                             <i class="material-icons">card_travel</i>
                             <span>งาน</span>
@@ -247,7 +247,7 @@
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li>
-                    <i class="material-icons">contacts</i> บัญชีผู้ใช้ทั้งหมด
+                    <i class="material-icons">card_travel</i> งานทั้งหมด
                 </li>
             </ol>
             <div class="button-group">
@@ -255,21 +255,14 @@
 
 
                 <button type="button" class="btn btn-default waves-effect" id="add-new-account-btn">
-                    <i class="material-icons">person_add</i>
-                    <span>เพิ่มบัญชี</span>
+                    <i class="material-icons">add</i>
+                    <span>เพิ่มงาน</span>
                 </button>
                 <button type="button" class="btn btn-default waves-effect del" id="button" onclick="deletetable()">
                     <i class="material-icons">delete</i>
-                    <span>ลบบัญชี</span>
+                    <span>ลบงาน</span>
                 </button>
-                <button type="button" class="btn btn-default waves-effect">
-                    <i class="material-icons">vpn_key</i>
-                    <span>ตั้งรหัสผ่านใหม่</span>
-                </button>
-                <button type="button" class="btn btn-default waves-effect" id="change-role-btn">
-                    <i class="material-icons">person_outline</i>
-                    <span>เปลี่ยน Role</span>
-                </button>
+                
 
             </div>
         </div>
@@ -288,20 +281,24 @@
                     <div class="card  outline-kmutnb">
                         <div class="header">
                             <h2>
-                                บัญชีผู้ใช้ทั้งหมด
+                                งานทั้งหมด
                             </h2>
                         </div>
                         <div class="body">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="text" id="email-filter" placeholder=" อีเมล์" title="Type in a name">
+                                    <input type="text" id="email-filter" placeholder=" งาน" title="Type in a name">
 
 
                                     <select id="role-name">
                                         <option selected value='all'>ทั้งหมด</option>
-                                        <option value='Candidate'>Candidate</option>
-                                        <option value='Staff'>Staff</option>
-                                        <option value='Admin'>Admin</option>
+                                        @{
+                                            foreach (var Listcatagory in ViewData["CategoryList"] as List<KJobRecruitmentWebApp.Data.Job.Category>)
+                                            {
+             
+                                                <option value="@Listcatagory.name">@Listcatagory.name</option>
+                                            }
+                                        }
 
                                     </select>
                                 </div>
@@ -311,20 +308,21 @@
                             <table class="table" id="mytable">
                                 <thead>
                                     <tr>
-                                        <th onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(1)')">อีเมล์ <i class="material-icons">sort</i></th>
-                                        <th class="role" onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(2)')">Role <i class="material-icons">sort</i></th>
+                                        <th onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(1)')">งาน<i class="material-icons">sort</i></th>
+                                        <th class="role" onclick="w3.sortHTML('#mytable', '.item', 'td:nth-child(2)')">หมวดหมู่<i class="material-icons">sort</i></th>
                                     </tr>
                                 </thead>
                                 <tbody id="tablelist">
                                     @{
-                                        foreach (var account in ViewData["accountList"] as List<KJobRecruitmentWebApp.Data.Admin.Account>)
+                                        foreach (var Jobs in ViewData["JobsList"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)
                                         {
                                             <tr class="item">
-                                                <td>@account.email</td>
-                                                <td>@account.role_name</td>
+                                                <td>@Jobs.title</td>
+                                                <td>@((ViewData["CategoryName"] as Dictionary<string, string>)[Jobs.category.ToString()])</td>
                                             </tr>
                                         }
                                     }
+
                                 </tbody>
                             </table>
                         </div>
@@ -349,7 +347,7 @@
     <!-- Waves Effect Plugin Js -->
     <script src="~/plugins/node-waves/waves.js"></script>
 
-    
+
     <!-- Editable Table Plugin Js -->
     <script src="~/plugins/editable-table/mindmup-editabletable.js"></script>
 
@@ -361,7 +359,7 @@
 
     <!-- เพิ่มเข้ามา w3school sort link  -->
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-   
+
     <!-- SweetAlert Plugin Js -->
     <script src="~/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
