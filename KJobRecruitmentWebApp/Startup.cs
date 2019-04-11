@@ -127,6 +127,7 @@ namespace KJobRecruitmentWebApp
                 //=====PDF=======
                 routes.MapRoute("pdfView", "PDF", new { controller = "Pdf", action = "Index" });
                 routes.MapRoute("pdfDownload", "PDFDownload", new { controller = "Pdf", action = "DownloadActionAsPDF" });
+                routes.MapRoute("pdfViewProfile", "DownloadProfile/{id}", new { controller = "Pdf", action = "resume" });
                 RotativaConfiguration.Setup(env);
 
             });
