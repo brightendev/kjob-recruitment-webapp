@@ -41,6 +41,15 @@ namespace KJobRecruitmentWebApp.Data
             public string gender { get; set; }
         }
 
+        public class CandidateData
+        {
+            public string candidate_id { get; set; }
+            public string status { get; set; }
+            public string extar_info { get; set; }
+            public string applied_id { get; set; }
+
+        }
+
         public static async Task<AccountData> GetAccount(string uid) {
 
             string response = await System.Services.ApiInterfacer.GetUser("Account", uid);
@@ -54,6 +63,15 @@ namespace KJobRecruitmentWebApp.Data
             string response = await System.Services.ApiInterfacer.GetUser("Profile", uid);
             Console.WriteLine($"get user account response {response}");
             return JsonConvert.DeserializeObject<ProfileData>(response);
+        }
+
+        public static async Task<CandidateData> GetCandidateData(string uid) {
+
+            string response = await System.Services.ApiInterfacer.GetCandidate(uid);
+
+            Console.WriteLine(response);
+
+            return JsonConvert.DeserializeObject<CandidateData>(response);
         }
     }
 }

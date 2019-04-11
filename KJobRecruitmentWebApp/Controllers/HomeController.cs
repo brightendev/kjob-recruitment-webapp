@@ -28,7 +28,7 @@ namespace KJobRecruitmentWebApp.Controllers
             {
                 StoreUserInformation();
                 Console.WriteLine("in role Staff");
-                return RedirectToAction("Staff", "Home");
+                return RedirectToAction("Jobs", "Dashboard");
             }
             if (User.IsInRole("Admin"))
             {

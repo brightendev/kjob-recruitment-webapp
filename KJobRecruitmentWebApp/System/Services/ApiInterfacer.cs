@@ -218,5 +218,13 @@ namespace KJobRecruitmentWebApp.System.Services
 
         }
 
+        public static async Task<string> GetCandidate(string id) {
+
+         //
+         string endpoint = "api/GetCandidate?code=x7jl/SBKcptt4bvb46Ja/BuHwgqarXMh8lYEqoahEp1OuIiiUH6joQ==";
+
+         return await httpClient.GetStringAsync($"{apiServer}{endpoint}&id={id}");
+        }
+
     }
 }

@@ -169,5 +169,16 @@ namespace KJobRecruitmentWebApp.Controllers
 
             return creatingProfileResult;
         }
+
+        public ActionResult SignOut() {
+
+            Console.WriteLine("signing  out");
+
+            HttpContext.SignOutAsync();
+
+
+            return Redirect("/");
+
+        }
     }
 }
