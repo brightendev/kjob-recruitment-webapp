@@ -111,10 +111,10 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        
+
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <li class="pull-right">
@@ -191,7 +191,7 @@
                 <div class="carousel slide media-carousel" id="media">
                     <div class="carousel-inner">
                         @{
-                            
+
 
                             if (Convert.ToInt32(ViewData["NumberJob"]) >= 0)
                             {
@@ -200,7 +200,7 @@
                                         @{
                                             for (int i = 0; i < 3; i++)
                                             {
-                                                
+
                                                 if (Convert.ToInt32(ViewData["NumberJob"]) > i)
                                                 {
                                                     <div class="col-sm-4">
@@ -224,12 +224,14 @@
                                                                 <p>
                                                                     @((ViewData["detailLine1"] as string[])[i])
                                                                 </p>
-                                                                
 
-                                                                
+
+
                                                             </div>
                                                             <div class="card-footer">
-                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;">รายละเอียด</button>
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -275,7 +277,9 @@
 
                                                             </div>
                                                             <div class="card-footer">
-                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;">รายละเอียด</button>
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -320,7 +324,9 @@
 
                                                             </div>
                                                             <div class="card-footer">
-                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;">รายละเอียด</button>
+                                                                <button class="btn btn-block btn-lg bg-orange waves-effect" style="width:95%;" onclick="location.href='jobboard/job=@((ViewData["Job"] as List<KJobRecruitmentWebApp.Data.Job.JobListData>)[i].id)'">
+                                                                    รายละเอียด
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>

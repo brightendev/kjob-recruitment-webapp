@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,7 +17,7 @@ namespace KJobRecruitmentWebApp.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            
+
             if (User.IsInRole("Candidate"))
             {
                 StoreUserInformation();
@@ -31,7 +30,8 @@ namespace KJobRecruitmentWebApp.Controllers
                 Console.WriteLine("in role Staff");
                 return RedirectToAction("Staff", "Home");
             }
-            if (User.IsInRole("Admin")) {
+            if (User.IsInRole("Admin"))
+            {
 
                 StoreUserInformation();
                 Console.WriteLine("in role Admin");
@@ -42,9 +42,9 @@ namespace KJobRecruitmentWebApp.Controllers
             List<Data.Job.Category> catagories = await Data.Job.GetCategoryList();
             Dictionary<int, string> JobCategory = new Dictionary<int, string>();
             JObject jobDetailJObject;
-            string[] detailLine1=new string[jobList.Count];
+            string[] detailLine1 = new string[jobList.Count];
             string[] detailTitle = new string[jobList.Count];
-            for (int i=0; i < jobList.Count ; i++ )
+            for (int i = 0; i < jobList.Count; i++)
             {
                 if (jobList[i].detail_1 != null)
                 {
@@ -61,7 +61,7 @@ namespace KJobRecruitmentWebApp.Controllers
             }
             foreach (Job.Category indexCatagories in catagories)
             {
-                JobCategory.Add(Convert.ToInt32(indexCatagories.id),indexCatagories.name);
+                JobCategory.Add(Convert.ToInt32(indexCatagories.id), indexCatagories.name);
             }
             ViewData["Job"] = jobList;
             ViewData["NumberJob"] = jobList.Count;
@@ -72,12 +72,13 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
         [Authorize(Roles = "Candidate")]
-        public async Task<IActionResult> Candidate() {
+        public async Task<IActionResult> Candidate()
+        {
 
             AccountController account = new AccountController();
 
-           // JObject respJsonObject = JsonConvert.DeserializeObject(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Email).ToString()) as JObject;
-           // string email = respJsonObject["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].Value<string>();
+            // JObject respJsonObject = JsonConvert.DeserializeObject(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Email).ToString()) as JObject;
+            // string email = respJsonObject["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"].Value<string>();
 
             ViewData["Email"] = ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(6);
             ViewData["Uid"] = ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(4);
@@ -88,7 +89,8 @@ namespace KJobRecruitmentWebApp.Controllers
 
             Console.WriteLine($"is account have profile = {newUser}");
 
-            if(newUser.Equals("NONE")) {
+            if (newUser.Equals("NONE"))
+            {
                 return Redirect("firstlogin");
             }
 
@@ -96,22 +98,24 @@ namespace KJobRecruitmentWebApp.Controllers
         }
 
         [Authorize(Roles = "Staff")]
-        public IActionResult Staff() {
+        public IActionResult Staff()
+        {
 
             return View();
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Admin() {
+        public IActionResult Admin()
+        {
 
             return View();
         }
 
-        private void StoreUserInformation() {
+        private void StoreUserInformation()
+        {
             HttpContext.Session.SetString(System.SessionVariable.email, ((ClaimsIdentity)User.Identity).FindFirst("Email").ToString().Substring(7));
             HttpContext.Session.SetString(System.SessionVariable.uid, ((ClaimsIdentity)User.Identity).FindFirst("Uid").ToString().Substring(5));
             HttpContext.Session.SetString(System.SessionVariable.role, ((ClaimsIdentity)User.Identity).FindFirst("Role").ToString().Substring(6));
         }
-        
     }
 }
